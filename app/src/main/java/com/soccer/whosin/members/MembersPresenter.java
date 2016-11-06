@@ -1,6 +1,5 @@
-package com.soccer.whosin.presenters;
+package com.soccer.whosin.members;
 
-import com.soccer.whosin.interactors.MembersInteractor;
 import com.soccer.whosin.interfaces.IMembersPresenter;
 import com.soccer.whosin.models.Member;
 import com.soccer.whosin.utils.BusProvider;

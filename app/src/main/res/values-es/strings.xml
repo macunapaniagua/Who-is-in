@@ -9,4 +9,11 @@
     <string name="option_c_item">Opción C</string>
     <string name="setting_item">Configuración</string>
     <string name="log_out_item">Cerrar Sesión</string>
+    <string name="create_group">Crear Grupo</string>
+    <string name="join_group">Unirse al Grupo</string>
+    <string name="group_name">Nombre del Grupo</string>
+    <string name="dont_have_code">No tengo un código</string>
+    <string name="group_code">Código del grupo</string>
+    <string name="group_code_required">El código de grupo es requerido!</string>
+    <string name="group_name_required">El nombre del grupo es requerido!</string>
 </resources>

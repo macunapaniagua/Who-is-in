@@ -1,4 +1,4 @@
-package com.soccer.whosin.interactors;
+package com.soccer.whosin.members;
 
 import com.soccer.whosin.interfaces.IMembersPresenter;
 import com.soccer.whosin.interfaces.WhoIsInService;

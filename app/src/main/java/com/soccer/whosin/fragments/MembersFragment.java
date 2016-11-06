@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.soccer.whosin.R;
 import com.soccer.whosin.adapters.MembersAdapter;
 import com.soccer.whosin.models.Member;
-import com.soccer.whosin.presenters.MembersPresenter;
+import com.soccer.whosin.members.MembersPresenter;
 import com.soccer.whosin.utils.BusProvider;
 import com.soccer.whosin.utils.DividerItemDecoration;
 import com.soccer.whosin.utils.LocalStorageHelper;

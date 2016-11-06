@@ -1,12 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Who\'s In?</string>
     <string name="facebook_app_id">644597849040245</string>
 
     <!-- Drawer Menu Items -->
-    <string name="option_a_item">Opción A</string>
+    <string name="option_a_item">Option A</string>
     <string name="members_item">Members</string>
-    <string name="option_c_item">Opción C</string>
+    <string name="option_c_item">Option C</string>
     <string name="setting_item">Settings</string>
     <string name="log_out_item">Logout</string>
+    <string name="create_group">Create Group</string>
+    <string name="join_group">Join Group</string>
+    <string name="group_name">Group Name</string>
+    <string name="dont_have_code">I don\'t have a code</string>
+    <string name="group_code">Group Code</string>
+    <string name="group_code_required">Group code is required!</string>
+    <string name="group_name_required">Group name is required!</string>
 
 </resources>
