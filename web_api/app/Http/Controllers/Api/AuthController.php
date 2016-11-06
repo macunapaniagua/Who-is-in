@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\User;
+use App\Models\User;
 use Auth;
 use App\Http\Requests\AuthUserRequest;
 
@@ -27,7 +27,7 @@ class AuthController extends Controller
     } else {
       $store_user = $this->user;
       $store_user->name = $request->name;
-      $store_user->email = $request->email;
+      $store_user->picture = $request->picture;
       $store_user->facebook_id = $request->facebook_id;
       $store_user->save();
       return response($store_user, 200);
