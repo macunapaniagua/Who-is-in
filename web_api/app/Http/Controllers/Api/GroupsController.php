@@ -10,6 +10,7 @@ use App\Models\UserGroup;
 use App\Lib\RandomString;
 use App\Lib\UserAuth;
 use App\Lib\UsersGroups;
+use App\Http\Requests\GroupsRequest;
 
 class GroupsController extends Controller
 {
@@ -21,7 +22,7 @@ class GroupsController extends Controller
       $this->user_group = $user_group;
   }
 
-  public function store(Request $request)
+  public function store(GroupsRequest $request)
   {
     $user = UserAuth::getUserAuth($request);
     $new_group = new $this->group;
@@ -38,23 +39,23 @@ class GroupsController extends Controller
   public function show($code, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
+    $user_group_object = null;
     $group_search = $this->group->where('code', $code)->get()->first();
     if ($group_search != null) {
         $suscribed = false;
         $user_group = $this->user_group->where('group_id', $group_search->id)->where('user_id', $user->id)->get()->first();
-
         if ($user_group == null) {
+
           $user_group = ["user_id" => $user->id, "group_id" => $group_search->id, "is_admin" => false, "is_active" => false];
-          $user_group = UsersGroups::createUserGroup($user_group);
+          UsersGroups::createUserGroup($user_group);
         }
 
         $group_info = ["user_id" => $user->id, "group_id" => $group_search->id, "code" => $group_search->code, "is_admin" => $user_group->is_admin, "name" => $group_search->name];
-        return $group_info;
+        return response($group_info, 200);
     } else {
-
+       return response(['error' => '¡El código del grupo no existe!'], 404);
     }
 
-    return response($new_group->user_group, 201);
   }
 
 }
