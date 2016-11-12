@@ -10,4 +10,10 @@ class Group extends Model
   {
       return $this->hasMany('App\Models\UserGroup');
   }
+
+  public function soccerGame()
+  {
+      return $this->hasMany('App\Models\SoccerGame');
+  }
+
 }
