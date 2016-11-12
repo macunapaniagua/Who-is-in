@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersGroupTable extends Migration
+class CreateSoccerFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,17 @@ class CreateUsersGroupTable extends Migration
      */
     public function up()
     {
-      Schema::create('users_groups', function (Blueprint $table) {
+      Schema::create('soccer_fields', function (Blueprint $table) {
           $table->increments('id');
+          $table->string('name');
+          $table->string('latitude');
+          $table->string('longitude');
+          $table->string('phone');
+          $table->string('total');
+          $table->string('schedule');
+          $table->integer('players_account');
           $table->integer('user_id');
           $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-          $table->integer('group_id');
-          $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
-          $table->boolean('is_admin');
-          $table->boolean('is_active');
           $table->timestamps();
       });
     }
@@ -31,6 +34,6 @@ class CreateUsersGroupTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users_groups');
+        Schema::drop('soccer_fields');
     }
 }
