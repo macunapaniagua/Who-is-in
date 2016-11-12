@@ -28,4 +28,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\UserGroup');
     }
+
+    public function soccer_fields()
+    {
+        return $this->hasMany('App\Models\SoccerField');
+    }
 }

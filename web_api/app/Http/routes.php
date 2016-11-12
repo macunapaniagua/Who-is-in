@@ -20,5 +20,7 @@ Route::group(['middleware' => 'api'], function () {
   Route::group(['prefix' => 'api'], function() {
     Route::post('authenticate', 'Api\AuthController@authenticate');
     Route::resource('groups', 'Api\GroupsController');
+    Route::get('users_group/{group_id}', 'Api\GroupsController@users_group');
+    Route::resource('soccer_fields', 'Api\SoccerFieldsController');
   });
 });
