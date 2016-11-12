@@ -22,6 +22,16 @@ class GroupsController extends Controller
       $this->user_group = $user_group;
   }
 
+  public function users_group($group_id)
+  {
+    $users_group = $this->user_group->where('group_id', $group_id)->get();
+    $user_group_list = [];
+    for ($i=0; $i < count($users_group); $i++) {
+      $user_group_list[$i] = ["user_id" => $users_group[$i]->user_id, "group_id" => $users_group[$i]->group_id, "is_admin" => $users_group[$i]->is_admin, "name" => $users_group[$i]->user->name, "is_active" => $users_group[$i]->is_active];
+    }
+    return response($user_group_list, 200);
+  }
+
   public function store(GroupsRequest $request)
   {
     $user = UserAuth::getUserAuth($request);
