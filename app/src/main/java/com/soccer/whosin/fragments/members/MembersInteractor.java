@@ -1,37 +1,35 @@
-package com.soccer.whosin.login;
+package com.soccer.whosin.fragments.members;
 
 import com.google.gson.Gson;
-import com.soccer.whosin.interfaces.ILoginInteractor;
-import com.soccer.whosin.interfaces.ILoginPresenter;
+import com.soccer.whosin.interfaces.IMembersPresenter;
 import com.soccer.whosin.interfaces.WhoIsInService;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.Member;
 import com.soccer.whosin.utils.RetrofitHelper;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Mario on 05/11/16.
+ * Created by Mario A on 22/10/2016.
  **/
+public class MembersInteractor {
 
-public class LoginInteractor implements ILoginInteractor {
+    private IMembersPresenter mPresenter;
 
-    private ILoginPresenter mPresenter;
-
-    public LoginInteractor(ILoginPresenter pPresenter) {
+    public MembersInteractor(IMembersPresenter pPresenter) {
         this.mPresenter = pPresenter;
     }
 
-    @Override
-    public void createUser(Member pMember) {
-        WhoIsInService service = RetrofitHelper.getAPI();
-        service.authenticateUser(pMember).enqueue(new Callback<Member>() {
+    public void getMembersFromAPI(String pFacebookId, String pGroupId, boolean pAcceptedUsers) {
+        WhoIsInService service = RetrofitHelper.getAPIWithHeaders(pFacebookId);
+        service.getGroupMembers(pGroupId, pAcceptedUsers).enqueue(new Callback<List<Member>>() {
             @Override
-            public void onResponse(Call<Member> call, Response<Member> response) {
+            public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
                 if (response.isSuccessful())
                     mPresenter.onMembersRequestSuccessful(response.body());
                 else {
@@ -47,7 +45,7 @@ public class LoginInteractor implements ILoginInteractor {
             }
 
             @Override
-            public void onFailure(Call<Member> call, Throwable t) {
+            public void onFailure(Call<List<Member>> call, Throwable t) {
                 ErrorMessage errorMessage = new ErrorMessage(t.getMessage());
                 mPresenter.onMembersRequestFailed(errorMessage);
             }

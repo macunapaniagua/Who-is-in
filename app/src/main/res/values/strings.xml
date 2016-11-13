@@ -16,5 +16,8 @@
     <string name="group_code">Group Code</string>
     <string name="group_code_required">Group code is required!</string>
     <string name="group_name_required">Group name is required!</string>
-
+    <string name="accepted_members">Accepted</string>
+    <string name="pending_members">Pending</string>
+    <string name="administrator">Administrator</string>
+    <string name="participant">Participant</string>
 </resources>

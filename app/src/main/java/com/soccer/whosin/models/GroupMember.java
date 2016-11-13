@@ -8,34 +8,14 @@ import com.google.gson.annotations.SerializedName;
 
 public class GroupMember {
 
-    @SerializedName("user_id") private String mUserId;
-    @SerializedName("group_id") private String mGroupId;
-    @SerializedName("code") private String mGroupCode;
-    @SerializedName("is_admin") private String mIsGroupAdmin;
-    @SerializedName("name") private String mGroupName;
-    @SerializedName("error") private String mError;
+    @SerializedName("group") private Group mGroup;
+    @SerializedName("user") private Member mMember;
 
-    public String getUserId() {
-        return mUserId;
+    public Group getGroup() {
+        return mGroup;
     }
 
-    public String getGroupId() {
-        return mGroupId;
-    }
-
-    public String getGroupCode() {
-        return mGroupCode;
-    }
-
-    public String getIsGroupAdmin() {
-        return mIsGroupAdmin;
-    }
-
-    public String getGroupName() {
-        return mGroupName;
-    }
-
-    public String getError() {
-        return mError;
+    public Member getMember() {
+        return mMember;
     }
 }

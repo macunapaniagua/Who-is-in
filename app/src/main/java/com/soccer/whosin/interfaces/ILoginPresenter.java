@@ -1,5 +1,6 @@
 package com.soccer.whosin.interfaces;
 
+import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.Member;
 
 /**
@@ -9,5 +10,5 @@ import com.soccer.whosin.models.Member;
 public interface ILoginPresenter {
 
     void onMembersRequestSuccessful(Member pMember);
-    void onMembersRequestFailed(String pErrorMessage);
+    void onMembersRequestFailed(ErrorMessage pErrorMessage);
 }

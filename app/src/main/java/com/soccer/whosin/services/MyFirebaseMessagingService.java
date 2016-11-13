@@ -12,7 +12,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.soccer.whosin.R;
-import com.soccer.whosin.activities.MainActivity;
+import com.soccer.whosin.main_content.MainActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 

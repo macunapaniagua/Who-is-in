@@ -1,5 +1,6 @@
 package com.soccer.whosin.interfaces;
 
+import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupMember;
 
 /**
@@ -8,7 +9,7 @@ import com.soccer.whosin.models.GroupMember;
 
 public interface IGroupPresenter {
     void onGroupCreatedSuccessfully(GroupMember pGroupMember);
-    void onGroupCreationFailed(String pErrorMessage);
+    void onGroupCreationFailed(ErrorMessage pErrorMessage);
     void onJoinGroupSuccessfully(GroupMember pGroupMember);
-    void onJoinGroupFailed(String pErrorMessage);
+    void onJoinGroupFailed(ErrorMessage pErrorMessage);
 }

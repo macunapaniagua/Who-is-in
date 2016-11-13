@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/members_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    app:layoutManager="LinearLayoutManager"
     android:name="com.soccer.whosin.fragments.MembersFragment"
-    tools:context="com.soccer.whosin.fragments.MembersFragment"
-    tools:listitem="@layout/fragment_member" />
+    tools:context="com.soccer.whosin.fragments.members.MembersFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/members_list"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/members.status.control"
+        app:layoutManager="LinearLayoutManager" />
+
+    <info.hoang8f.android.segmented.SegmentedGroup
+        android:id="@+id/members.status.control"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        app:sc_tint_color="@color/radio_color"
+        app:sc_border_width="2dp"
+        app:sc_corner_radius="10dp">
+
+        <RadioButton
+            android:id="@+id/members.accepted.members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accepted_members"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            style="@style/RadioButton" />
+
+        <RadioButton
+            android:id="@+id/members.pending.members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pending_members"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            style="@style/RadioButton" />
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
+    <RelativeLayout
+        android:id="@+id/members.loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:visibility="invisible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.60"
+            android:background="@android:color/black"
+            android:contentDescription="@null"/>
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:indicatorName="BallTrianglePathIndicator"
+            app:indicatorColor="@android:color/white" />
+    </RelativeLayout>
+</RelativeLayout>
+
+
+
+

@@ -1,6 +1,7 @@
-package com.soccer.whosin.members;
+package com.soccer.whosin.fragments.members;
 
 import com.soccer.whosin.interfaces.IMembersPresenter;
+import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.Member;
 import com.soccer.whosin.utils.BusProvider;
 
@@ -17,8 +18,8 @@ public class MembersPresenter implements IMembersPresenter {
         mInteractor = new MembersInteractor(this);
     }
 
-    public void getGroupMembers(String pGroupId) {
-        mInteractor.getMembersFromAPI(pGroupId);
+    public void getGroupMembers(String pFacebookId, String pGroupId, boolean pAcceptedUsers) {
+        mInteractor.getMembersFromAPI(pFacebookId, pGroupId, pAcceptedUsers);
     }
 
     @Override
@@ -27,7 +28,7 @@ public class MembersPresenter implements IMembersPresenter {
     }
 
     @Override
-    public void onMembersRequestFailed(String pErrorMessage) {
+    public void onMembersRequestFailed(ErrorMessage pErrorMessage) {
         BusProvider.getBus().post(pErrorMessage);
     }
 }

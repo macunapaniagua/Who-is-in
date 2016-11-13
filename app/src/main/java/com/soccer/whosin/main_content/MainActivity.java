@@ -1,4 +1,4 @@
-package com.soccer.whosin.activities;
+package com.soccer.whosin.main_content;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,10 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.soccer.whosin.R;
-import com.soccer.whosin.fragments.MembersFragment;
 import com.soccer.whosin.fragments.PlaceholderFragment;
+import com.soccer.whosin.fragments.members.MembersFragment;
+import com.soccer.whosin.models.Member;
+import com.soccer.whosin.utils.LocalStorageHelper;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setToolbar();
+        this.subscribeNotifications();
         this.initializeDrawer();
         // Set home item as default
         if (savedInstanceState == null && vNavigationView != null) {
-            vNavigationView.setCheckedItem(R.id.nav_home);
+            this.selectItem(vNavigationView.getMenu().getItem(0));
         }
     }
 
@@ -40,14 +50,33 @@ public class MainActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         }
+    }
+
+    protected void subscribeNotifications() {
+        String topic = String.format("soccer_%1$s", LocalStorageHelper.getGroupId(this));
+        FirebaseMessaging.getInstance().subscribeToTopic(topic);
     }
 
     private void initializeDrawer() {
         vDrawerLayout   = (DrawerLayout) findViewById(R.id.drawer_layout);
         vNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        this.loadUserInfo();
         this.setListeners();
+    }
+
+    protected void loadUserInfo() {
+        View header            = vNavigationView.getHeaderView(0);
+        CircleImageView avatar = (CircleImageView) header.findViewById(R.id.drawer_avatar);
+        TextView userName      = (TextView) header.findViewById(R.id.drawer_user_name);
+        TextView groupAdmin    = (TextView) header.findViewById(R.id.drawer_is_admin);
+        Member loggedUser      = LocalStorageHelper.getLoggedUser(this);
+        userName.setText(loggedUser.getName());
+        groupAdmin.setText(loggedUser.isAdmin() ? R.string.administrator : R.string.participant);
+        Glide.with(this)
+                .load(loggedUser.getAvatar())
+                .into(avatar);
     }
 
     private void setListeners() {

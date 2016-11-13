@@ -14,6 +14,8 @@ import com.soccer.whosin.models.Member;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by Mario A on 22/10/2016.
  **/
@@ -43,20 +45,19 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberVi
         holder.vName.setText(mMembers.get(position).getName());
         Glide.with(mContext)
                 .load(mMembers.get(position).getAvatar())
-                .fitCenter()
                 .placeholder(R.drawable.com_facebook_profile_picture_blank_square)
-                .crossFade()
+                .dontAnimate()
                 .into(holder.vAvatar);
     }
 
     public class MemberViewHolder extends RecyclerView.ViewHolder {
         public final TextView vName;
-        public final ImageView vAvatar;
+        public final CircleImageView vAvatar;
 
         public MemberViewHolder(View view) {
             super(view);
             vName   = (TextView) view.findViewById(R.id.member_name);
-            vAvatar = (ImageView) view.findViewById(R.id.member_avatar);
+            vAvatar = (CircleImageView) view.findViewById(R.id.member_avatar);
         }
     }
 }
