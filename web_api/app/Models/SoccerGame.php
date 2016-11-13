@@ -11,7 +11,7 @@ class SoccerGame extends Model
       return $this->belongsTo('App\Models\Group');
   }
 
-  public function soccerField()
+  public function soccer_field()
   {
       return $this->belongsTo('App\Models\SoccerField');
   }
