@@ -6,13 +6,13 @@ package com.soccer.whosin.models;
 
 public class ErrorMessage {
 
-    private String mMessage;
+    private String error;
 
     public ErrorMessage(String pMessage) {
-        this.mMessage = pMessage;
+        this.error = pMessage;
     }
 
     public String getMessage() {
-        return mMessage;
+        return error;
     }
 }

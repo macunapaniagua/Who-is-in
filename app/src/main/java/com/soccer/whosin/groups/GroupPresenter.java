@@ -27,29 +27,21 @@ public class GroupPresenter implements IGroupPresenter {
 
     @Override
     public void onGroupCreatedSuccessfully(GroupMember pGroupMember) {
-        if (pGroupMember.getError() == null) {
-            BusProvider.getBus().post(pGroupMember);
-        } else {
-            BusProvider.getBus().post(new ErrorMessage(pGroupMember.getError()));
-        }
+        BusProvider.getBus().post(pGroupMember);
     }
 
     @Override
-    public void onGroupCreationFailed(String pErrorMessage) {
-        BusProvider.getBus().post(new ErrorMessage(pErrorMessage));
+    public void onGroupCreationFailed(ErrorMessage pErrorMessage) {
+        BusProvider.getBus().post(pErrorMessage);
     }
 
     @Override
     public void onJoinGroupSuccessfully(GroupMember pGroupMember) {
-        if (pGroupMember.getError() == null) {
-            BusProvider.getBus().post(pGroupMember);
-        } else {
-            BusProvider.getBus().post(new ErrorMessage(pGroupMember.getError()));
-        }
+        BusProvider.getBus().post(pGroupMember);
     }
 
     @Override
-    public void onJoinGroupFailed(String pErrorMessage) {
-        BusProvider.getBus().post(new ErrorMessage(pErrorMessage));
+    public void onJoinGroupFailed(ErrorMessage pErrorMessage) {
+        BusProvider.getBus().post(pErrorMessage);
     }
 }

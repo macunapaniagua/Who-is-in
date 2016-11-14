@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "477367227650-2ojqgr604md2q5ap0pv64nhntlupe27h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.soccer.whosin",
+            "certificate_hash": "63BEC8657A06FB28516133582ECCB0725DE38662"
+          }
+        },
+        {
           "client_id": "477367227650-mt3tvshvvt27v7bdtdrtcohlfbvr9fep.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

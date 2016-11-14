@@ -16,4 +16,9 @@
     <string name="group_code">Código del grupo</string>
     <string name="group_code_required">El código de grupo es requerido!</string>
     <string name="group_name_required">El nombre del grupo es requerido!</string>
+    <string name="members">Miembros</string>
+    <string name="accepted_members">Aceptados</string>
+    <string name="pending_members">Pendientes</string>
+    <string name="administrator">Administrador</string>
+    <string name="participant">Participante</string>
 </resources>

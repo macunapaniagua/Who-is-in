@@ -1,8 +1,8 @@
 package com.soccer.whosin.groups.create_group;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,8 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.soccer.whosin.R;
-import com.soccer.whosin.activities.MainActivity;
 import com.soccer.whosin.groups.GroupPresenter;
+import com.soccer.whosin.main_content.MainActivity;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.utils.BusProvider;

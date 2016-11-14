@@ -7,15 +7,20 @@ import com.google.gson.annotations.SerializedName;
  **/
 public class Member {
 
+    @SerializedName("user_id") private String mUserId;
     @SerializedName("facebook_id") private String mFacebookId;
     @SerializedName("name") private String mName;
     @SerializedName("picture") private String mAvatar;
-    @SerializedName("error") private String mError;
+    @SerializedName("is_admin") private boolean mIsAdmin;
 
     public Member(String mFacebookId, String mName, String mAvatar) {
         this.mFacebookId = mFacebookId;
         this.mName = mName;
         this.mAvatar = mAvatar;
+    }
+
+    public String getUserId() {
+        return mUserId;
     }
 
     public String getFacebookId() {
@@ -30,7 +35,7 @@ public class Member {
         return mAvatar;
     }
 
-    public String getError() {
-        return mError;
+    public boolean isAdmin() {
+        return mIsAdmin;
     }
 }

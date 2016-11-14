@@ -23,15 +23,11 @@ public class LoginPresenter implements ILoginPresenter {
 
     @Override
     public void onMembersRequestSuccessful(Member pMember) {
-        if (pMember.getError() == null)
-            BusProvider.getBus().post(pMember);
-        else
-            BusProvider.getBus().post(new ErrorMessage(pMember.getError()));
+        BusProvider.getBus().post(pMember);
     }
 
     @Override
-    public void onMembersRequestFailed(String pErrorMessage) {
-        ErrorMessage errorMessage = new ErrorMessage(pErrorMessage);
-        BusProvider.getBus().post(errorMessage);
+    public void onMembersRequestFailed(ErrorMessage pErrorMessage) {
+        BusProvider.getBus().post(pErrorMessage);
     }
 }

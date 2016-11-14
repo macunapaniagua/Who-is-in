@@ -1,10 +1,14 @@
 package com.soccer.whosin.groups;
 
+import com.google.gson.Gson;
 import com.soccer.whosin.interfaces.IGroupInteractor;
 import com.soccer.whosin.interfaces.IGroupPresenter;
 import com.soccer.whosin.interfaces.WhoIsInService;
+import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.utils.RetrofitHelper;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,12 +32,24 @@ public class GroupInteractor implements IGroupInteractor {
         service.joinGroup(pGroupCode).enqueue(new Callback<GroupMember>() {
             @Override
             public void onResponse(Call<GroupMember> call, Response<GroupMember> response) {
-                mPresenter.onGroupCreatedSuccessfully(response.body());
+                if (response.isSuccessful())
+                    mPresenter.onGroupCreatedSuccessfully(response.body());
+                else {
+                    ErrorMessage errorMessage;
+                    try {
+                        String error = response.errorBody().string();
+                        errorMessage = new Gson().fromJson(error, ErrorMessage.class);
+                    } catch (IOException e) {
+                        errorMessage = new ErrorMessage(response.message());
+                    }
+                    mPresenter.onJoinGroupFailed(errorMessage);
+                }
             }
 
             @Override
             public void onFailure(Call<GroupMember> call, Throwable t) {
-                mPresenter.onGroupCreationFailed(t.getMessage());
+                ErrorMessage errorMessage = new ErrorMessage(t.getMessage());
+                mPresenter.onGroupCreationFailed(errorMessage);
             }
         });
     }
@@ -44,12 +60,24 @@ public class GroupInteractor implements IGroupInteractor {
         service.createGroup(pGroupName).enqueue(new Callback<GroupMember>() {
             @Override
             public void onResponse(Call<GroupMember> call, Response<GroupMember> response) {
-                mPresenter.onGroupCreatedSuccessfully(response.body());
+                if (response.isSuccessful())
+                    mPresenter.onGroupCreatedSuccessfully(response.body());
+                else {
+                    ErrorMessage errorMessage;
+                    try {
+                        String error = response.errorBody().string();
+                        errorMessage = new Gson().fromJson(error, ErrorMessage.class);
+                    } catch (IOException e) {
+                        errorMessage = new ErrorMessage(response.message());
+                    }
+                    mPresenter.onGroupCreationFailed(errorMessage);
+                }
             }
 
             @Override
             public void onFailure(Call<GroupMember> call, Throwable t) {
-                mPresenter.onGroupCreationFailed(t.getMessage());
+                ErrorMessage errorMessage = new ErrorMessage(t.getMessage());
+                mPresenter.onGroupCreationFailed(errorMessage);
             }
         });
     }

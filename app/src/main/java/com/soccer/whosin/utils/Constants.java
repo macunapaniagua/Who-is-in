@@ -6,11 +6,10 @@ package com.soccer.whosin.utils;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://192.168.1.106:8000/";
+    public static final String BASE_URL = "http://192.168.1.106:8000/api/";
 
     // SharedPreferences values
     public static final String STORAGE_NAME = "Who is in?";
-    public static final String GROUP_ID     = "group_id";
     public static final String USER_NAME    = "name";
     public static final String USER_PICTURE = "user_picture";
     public static final String USER_FB_KEY  = "facebook_id";

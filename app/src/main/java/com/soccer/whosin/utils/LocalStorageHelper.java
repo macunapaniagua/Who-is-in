@@ -5,13 +5,8 @@ import android.content.SharedPreferences;
 
 import com.facebook.Profile;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.models.Member;
-
-import java.security.acl.Group;
-
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Mario A on 22/10/2016.
@@ -54,8 +49,12 @@ public class LocalStorageHelper {
         return new Gson().fromJson(json, GroupMember.class);
     }
 
+    public static Member getLoggedUser(Context pContext) {
+        return getGroupMember(pContext).getMember();
+    }
+
     public static String getGroupId(Context pContext) {
-        SharedPreferences sharedPref = pContext.getSharedPreferences(Constants.STORAGE_NAME, Context.MODE_PRIVATE);
-        return sharedPref.getString(Constants.GROUP_ID, "");
+        GroupMember groupMember = getGroupMember(pContext);
+        return groupMember.getGroup().getGroupId();
     }
 }

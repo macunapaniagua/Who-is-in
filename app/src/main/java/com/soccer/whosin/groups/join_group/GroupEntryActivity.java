@@ -2,8 +2,8 @@ package com.soccer.whosin.groups.join_group;
 
 import android.content.Intent;
 import android.graphics.Paint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,9 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.soccer.whosin.R;
-import com.soccer.whosin.activities.MainActivity;
 import com.soccer.whosin.groups.GroupPresenter;
 import com.soccer.whosin.groups.create_group.CreateGroupActivity;
+import com.soccer.whosin.main_content.MainActivity;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.utils.BusProvider;
@@ -91,7 +91,7 @@ public class GroupEntryActivity extends AppCompatActivity implements View.OnClic
 
     @Subscribe
     @SuppressWarnings("unused")
-    public void onJoinGroupSuccessfuly(GroupMember pGroupMember) {
+    public void onJoinGroupSuccessfully(GroupMember pGroupMember) {
         LocalStorageHelper.storeGroupMember(this, pGroupMember);
         this.hideLoadingIndicator();
         this.goToMainScreen();
