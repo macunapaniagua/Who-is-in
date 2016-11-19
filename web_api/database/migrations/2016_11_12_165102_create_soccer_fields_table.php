@@ -15,10 +15,10 @@ class CreateSoccerFieldsTable extends Migration
       Schema::create('soccer_fields', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name');
-          $table->string('latitude');
-          $table->string('longitude');
+          $table->double('latitude');
+          $table->double('longitude');
           $table->string('phone');
-          $table->string('total');
+          $table->integer('total');
           $table->string('schedule');
           $table->integer('players_account');
           $table->integer('group_id');
