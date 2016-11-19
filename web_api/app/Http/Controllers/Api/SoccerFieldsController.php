@@ -35,7 +35,7 @@ class SoccerFieldsController extends Controller
     $new_soccer_field->total = $request->total;
     $new_soccer_field->schedule = $request->schedule;
     $new_soccer_field->players_account = $request->players_account;
-    $new_soccer_field->user_id = $user->id;
+    $new_soccer_field->group_id = $request->group_id;
     $new_soccer_field->save();
 
     return response($new_soccer_field, 201);
@@ -51,6 +51,7 @@ class SoccerFieldsController extends Controller
       $update_soccer_field->total = $request->total;
       $update_soccer_field->schedule = $request->schedule;
       $update_soccer_field->players_account = $request->players_account;
+      $update_soccer_field->group_id = $request->group_id;
       $update_soccer_field->save();
       return response($update_soccer_field, 200);
   }
