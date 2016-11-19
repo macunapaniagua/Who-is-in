@@ -19,6 +19,11 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('users_group/{group_id}', 'Api\GroupsController@users_group');
     Route::resource('soccer_fields', 'Api\SoccerFieldsController');
     Route::resource('soccer_games', 'Api\SoccerGamesController');
+    Route::get('players_soccer_game/{soccer_match_id}', 'Api\PlayersController@players_soccer_game');
+    Route::post('user_group_status', 'Api\GroupsController@change_member_status');
+    Route::get('soccer_games/{soccer_game_id}', 'Api\SoccerGamesController@soccer_games');
+    Route::post('join_soccer_game', 'Api\PlayersController@join_soccer_game');
+    Route::post('leave_soccer_game/{players_id}', 'Api\PlayersController@leave_soccer_game');
 
   });
 });

@@ -22,9 +22,10 @@ class GroupsController extends Controller
       $this->user_group = $user_group;
   }
 
-  public function users_group($group_id)
+  public function users_group($group_id, Request $request)
   {
-    $users_group = $this->user_group->where('group_id', $group_id)->get();
+    $users_status = $request->input('status');
+    $users_group = $this->user_group->where('group_id', $group_id)->where('is_active', $users_status)->get();
     $user_group_list = [];
     for ($i=0; $i < count($users_group); $i++) {
       $user_group_list[$i] = ["user_id" => $users_group[$i]->user_id, "is_admin" => $users_group[$i]->is_admin, "name" => $users_group[$i]->user->name, "picture" => $users_group[$i]->user->picture, "is_active" => $users_group[$i]->is_active];
@@ -53,7 +54,10 @@ class GroupsController extends Controller
   {
     $user = UserAuth::getUserAuth($request);
     $group_search = $this->group->where('code', $code)->get()->first();
+
     if ($group_search != null) {
+        $group_info = ["group_id" => $group_search->id, "code" => $group_search->code, "name" => $group_search->name];
+        $user_info = ["user_id" => $user->id, "is_admin" => true, "name" => $user->name, "picture" => $user->picture, "facebook_id" => $user->facebook_id];
         $user_group = $this->user_group->where('group_id', $group_search->id)->where('user_id', $user->id)->get()->first();
         if ($user_group == null) {
           $user_group = ["user_id" => $user->id, "group_id" => $group_search->id, "is_admin" => false, "is_active" => false];
@@ -64,11 +68,21 @@ class GroupsController extends Controller
           $user_info = ["user_id" => $user->id, "is_admin" => $user_group->is_admin, "name" => $user->name, "picture" => $user->picture, "facebook_id" => $user->facebook_id];
           return response(["group" => $group_info, "user" => $user_info], 200);
         }
-
-        return response(['error' => "¡Usted ha solicitado unirse al grupo '$group_search->name', espere a que el administrador apruebe su solicitud!"], 401);
-
+        return response(["group" => $group_info, "user" => $user_info], 201);
     } else {
        return response(['error' => '¡El código del grupo no existe!'], 404);
+    }
+  }
+
+  public function change_member_status(Request $request)
+  {
+    $user = UserAuth::getUserAuth($request);
+    $user_group = $this->user_group->where('user_id', $request->user_id)->where('group_id', $request->group_id)->get()->first();
+    if ($user_group != null) {
+      $update_user_group = $this->user_group->findOrFail($user_group->id);
+      $update_user_group->is_active = true;
+      $update_user_group->save();
+      return response($update_user_group, 200);
     }
 
   }

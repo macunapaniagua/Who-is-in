@@ -11,9 +11,9 @@ class Player extends Model
       return $this->belongsTo('App\Models\SoccerGame');
   }
 
-  public function soccerField()
+  public function user_group()
   {
-      return $this->belongsTo('App\Models\SoccerField');
+      return $this->belongsTo('App\Models\UserGroup');
   }
 
 }

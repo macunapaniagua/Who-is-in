@@ -17,11 +17,17 @@ class SoccerGamesController extends Controller
     $this->soccer_game = $soccer_game;
   }
 
-  public function index(Request $request)
+  public function show($group_id, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    $soccer_games = $this->soccer_game->where('user_id', $user->id)->get();
-    return response($soccer_games, 200);
+    $soccer_games = $this->soccer_game->where('group_id', $group_id)->get();
+    $soccer_game_info = [];
+    $count = 0;
+    foreach ($soccer_games as $soccer_game) {
+      $soccer_game_info[$count] = ["id" => $soccer_game->id, "soccer_field_id" => $soccer_game->soccer_field_id, "players_limit" => $soccer_game->players_limit, "hour" => $soccer_game->hour, "date" => $soccer_game->date, "soccer_field" => $soccer_game->soccer_field->name];
+      $count++;
+    }
+    return response($soccer_game_info, 200);
   }
 
   public function store(Request $request)
