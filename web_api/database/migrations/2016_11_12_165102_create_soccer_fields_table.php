@@ -19,7 +19,6 @@ class CreateSoccerFieldsTable extends Migration
           $table->double('longitude');
           $table->string('phone');
           $table->integer('total');
-          $table->string('schedule');
           $table->integer('players_account');
           $table->integer('group_id');
           $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
