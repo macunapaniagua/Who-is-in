@@ -17,8 +17,8 @@ class SoccerFieldsController extends Controller
       $this->soccer_field = $soccer_field;
   }
 
-  public function index($group_id)
-  {    
+  public function show($group_id)
+  {
     $soccer_fields = $this->soccer_field->where('group_id', $group_id)->get();
     return response($soccer_fields, 200);
   }
