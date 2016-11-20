@@ -38,4 +38,5 @@
     <string name="remove">Remover</string>
     <string name="member_confirmation_title">%1$s integrante</string>
     <string name="member_confirmation">¿Está seguro que desea %1$s la solicitud del usuario %2$s?</string>
+    <string name="change_group">Cambiar Grupo</string>
 </resources>

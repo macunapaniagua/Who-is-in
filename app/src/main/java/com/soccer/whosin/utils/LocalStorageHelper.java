@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.google.gson.Gson;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.models.Member;
@@ -61,5 +62,14 @@ public class LocalStorageHelper {
     public static String getGroupInvitationCode(Context pContext) {
         GroupMember groupMember = getGroupMember(pContext);
         return groupMember.getGroup().getGroupCode();
+    }
+    public static void removeGroupMember(Context pContext) {
+        SharedPreferences sharedPref = pContext.getSharedPreferences(Constants.STORAGE_NAME, Context.MODE_PRIVATE);
+        sharedPref.edit().remove(Constants.GROUP_MEMBER).apply();
+    }
+
+    public static void removeUserData(Context pContext) {
+        SharedPreferences sharedPref = pContext.getSharedPreferences(Constants.STORAGE_NAME, Context.MODE_PRIVATE);
+        sharedPref.edit().clear().apply();
     }
 }

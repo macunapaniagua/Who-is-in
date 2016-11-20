@@ -1,5 +1,6 @@
 package com.soccer.whosin.main_content;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,12 +17,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.soccer.whosin.R;
 import com.soccer.whosin.fragments.PlaceholderFragment;
 import com.soccer.whosin.fragments.fields.FieldsFragment;
 import com.soccer.whosin.fragments.join_code.JoinCodeFragment;
 import com.soccer.whosin.fragments.members.MembersFragment;
+import com.soccer.whosin.groups.join_group.GroupEntryActivity;
+import com.soccer.whosin.login.LoginActivity;
 import com.soccer.whosin.models.Member;
 import com.soccer.whosin.utils.LocalStorageHelper;
 
@@ -126,6 +131,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_join_code:
                 fragment = JoinCodeFragment.newInstance();
                 break;
+            case R.id.nav_log_out:
+                this.logoutUser();
+                return;
+            case R.id.nav_change_group:
+                this.changeGroupMember();
+                return;
             default:
                 fragment = PlaceholderFragment.newInstance(title);
         }
@@ -135,5 +146,30 @@ public class MainActivity extends AppCompatActivity {
                        .commit();
         vDrawerLayout.closeDrawers();
         setTitle(title);
+    }
+
+    private void logoutUser() {
+        LoginManager.getInstance().logOut();
+        LocalStorageHelper.removeUserData(this);
+        this.goToLoginView();
+    }
+
+    protected void goToLoginView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.startActivity(intent);
+        this.finish();
+    }
+
+    private void changeGroupMember() {
+        LocalStorageHelper.removeGroupMember(this);
+        this.goToGroupSection();
+    }
+
+    protected void goToGroupSection() {
+        Intent intent = new Intent(this, GroupEntryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.startActivity(intent);
+        this.finish();
     }
 }
