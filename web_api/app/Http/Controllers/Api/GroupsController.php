@@ -11,15 +11,17 @@ use App\Lib\RandomString;
 use App\Lib\UserAuth;
 use App\Lib\UsersGroups;
 use App\Http\Requests\GroupsRequest;
+use App\Models\User;
 
 class GroupsController extends Controller
 {
-  protected $group, $user_group;
+  protected $group, $user_group, $user;
 
-  public function __construct(Group $group, UserGroup $user_group)
+  public function __construct(Group $group, UserGroup $user_group, User $user)
   {
       $this->group = $group;
       $this->user_group = $user_group;
+      $this->user = $user;
   }
 
   public function users_group($group_id, Request $request)
@@ -82,7 +84,23 @@ class GroupsController extends Controller
       $update_user_group = $this->user_group->findOrFail($user_group->id);
       $update_user_group->is_active = true;
       $update_user_group->save();
-      return response($update_user_group, 200);
+      $user_updated = $this->user->find($update_user_group->user_id);
+      $user_info = ["user_id" => $user_updated->id, "is_admin" => $user_updated->is_admin, "name" => $user_updated->name, "picture" => $user_updated->picture, "facebook_id" => $user_updated->facebook_id];
+      return response($user_info, 200);
+    }
+
+  }
+
+  public function remove_member(Request $request)
+  {
+    $user = UserAuth::getUserAuth($request);
+    $user_group = $this->user_group->where('user_id', $request->user_id)->where('group_id', $request->group_id)->get()->first();
+    if ($user_group != null) {
+      $update_user_group = $this->user_group->findOrFail($user_group->id);
+      $user_deleted = $this->user->find($update_user_group->user_id);
+      $update_user_group->delete();
+      $user_info = ["user_id" => $user_deleted->id, "is_admin" => $user_deleted->is_admin, "name" => $user_deleted->name, "picture" => $user_deleted->picture, "facebook_id" => $user_deleted->facebook_id];
+      return response($user_info, 200);
     }
 
   }
