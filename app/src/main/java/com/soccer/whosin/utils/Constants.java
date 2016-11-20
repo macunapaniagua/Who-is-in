@@ -6,7 +6,7 @@ package com.soccer.whosin.utils;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://192.168.1.146:8000/api/";
+    public static final String BASE_URL = "http://192.168.1.2:8000/api/";
 
     // SharedPreferences values
     public static final String STORAGE_NAME = "Who is in?";
@@ -15,7 +15,10 @@ public class Constants {
     public static final String USER_FB_KEY  = "facebook_id";
     public static final String GROUP_MEMBER = "group_member";
 
-
-    // Retrofit Params
+    // RETROFIT PARAMS
     public static final String GROUP_NAME = "name";
+
+    // REQUEST CODES
+    public static final int CALL_PERMISSION_REQUEST_CODE     = 1001;
+    public static final int LOCATION_PERMISSION_REQUEST_CODE = 1002;
 }

@@ -2,6 +2,7 @@ package com.soccer.whosin.interfaces;
 
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.models.Member;
+import com.soccer.whosin.models.SoccerField;
 import com.soccer.whosin.utils.Constants;
 
 import java.util.List;
@@ -32,4 +33,10 @@ public interface WhoIsInService {
 
     @GET("users_group/{group_id}")
     Call<List<Member>> getGroupMembers(@Path("group_id") String pGroupId, @Query("status") boolean pAccepted);
+
+    @GET("soccer_fields/{group_id}")
+    Call<List<SoccerField>> getFields(@Path("group_id") String pGroupId);
+
+    @POST("soccer_fields")
+    Call<SoccerField> createSoccerField(@Body SoccerField pSoccerField);
 }

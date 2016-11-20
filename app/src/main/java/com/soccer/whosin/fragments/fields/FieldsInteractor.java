@@ -1,39 +1,40 @@
-package com.soccer.whosin.groups;
+package com.soccer.whosin.fragments.fields;
 
 import com.google.gson.Gson;
-import com.soccer.whosin.interfaces.IGroupInteractor;
-import com.soccer.whosin.interfaces.IGroupPresenter;
+import com.soccer.whosin.interfaces.IFieldsInteractor;
+import com.soccer.whosin.interfaces.IFieldsPresenter;
 import com.soccer.whosin.interfaces.WhoIsInService;
 import com.soccer.whosin.models.ErrorMessage;
-import com.soccer.whosin.models.GroupMember;
+import com.soccer.whosin.models.SoccerField;
 import com.soccer.whosin.utils.RetrofitHelper;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Mario on 05/11/16.
+ * Created by Mario on 19/11/16.
  **/
 
-public class GroupInteractor implements IGroupInteractor {
+public class FieldsInteractor implements IFieldsInteractor {
 
-    private IGroupPresenter mPresenter;
+    private IFieldsPresenter mPresenter;
 
-    public GroupInteractor(IGroupPresenter pPresenter) {
-        this.mPresenter = pPresenter;
+    public FieldsInteractor(IFieldsPresenter mPresenter) {
+        this.mPresenter = mPresenter;
     }
 
     @Override
-    public void joinGroup(String pFacebookId, String pGroupCode) {
+    public void getFields(String pFacebookId, String pGroupId) {
         WhoIsInService service = RetrofitHelper.getAPIWithHeaders(pFacebookId);
-        service.joinGroup(pGroupCode).enqueue(new Callback<GroupMember>() {
+        service.getFields(pGroupId).enqueue(new Callback<List<SoccerField>>() {
             @Override
-            public void onResponse(Call<GroupMember> call, Response<GroupMember> response) {
+            public void onResponse(Call<List<SoccerField>> call, Response<List<SoccerField>> response) {
                 if (response.isSuccessful())
-                    mPresenter.onJoinGroupSuccessfully(response.body());
+                    mPresenter.onGetFieldsSuccessfully(response.body());
                 else {
                     ErrorMessage errorMessage;
                     try {
@@ -42,26 +43,26 @@ public class GroupInteractor implements IGroupInteractor {
                     } catch (IOException e) {
                         errorMessage = new ErrorMessage(response.message());
                     }
-                    mPresenter.onJoinGroupFailed(errorMessage);
+                    mPresenter.onGetFieldsFailed(errorMessage);
                 }
             }
 
             @Override
-            public void onFailure(Call<GroupMember> call, Throwable t) {
+            public void onFailure(Call<List<SoccerField>> call, Throwable t) {
                 ErrorMessage errorMessage = new ErrorMessage(t.getMessage());
-                mPresenter.onJoinGroupFailed(errorMessage);
+                mPresenter.onGetFieldsFailed(errorMessage);
             }
         });
     }
 
     @Override
-    public void createGroup(String pFacebookId, String pGroupName) {
+    public void createField(String pFacebookId, SoccerField pSoccerField) {
         WhoIsInService service = RetrofitHelper.getAPIWithHeaders(pFacebookId);
-        service.createGroup(pGroupName).enqueue(new Callback<GroupMember>() {
+        service.createSoccerField(pSoccerField).enqueue(new Callback<SoccerField>() {
             @Override
-            public void onResponse(Call<GroupMember> call, Response<GroupMember> response) {
+            public void onResponse(Call<SoccerField> call, Response<SoccerField> response) {
                 if (response.isSuccessful())
-                    mPresenter.onGroupCreatedSuccessfully(response.body());
+                    mPresenter.onFieldCreatedSuccessfully(response.body());
                 else {
                     ErrorMessage errorMessage;
                     try {
@@ -70,14 +71,14 @@ public class GroupInteractor implements IGroupInteractor {
                     } catch (IOException e) {
                         errorMessage = new ErrorMessage(response.message());
                     }
-                    mPresenter.onGroupCreationFailed(errorMessage);
+                    mPresenter.onFieldCreationFailed(errorMessage);
                 }
             }
 
             @Override
-            public void onFailure(Call<GroupMember> call, Throwable t) {
+            public void onFailure(Call<SoccerField> call, Throwable t) {
                 ErrorMessage errorMessage = new ErrorMessage(t.getMessage());
-                mPresenter.onGroupCreationFailed(errorMessage);
+                mPresenter.onFieldCreationFailed(errorMessage);
             }
         });
     }

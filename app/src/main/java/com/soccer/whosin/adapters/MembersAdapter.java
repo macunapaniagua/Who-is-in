@@ -5,12 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.soccer.whosin.R;
 import com.soccer.whosin.models.Member;
+import com.soccer.whosin.utils.LocalStorageHelper;
 
 import java.util.List;
 
@@ -23,10 +23,12 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberVi
 
     private List<Member> mMembers;
     private final Context mContext;
+    private boolean mIsApprovalPending;
 
-    public MembersAdapter(List<Member> pMembers, Context pContext) {
-        mMembers = pMembers;
-        mContext = pContext;
+    public MembersAdapter(List<Member> pMembers, Context pContext/*, boolean pIsPending*/) {
+        mMembers           = pMembers;
+        mContext           = pContext;
+//        mIsApprovalPending = pIsPending;
     }
 
     @Override
@@ -42,6 +44,15 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberVi
 
     @Override
     public void onBindViewHolder(final MemberViewHolder holder, int position) {
+
+        boolean isGroupAdmin = LocalStorageHelper.getGroupMember(mContext).getMember().isAdmin();
+
+        if (isGroupAdmin && mIsApprovalPending) {
+            // aparezca los botones
+        } else {
+            // oculte los botones
+        }
+
         holder.vName.setText(mMembers.get(position).getName());
         Glide.with(mContext)
                 .load(mMembers.get(position).getAvatar())

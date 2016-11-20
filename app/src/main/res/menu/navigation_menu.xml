@@ -7,10 +7,10 @@
             android:icon="@android:drawable/ic_dialog_map"
             android:title="@string/members_item" />
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_fields"
             android:checked="true"
             android:icon="@android:drawable/ic_menu_myplaces"
-            android:title="@string/option_a_item" />
+            android:title="@string/fields_item" />
         <item
             android:id="@+id/nav_carrito"
             android:icon="@android:drawable/ic_menu_view"
