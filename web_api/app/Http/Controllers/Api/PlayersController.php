@@ -9,27 +9,39 @@ use App\Models\Player;
 use App\Lib\UserAuth;
 use App\Models\UserGroup;
 use App\Models\SoccerGame;
+use App\Lib\AuthorizeUserGroup;
+use App\Lib\AuthorizeApprovedUserGroup;
+use App\Models\Group;
 
 class PlayersController extends Controller
 {
-  protected $player, $user_group, $soccer_game;
+  protected $player, $user_group, $soccer_game, $group;
 
-  public function __construct(Player $player, SoccerGame $soccer_game, UserGroup $user_group)
+  public function __construct(Player $player, SoccerGame $soccer_game, UserGroup $user_group, Group $group)
   {
       $this->player = $player;
       $this->user_group = $user_group;
       $this->soccer_game = $soccer_game;
+      $this->group = $group;
   }
 
-  public function players_soccer_game($soccer_game_id)
+  public function players_soccer_game($soccer_game_id, Request $request)
   {
-    $players_soccer_game = $this->player->where('soccer_game_id', $soccer_game_id)->get();
+    $user = UserAuth::getUserAuth($request);
+    $group = $this->group->find($group_id);
+    if(AuthorizeUserGroup::authorize_user_group($user, $group) != null){
+      if(AuthorizeApprovedUserGroup::authorize_approved_user_group($user, $group)){
+        $players_soccer_game = $this->player->where('soccer_game_id', $soccer_game_id)->get();
 
-    $players_list = [];
-    for ($i=0; $i < count($players_soccer_game); $i++) {
-      $players_list[$i] = ["player_id" => $players_soccer_game[$i]->id, "user_id" => $players_soccer_game[$i]->user_group->user_id, "name" => $players_soccer_game[$i]->user_group->user->name, "picture" => $players_soccer_game[$i]->user_group->user->picture];
+        $players_list = [];
+        for ($i=0; $i < count($players_soccer_game); $i++) {
+          $players_list[$i] = ["player_id" => $players_soccer_game[$i]->id, "user_id" => $players_soccer_game[$i]->user_group->user_id, "name" => $players_soccer_game[$i]->user_group->user->name, "picture" => $players_soccer_game[$i]->user_group->user->picture];
+        }
+        return response($players_list, 200);
+      }
+      return response(['error' => '¡El administrador aún no ha aprobado su solicitud!'], 401);
     }
-    return response($players_list, 200);
+    return response(['error' => '¡Usted ha sido expulsado este grupo!'], 403);
   }
 
   public function join_soccer_game(Request $request)
