@@ -12,9 +12,13 @@
             android:icon="@android:drawable/ic_menu_myplaces"
             android:title="@string/fields_item" />
         <item
-            android:id="@+id/nav_carrito"
+            android:id="@+id/nav_mejengas"
             android:icon="@android:drawable/ic_menu_view"
             android:title="@string/option_c_item" />
+        <item
+            android:id="@+id/nav_join_code"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="@string/join_code_item" />
 
         <!-- Configuration Section -->
         <item

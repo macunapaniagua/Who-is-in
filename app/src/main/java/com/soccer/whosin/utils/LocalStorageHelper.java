@@ -57,4 +57,9 @@ public class LocalStorageHelper {
         GroupMember groupMember = getGroupMember(pContext);
         return groupMember.getGroup().getGroupId();
     }
+
+    public static String getGroupInvitationCode(Context pContext) {
+        GroupMember groupMember = getGroupMember(pContext);
+        return groupMember.getGroup().getGroupCode();
+    }
 }

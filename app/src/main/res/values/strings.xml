@@ -6,8 +6,9 @@
     <!-- Drawer Menu Items -->
     <string name="fields_item">Fields</string>
     <string name="members_item">Members</string>
-    <string name="option_c_item">Option C</string>
+    <string name="option_c_item">Matches</string>
     <string name="setting_item">Settings</string>
+    <string name="join_code_item">Invitation code</string>
     <string name="log_out_item">Logout</string>
     <string name="create_group">Create Group</string>
     <string name="join_group">Join Group</string>
@@ -32,4 +33,5 @@
     <string name="all_permissions_required">All permissions are required</string>
     <string name="some_permissions_disabled">Go to settings and enable the required permissions for this application</string>
     <string name="improve_map_experience">To improve your experience, enable the GPS on your phone</string>
+    <string name="invitation_code_legend">Use this code to invite more users to join this group</string>
 </resources>

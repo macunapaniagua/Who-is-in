@@ -20,6 +20,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.soccer.whosin.R;
 import com.soccer.whosin.fragments.PlaceholderFragment;
 import com.soccer.whosin.fragments.fields.FieldsFragment;
+import com.soccer.whosin.fragments.join_code.JoinCodeFragment;
 import com.soccer.whosin.fragments.members.MembersFragment;
 import com.soccer.whosin.models.Member;
 import com.soccer.whosin.utils.LocalStorageHelper;
@@ -121,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_fields:
                 fragment = FieldsFragment.newInstance();
+                break;
+            case R.id.nav_join_code:
+                fragment = JoinCodeFragment.newInstance();
                 break;
             default:
                 fragment = PlaceholderFragment.newInstance(title);
