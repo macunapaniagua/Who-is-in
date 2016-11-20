@@ -148,6 +148,7 @@ public class MembersFragment extends Fragment implements RadioGroup.OnCheckedCha
     @Subscribe
     @SuppressWarnings("unused")
     public void GetGroupMembersFailed(ErrorMessage pErrorMessage) {
+        this.activateViews();
         this.hideLoadingIndicator();
         Toast.makeText(this.getContext(), pErrorMessage.getMessage(), Toast.LENGTH_LONG).show();
     }

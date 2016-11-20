@@ -4,7 +4,7 @@
     <string name="facebook_app_id">644597849040245</string>
 
     <!-- Drawer Menu Items -->
-    <string name="option_a_item">Option A</string>
+    <string name="fields_item">Fields</string>
     <string name="members_item">Members</string>
     <string name="option_c_item">Option C</string>
     <string name="setting_item">Settings</string>
@@ -16,8 +16,20 @@
     <string name="group_code">Group Code</string>
     <string name="group_code_required">Group code is required!</string>
     <string name="group_name_required">Group name is required!</string>
+    <string name="members">Members</string>
     <string name="accepted_members">Accepted</string>
     <string name="pending_members">Pending</string>
     <string name="administrator">Administrator</string>
     <string name="participant">Participant</string>
+    <string name="soccer_field_name">Soccer field name</string>
+    <string name="soccer_field_phone">Phone</string>
+    <string name="soccer_field_capacity">Capacity</string>
+    <string name="soccer_field_price">Price</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="create_soccer_field">Create Soccer Field</string>
+    <string name="all_fields_required">All fields are required</string>
+    <string name="all_permissions_required">All permissions are required</string>
+    <string name="some_permissions_disabled">Go to settings and enable the required permissions for this application</string>
+    <string name="improve_map_experience">To improve your experience, enable the GPS on your phone</string>
 </resources>

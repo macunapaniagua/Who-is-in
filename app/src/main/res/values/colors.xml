@@ -2,7 +2,7 @@
 <resources>
     <color name="primaryColor">#346D7D</color>
     <color name="primaryDarkColor">#1F515F</color>
-    <color name="accentColor">#03A9F4</color>
+    <color name="accentColor">#00838F</color>
     <color name="window_background">#FFFFFF</color>
     <color name="radio_color">#00838F</color>
 </resources>
