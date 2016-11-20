@@ -30,6 +30,24 @@ class SoccerGamesController extends Controller
     return response($soccer_game_info, 200);
   }
 
+
+
+  public function showSoccerGame($soccer_game_id, Request $request)
+  {
+    $user = UserAuth::getUserAuth($request);
+    $soccer_game = $this->soccer_field->find($soccer_game_id);
+    $soccer_game_info = [
+        "soccer_field"   => $soccer_game->soccer_field,
+        "datetime"           => $soccer_game->date." ".$soccer_game->time,
+        "players_limit"  => $soccer_game->players_limit
+    ];
+    return response($soccer_game_info, 200);
+  }
+
+
+
+
+
   public function store(Request $request)
   {
     $user = UserAuth::getUserAuth($request);

@@ -20,7 +20,7 @@ class CreateSoccerGamesTable extends Migration
           $table->foreign('soccer_field_id')->references('id')->on('soccer_fields')->onDelete('cascade');
           $table->integer('players_limit');
           $table->string('hour');
-          $table->date('date');
+          $table->string('date');
           $table->timestamps();
       });
     }
