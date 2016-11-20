@@ -34,4 +34,8 @@
     <string name="some_permissions_disabled">Go to settings and enable the required permissions for this application</string>
     <string name="improve_map_experience">To improve your experience, enable the GPS on your phone</string>
     <string name="invitation_code_legend">Use this code to invite more users to join this group</string>
+    <string name="approve">Approve</string>
+    <string name="remove">Remove</string>
+    <string name="member_confirmation_title">%1$s member</string>
+    <string name="member_confirmation">Are you sure you want to %1$s the member request from %2$s?</string>
 </resources>

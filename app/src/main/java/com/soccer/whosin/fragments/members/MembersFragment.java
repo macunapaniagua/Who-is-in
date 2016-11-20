@@ -1,8 +1,10 @@
 package com.soccer.whosin.fragments.members;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +21,7 @@ import com.soccer.whosin.adapters.MembersAdapter;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.models.Member;
+import com.soccer.whosin.models.MemberAction;
 import com.soccer.whosin.utils.BusProvider;
 import com.soccer.whosin.utils.DividerItemDecoration;
 import com.soccer.whosin.utils.LocalStorageHelper;
@@ -80,7 +83,7 @@ public class MembersFragment extends Fragment implements RadioGroup.OnCheckedCha
         vMembersList.setLayoutManager(new LinearLayoutManager(this.getContext()));
         vMembersList.setItemAnimator(new DefaultItemAnimator());
         vMembersList.addItemDecoration(new DividerItemDecoration(this.getContext(), LinearLayoutManager.VERTICAL));
-        vMembersList.setAdapter(new MembersAdapter(new ArrayList<Member>(), this.getContext()));
+        vMembersList.setAdapter(new MembersAdapter(new ArrayList<Member>(), this.getContext(), false));
     }
 
     private void setListeners() {
@@ -140,7 +143,7 @@ public class MembersFragment extends Fragment implements RadioGroup.OnCheckedCha
     @Subscribe
     @SuppressWarnings("unused")
     public void GetMembersRequestSuccessful(ArrayList<Member> pMembers) {
-        vMembersList.setAdapter(new MembersAdapter(pMembers, this.getContext()));
+        vMembersList.setAdapter(new MembersAdapter(pMembers, this.getContext(), vPendingMembers.isChecked()));
         this.activateViews();
         this.hideLoadingIndicator();
     }
@@ -151,5 +154,50 @@ public class MembersFragment extends Fragment implements RadioGroup.OnCheckedCha
         this.activateViews();
         this.hideLoadingIndicator();
         Toast.makeText(this.getContext(), pErrorMessage.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Subscribe
+    @SuppressWarnings("unused")
+    public void approveOrRejectMember(final MemberAction pMemberAction) {
+        String action  = this.getString(pMemberAction.isIsApproving() ? R.string.approve : R.string.remove);
+        String title   = this.getString(R.string.member_confirmation_title, action);
+        String message = this.getString(R.string.member_confirmation, action.toLowerCase(), pMemberAction.getMember().getName());
+        AlertDialog alertDialog = new AlertDialog.Builder(this.getContext())
+                .setTitle(title)
+                .setMessage(message)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(action, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        executeMemberAction(pMemberAction.isIsApproving(), pMemberAction.getMember().getUserId());
+                    }
+                })
+                .create();
+        alertDialog.show();
+    }
+
+    private void executeMemberAction(boolean pIsApprovingMember, String pUserId) {
+        this.showLoadingIndicator();
+        this.deactivateViews();
+        // Get the Params to the request
+        GroupMember groupMember = LocalStorageHelper.getGroupMember(this.getContext());
+        String groupId    = groupMember.getGroup().getGroupId();
+        String facebookId = groupMember.getMember().getFacebookId();
+        // Start Members Action request
+        MembersPresenter presenter = new MembersPresenter();
+        if (pIsApprovingMember)
+            presenter.approveMember(facebookId, groupId, pUserId);
+        else
+            presenter.removeMember(facebookId, groupId, pUserId);
+    }
+
+    @Subscribe
+    @SuppressWarnings("unused")
+    public void removeMemberFromPendingList(Member pMember) {
+        this.activateViews();
+        this.hideLoadingIndicator();
+        MembersAdapter adapter = (MembersAdapter) vMembersList.getAdapter();
+        if (adapter != null)
+            ((MembersAdapter) vMembersList.getAdapter()).removeMember();
     }
 }

@@ -17,6 +17,8 @@ public class Constants {
 
     // RETROFIT PARAMS
     public static final String GROUP_NAME = "name";
+    public static final String GROUP_ID   = "group_id";
+    public static final String USER_ID    = "user_id";
 
     // REQUEST CODES
     public static final int CALL_PERMISSION_REQUEST_CODE     = 1001;
