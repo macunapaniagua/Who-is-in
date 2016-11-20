@@ -38,6 +38,7 @@ class SoccerGamesController extends Controller
     $new_soccer_game->soccer_field_id = $request->soccer_field_id;
     $new_soccer_game->hour = $request->hour;
     $new_soccer_game->date = $request->date;
+        $notification = Notification::sendNotification($new_soccer_game->soccer_field_id, $new_soccer_game->date, $new_soccer_game->hour);
     $new_soccer_game->players_limit = $request->players_limit;
     $new_soccer_game->save();
 
