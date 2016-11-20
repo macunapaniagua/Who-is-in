@@ -129,7 +129,8 @@ public class FieldsFragment extends Fragment implements OnMapReadyCallback, Goog
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.setOnMapLongClickListener(this);
+        if (LocalStorageHelper.getLoggedUser(this.getContext()).isAdmin())
+            googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMapLoadedCallback(this);
         this.mGoogleMap = googleMap;
     }

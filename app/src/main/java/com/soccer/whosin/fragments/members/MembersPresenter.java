@@ -22,13 +22,31 @@ public class MembersPresenter implements IMembersPresenter {
         mInteractor.getMembersFromAPI(pFacebookId, pGroupId, pAcceptedUsers);
     }
 
+    public void approveMember(String pFacebookId, String pGroupId, String pUserId) {
+        mInteractor.approveMember(pFacebookId, pGroupId, pUserId);
+    }
+
+    public void removeMember(String pFacebookId, String pGroupId, String pUserId) {
+        mInteractor.removeMember(pFacebookId, pGroupId, pUserId);
+    }
+
     @Override
-    public void onMembersRequestSuccessful(List<Member> pMembers) {
+    public void onGetMembersSuccessful(List<Member> pMembers) {
         BusProvider.getBus().post(pMembers);
     }
 
     @Override
-    public void onMembersRequestFailed(ErrorMessage pErrorMessage) {
+    public void onRemoveMemberSuccessful(Member pMember) {
+        BusProvider.getBus().post(pMember);
+    }
+
+    @Override
+    public void onApproveMemberSuccessful(Member pMember) {
+        BusProvider.getBus().post(pMember);
+    }
+
+    @Override
+    public void onRequestFailed(ErrorMessage pErrorMessage) {
         BusProvider.getBus().post(pErrorMessage);
     }
 }

@@ -9,6 +9,8 @@ import java.util.List;
  * Created by Mario A on 22/10/2016.
  **/
 public interface IMembersPresenter {
-    void onMembersRequestSuccessful(List<Member> pMembers);
-    void onMembersRequestFailed(ErrorMessage pErrorMessage);
+    void onGetMembersSuccessful(List<Member> pMembers);
+    void onRemoveMemberSuccessful(Member pMember);
+    void onApproveMemberSuccessful(Member pMember);
+    void onRequestFailed(ErrorMessage pErrorMessage);
 }

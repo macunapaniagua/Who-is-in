@@ -39,4 +39,12 @@ public interface WhoIsInService {
 
     @POST("soccer_fields")
     Call<SoccerField> createSoccerField(@Body SoccerField pSoccerField);
+
+    @FormUrlEncoded
+    @POST("user_group_status")
+    Call<Member> approveMember(@Field(Constants.GROUP_ID) String pGroupId, @Field(Constants.USER_ID) String pUserId);
+
+    @FormUrlEncoded
+    @POST("user_group_remove")
+    Call<Member> removeMember(@Field(Constants.GROUP_ID) String pGroupId, @Field(Constants.USER_ID) String pUserId);
 }
