@@ -1,8 +1,5 @@
 package com.soccer.whosin.fragments.fields;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -11,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -293,36 +289,15 @@ public class FieldsFragment extends Fragment implements OnMapReadyCallback, Goog
         LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, locationSR).setResultCallback(this);
     }
 
-
-
-
-
-
     @Override
     public void onResult(@NonNull LocationSettingsResult locationSettingsResult) {
         final Status status = locationSettingsResult.getStatus();
         final int statusCode = status.getStatusCode();
         if (statusCode == LocationSettingsStatusCodes.SUCCESS)
             this.moveCameraToMyLocation();
-        else if (statusCode == LocationSettingsStatusCodes.RESOLUTION_REQUIRED) {
-            // Location settings are not satisfied, but this can be fixed by showing the user a dialog.
-            try {
-
-
-
-                status.startResolutionForResult(getActivity(), Constants.REQUEST_CHECK_SETTINGS_ME);
-            } catch (IntentSender.SendIntentException e) {
-                Log.d("MeFragment", e.getMessage());
-            }
-        } else if (statusCode == LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE)
-            Toast.makeText(getContext(), R.string.settings_not_satisfied, Toast.LENGTH_LONG).show();
+        else if (statusCode == LocationSettingsStatusCodes.RESOLUTION_REQUIRED)
+            Toast.makeText(this.getContext(), R.string.improve_map_experience, Toast.LENGTH_LONG).show();
     }
-
-
-
-
-
-
 
     public void moveCameraToMyLocation() {
         if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)

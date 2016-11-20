@@ -1,6 +1,5 @@
 package com.soccer.whosin.utils;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.soccer.whosin.interfaces.WhoIsInService;
 
 import java.io.IOException;

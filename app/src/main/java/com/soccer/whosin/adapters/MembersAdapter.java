@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,10 +25,10 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberVi
     private final Context mContext;
     private boolean mIsApprovalPending;
 
-    public MembersAdapter(List<Member> pMembers, Context pContext, boolean pIsPending) {
+    public MembersAdapter(List<Member> pMembers, Context pContext/*, boolean pIsPending*/) {
         mMembers           = pMembers;
         mContext           = pContext;
-        mIsApprovalPending = pIsPending;
+//        mIsApprovalPending = pIsPending;
     }
 
     @Override

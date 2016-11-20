@@ -3,7 +3,6 @@ package com.soccer.whosin.interfaces;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.SoccerField;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
