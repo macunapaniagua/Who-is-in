@@ -1,5 +1,6 @@
 package com.soccer.whosin.utils;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.soccer.whosin.interfaces.WhoIsInService;
 
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -37,6 +39,10 @@ public class RetrofitHelper {
      * @return HttpClient
      */
     private static OkHttpClient getClient(final String pFacebookId) {
+        // Request Logger
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        // HttpClient
         return new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -47,6 +53,6 @@ public class RetrofitHelper {
                         .build();
                 return chain.proceed(request);
             }
-        }).build();
+        }).addInterceptor(loggingInterceptor).build();
     }
 }

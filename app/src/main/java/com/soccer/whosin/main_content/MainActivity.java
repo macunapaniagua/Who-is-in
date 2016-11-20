@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!vDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (vDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             getMenuInflater().inflate(R.menu.navigation_menu, menu);
             return true;
         }

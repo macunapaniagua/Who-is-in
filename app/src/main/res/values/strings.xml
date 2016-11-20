@@ -21,4 +21,12 @@
     <string name="pending_members">Pending</string>
     <string name="administrator">Administrator</string>
     <string name="participant">Participant</string>
+    <string name="soccer_field_name">Soccer field name</string>
+    <string name="soccer_field_phone">Phone</string>
+    <string name="soccer_field_capacity">Capacity</string>
+    <string name="soccer_field_price">Price</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="create_soccer_field">Create Soccer Field</string>
+    <string name="all_fields_required">All fields are required</string>
 </resources>
