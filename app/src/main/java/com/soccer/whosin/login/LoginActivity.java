@@ -18,6 +18,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.soccer.whosin.R;
 import com.soccer.whosin.groups.join_group.GroupEntryActivity;
+import com.soccer.whosin.main_content.MainActivity;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.Member;
 import com.soccer.whosin.utils.BusProvider;
@@ -46,10 +47,12 @@ public class LoginActivity extends AppCompatActivity {
 //            this.goToGroupSection();
 //            return;
 //        }
-
-
         if (!LocalStorageHelper.getUserFacebookId(this).equals("")) {
-            this.goToGroupSection();
+            if (LocalStorageHelper.getGroupMember(this) != null) {
+                this.goToMainScreen();
+            } else {
+                this.goToGroupSection();
+            }
             return;
         }
         setContentView(R.layout.activity_login);
@@ -158,4 +161,12 @@ public class LoginActivity extends AppCompatActivity {
         this.startActivity(intent);
         this.finish();
     }
+
+    protected void goToMainScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.startActivity(intent);
+        this.finish();
+    }
+
 }
