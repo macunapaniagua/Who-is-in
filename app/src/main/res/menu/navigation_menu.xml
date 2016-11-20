@@ -4,12 +4,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_members"
-            android:icon="@android:drawable/ic_dialog_map"
+            android:checked="true"
+            android:icon="@android:drawable/ic_menu_myplaces"
             android:title="@string/members_item" />
         <item
             android:id="@+id/nav_fields"
-            android:checked="true"
-            android:icon="@android:drawable/ic_menu_myplaces"
+            android:icon="@android:drawable/ic_dialog_map"
             android:title="@string/fields_item" />
         <item
             android:id="@+id/nav_mejengas"
