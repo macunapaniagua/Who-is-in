@@ -29,4 +29,6 @@
     <string name="cancel">Cancel</string>
     <string name="create_soccer_field">Create Soccer Field</string>
     <string name="all_fields_required">All fields are required</string>
+    <string name="all_permissions_required">All permissions are required</string>
+    <string name="some_permissions_disabled">Go to settings and enable the required permissions for this application</string>
 </resources>

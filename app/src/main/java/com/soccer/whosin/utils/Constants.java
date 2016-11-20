@@ -15,7 +15,10 @@ public class Constants {
     public static final String USER_FB_KEY  = "facebook_id";
     public static final String GROUP_MEMBER = "group_member";
 
-
-    // Retrofit Params
+    // RETROFIT PARAMS
     public static final String GROUP_NAME = "name";
+
+    // REQUEST CODES
+    public static final int CALL_PERMISSION_REQUEST_CODE     = 1001;
+    public static final int LOCATION_PERMISSION_REQUEST_CODE = 1002;
 }

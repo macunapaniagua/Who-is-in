@@ -29,4 +29,6 @@
     <string name="cancel">Cancelar</string>
     <string name="create_soccer_field">Crear Nueva Cancha</string>
     <string name="all_fields_required">Todos los campos son requeridos</string>
+    <string name="all_permissions_required">Todos los permisos son requeridos</string>
+    <string name="some_permissions_disabled">Debe habilitar algunos permisos requeridos por la applicación, en configuraciones</string>
 </resources>

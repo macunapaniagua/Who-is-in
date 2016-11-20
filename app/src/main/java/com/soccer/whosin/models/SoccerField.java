@@ -35,10 +35,6 @@ public class SoccerField {
         return mName;
     }
 
-    public void setmName(String pName) {
-        this.mName = pName;
-    }
-
     public double getLatitude() {
         return mLatitude;
     }
@@ -51,23 +47,12 @@ public class SoccerField {
         return mPhone;
     }
 
-    public void setPhone(String pPhone) {
-        this.mPhone = pPhone;
-    }
-
     public int getPrice() {
         return mPrice;
-    }
-
-    public void setPrice(int pPrice) {
-        this.mPrice = pPrice;
     }
 
     public int getPlayerCount() {
         return mPlayerCount;
     }
 
-    public void setPlayerCount(int pPlayerCount) {
-        this.mPlayerCount = pPlayerCount;
-    }
 }
