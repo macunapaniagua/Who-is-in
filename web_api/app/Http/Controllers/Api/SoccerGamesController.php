@@ -63,7 +63,8 @@ class SoccerGamesController extends Controller
 
     $soccer_game_info = [
         "soccer_field"  => $soccer_game->soccer_field,
-        "datetime"      => $soccer_game->date." ".$soccer_game->hour,
+        "date"      => $soccer_game->date,
+        "hour" => $soccer_game->hour,
         "players_limit" => $soccer_game->players_limit,
         "players_list"  => $soccer_game_players
     ];
