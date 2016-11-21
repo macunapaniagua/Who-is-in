@@ -9,6 +9,7 @@ use App\Models\SoccerGame;
 use App\Lib\UserAuth;
 use App\Lib\AuthorizeUserGroup;
 use App\Lib\AuthorizeApprovedUserGroup;
+use App\Lib\PushNotification;
 use App\Models\Group;
 use App\Models\Player;
 use App\Models\UserGroup;
@@ -78,9 +79,12 @@ class SoccerGamesController extends Controller
     $new_soccer_game->soccer_field_id = $request->soccer_field_id;
     $new_soccer_game->hour = $request->hour;
     $new_soccer_game->date = $request->date;
-        $notification = Notification::sendNotification($new_soccer_game->soccer_field_id, $new_soccer_game->date, $new_soccer_game->hour);
     $new_soccer_game->players_limit = $request->players_limit;
     $new_soccer_game->save();
+
+    $title = "¡Un evento nuevo ha sido creado!";
+    $body = "Te han invitado a una mejenga en \"".$new_soccer_game->soccer_field->name."\" el día $new_soccer_game->date a las $new_soccer_game->hour";
+    PushNotification::sendNotification($title, $body, $new_soccer_game->group_id);
 
     return response($new_soccer_game, 201);
   }

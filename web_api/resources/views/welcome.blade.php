@@ -34,6 +34,7 @@
                 font-size: 96px;
             }
         </style>
+
     </head>
     <body>
         <div class="container">
@@ -42,4 +43,16 @@
             </div>
         </div>
     </body>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDLL8ZaS1_lACwLig3pSOII5Yee-FZkTHw",
+    authDomain: "who-is-in.firebaseapp.com",
+    databaseURL: "https://who-is-in.firebaseio.com",
+    storageBucket: "who-is-in.appspot.com",
+    messagingSenderId: "477367227650"
+  };
+  firebase.initializeApp(config);
+</script>
 </html>
