@@ -48,6 +48,24 @@ class SoccerGamesController extends Controller
     return response(['error' => '¡Usted ha sido expulsado este grupo!'], 403);
   }
 
+
+
+  public function showSoccerGame($soccer_game_id, Request $request)
+  {
+    $user = UserAuth::getUserAuth($request);
+    $soccer_game = $this->soccer_field->find($soccer_game_id);
+    $soccer_game_info = [
+        "soccer_field"   => $soccer_game->soccer_field,
+        "datetime"           => $soccer_game->date." ".$soccer_game->time,
+        "players_limit"  => $soccer_game->players_limit
+    ];
+    return response($soccer_game_info, 200);
+  }
+
+
+
+
+
   public function store(Request $request)
   {
     $user = UserAuth::getUserAuth($request);
@@ -56,6 +74,7 @@ class SoccerGamesController extends Controller
     $new_soccer_game->soccer_field_id = $request->soccer_field_id;
     $new_soccer_game->hour = $request->hour;
     $new_soccer_game->date = $request->date;
+        $notification = Notification::sendNotification($new_soccer_game->soccer_field_id, $new_soccer_game->date, $new_soccer_game->hour);
     $new_soccer_game->players_limit = $request->players_limit;
     $new_soccer_game->save();
 
