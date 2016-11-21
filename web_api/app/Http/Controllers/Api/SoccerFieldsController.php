@@ -7,20 +7,32 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\SoccerField;
 use App\Lib\UserAuth;
+use App\Lib\AuthorizeUserGroup;
+use App\Lib\AuthorizeApprovedUserGroup;
+use App\Models\Group;
 
 class SoccerFieldsController extends Controller
 {
   protected $soccer_field;
 
-  public function __construct(SoccerField $soccer_field)
+  public function __construct(Group $group, SoccerField $soccer_field)
   {
       $this->soccer_field = $soccer_field;
+      $this->group = $group;
   }
 
-  public function show($group_id)
+  public function show($group_id, Request $request)
   {
-    $soccer_fields = $this->soccer_field->where('group_id', $group_id)->get();
-    return response($soccer_fields, 200);
+    $user = UserAuth::getUserAuth($request);
+    $group = $this->group->find($group_id);
+    if(AuthorizeUserGroup::authorize_user_group($user, $group) != null){
+      if(AuthorizeApprovedUserGroup::authorize_approved_user_group($user, $group)){
+        $soccer_fields = $this->soccer_field->where('group_id', $group_id)->get();
+        return response($soccer_fields, 200);
+      }
+      return response(['error' => '¡El administrador aún no ha aprobado su solicitud!'], 401);
+    }
+    return response(['error' => '¡Usted ha sido expulsado este grupo!'], 403);
   }
 
   public function store(Request $request)
@@ -32,7 +44,6 @@ class SoccerFieldsController extends Controller
     $new_soccer_field->longitude = $request->longitude;
     $new_soccer_field->phone = $request->phone;
     $new_soccer_field->total = $request->total;
-    $new_soccer_field->schedule = $request->schedule;
     $new_soccer_field->players_account = $request->players_account;
     $new_soccer_field->group_id = $request->group_id;
     $new_soccer_field->save();
@@ -48,7 +59,6 @@ class SoccerFieldsController extends Controller
       $update_soccer_field->longitude = $request->longitude;
       $update_soccer_field->phone = $request->phone;
       $update_soccer_field->total = $request->total;
-      $update_soccer_field->schedule = $request->schedule;
       $update_soccer_field->players_account = $request->players_account;
       $update_soccer_field->group_id = $request->group_id;
       $update_soccer_field->save();
