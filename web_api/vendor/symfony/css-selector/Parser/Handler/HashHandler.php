@@ -54,15 +54,15 @@ class HashHandler implements HandlerInterface
      */
     public function handle(Reader $reader, TokenStream $stream)
     {
-        $match = $reader->findPattern($this->patterns->getHashPattern());
+        $matchRow = $reader->findPattern($this->patterns->getHashPattern());
 
-        if (!$match) {
+        if (!$matchRow) {
             return false;
         }
 
-        $value = $this->escaping->escapeUnicode($match[1]);
+        $value = $this->escaping->escapeUnicode($matchRow[1]);
         $stream->push(new Token(Token::TYPE_HASH, $value, $reader->getPosition()));
-        $reader->moveForward(strlen($match[0]));
+        $reader->moveForward(strlen($matchRow[0]));
 
         return true;
     }

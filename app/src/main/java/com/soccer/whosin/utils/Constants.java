@@ -23,4 +23,7 @@ public class Constants {
     // REQUEST CODES
     public static final int CALL_PERMISSION_REQUEST_CODE     = 1001;
     public static final int LOCATION_PERMISSION_REQUEST_CODE = 1002;
+
+    // INTENT CODES
+    public static final String MATCH_ID_KEY = "match_id";
 }

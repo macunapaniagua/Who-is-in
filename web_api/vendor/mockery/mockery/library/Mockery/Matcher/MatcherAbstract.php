@@ -48,7 +48,7 @@ abstract class MatcherAbstract
      * @param mixed $actual
      * @return bool
      */
-    abstract public function match(&$actual);
+    abstract public function matchRow(&$actual);
 
     /**
      * Return a string representation of this Matcher

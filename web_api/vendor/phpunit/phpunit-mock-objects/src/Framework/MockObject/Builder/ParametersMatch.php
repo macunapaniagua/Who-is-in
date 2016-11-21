@@ -16,17 +16,17 @@
 interface PHPUnit_Framework_MockObject_Builder_ParametersMatch extends PHPUnit_Framework_MockObject_Builder_Match
 {
     /**
-     * Sets the parameters to match for, each parameter to this funtion will
-     * be part of match. To perform specific matches or constraints create a
+     * Sets the parameters to matchRow for, each parameter to this funtion will
+     * be part of matchRow. To perform specific matches or constraints create a
      * new PHPUnit_Framework_Constraint and use it for the parameter.
      * If the parameter value is not a constraint it will use the
      * PHPUnit_Framework_Constraint_IsEqual for the value.
      *
      * Some examples:
      * <code>
-     * // match first parameter with value 2
+     * // matchRow first parameter with value 2
      * $b->with(2);
-     * // match first parameter with value 'smock' and second identical to 42
+     * // matchRow first parameter with value 'smock' and second identical to 42
      * $b->with('smock', new PHPUnit_Framework_Constraint_IsEqual(42));
      * </code>
      *
@@ -39,7 +39,7 @@ interface PHPUnit_Framework_MockObject_Builder_ParametersMatch extends PHPUnit_F
      *
      * Some examples:
      * <code>
-     * // match any number of parameters
+     * // matchRow any number of parameters
      * $b->withAnyParamers();
      * </code>
      *

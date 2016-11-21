@@ -3751,7 +3751,7 @@ XML;
     {
         $expected = '{"Mascott" : "Tux"}';
         $actual   = '{"Mascott" : "Tux"}';
-        $message  = 'Given Json strings do not match';
+        $message  = 'Given Json strings do not matchRow';
 
         $this->assertJsonStringEqualsJsonString($expected, $actual, $message);
     }
@@ -3777,7 +3777,7 @@ XML;
     {
         $expected = '{"Mascott" : "Beastie"}';
         $actual   = '{"Mascott" : "Tux"}';
-        $message  = 'Given Json strings do match';
+        $message  = 'Given Json strings do matchRow';
 
         $this->assertJsonStringNotEqualsJsonString($expected, $actual, $message);
     }

@@ -132,7 +132,7 @@ OEL;
         $headers = self::getHeadersOfMessage($entityString);
 
         if (!preg_match('#^application/(x\-)?pkcs7-mime; smime-type=signed\-data;#', $headers['content-type'])) {
-            $this->fail('Content-type does not match.');
+            $this->fail('Content-type does not matchRow.');
 
             return false;
         }
@@ -233,7 +233,7 @@ OEL;
         $headers = self::getHeadersOfMessage($entityString);
 
         if (!preg_match('#^application/(x\-)?pkcs7-mime; smime-type=enveloped\-data;#', $headers['content-type'])) {
-            $this->fail('Content-type does not match.');
+            $this->fail('Content-type does not matchRow.');
 
             return false;
         }
@@ -271,7 +271,7 @@ OEL;
         $headers = self::getHeadersOfMessage($entityString);
 
         if (!preg_match('#^application/(x\-)?pkcs7-mime; smime-type=enveloped\-data;#', $headers['content-type'])) {
-            $this->fail('Content-type does not match.');
+            $this->fail('Content-type does not matchRow.');
 
             return false;
         }
@@ -317,7 +317,7 @@ OEL;
         $headers = self::getHeadersOfMessage($entityString);
 
         if (!preg_match('#^application/(x\-)?pkcs7-mime; smime-type=enveloped\-data;#', $headers['content-type'])) {
-            $this->fail('Content-type does not match.');
+            $this->fail('Content-type does not matchRow.');
 
             return false;
         }
@@ -416,7 +416,7 @@ OEL;
 
         $expectedBody = str_replace("\n", "\r\n", $expectedBody);
         if (!preg_match('%'.$expectedBody.'*%m', $entityString, $entities)) {
-            $this->fail('Failed regex match.');
+            $this->fail('Failed regex matchRow.');
 
             return false;
         }

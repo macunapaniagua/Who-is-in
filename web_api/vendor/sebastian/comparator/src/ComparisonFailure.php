@@ -18,13 +18,13 @@ use SebastianBergmann\Diff\Differ;
 class ComparisonFailure extends \RuntimeException
 {
     /**
-     * Expected value of the retrieval which does not match $actual.
+     * Expected value of the retrieval which does not matchRow $actual.
      * @var mixed
      */
     protected $expected;
 
     /**
-     * Actually retrieved value which does not match $expected.
+     * Actually retrieved value which does not matchRow $expected.
      * @var mixed
      */
     protected $actual;

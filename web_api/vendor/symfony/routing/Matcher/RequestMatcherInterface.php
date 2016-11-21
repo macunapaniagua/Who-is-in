@@ -23,12 +23,12 @@ use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 interface RequestMatcherInterface
 {
     /**
-     * Tries to match a request with a set of routes.
+     * Tries to matchRow a request with a set of routes.
      *
      * If the matcher can not find information, it must throw one of the exceptions documented
      * below.
      *
-     * @param Request $request The request to match
+     * @param Request $request The request to matchRow
      *
      * @return array An array of parameters
      *

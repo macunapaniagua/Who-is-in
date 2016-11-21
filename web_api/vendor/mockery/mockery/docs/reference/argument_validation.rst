@@ -11,12 +11,12 @@ differentiated by the expected arguments. Such argument matching is done on a
 "best fit" basis.  This ensures explicit matches take precedence over
 generalised matches.
 
-An explicit match is merely where the expected argument and the actual
+An explicit matchRow is merely where the expected argument and the actual
 argument are easily equated (i.e. using ``===`` or ``==``). More generalised
 matches are possible using regular expressions, class hinting and the
 available generic matchers. The purpose of generalised matchers is to allow
 arguments be defined in non-explicit terms, e.g. ``Mockery::any()`` passed to
-``with()`` will match **any** argument in that position.
+``with()`` will matchRow **any** argument in that position.
 
 Mockery's generic matchers do not cover all possibilities but offers optional
 support for the Hamcrest library of matchers. Hamcrest is a PHP port of the
@@ -36,7 +36,7 @@ Here's a sample of the possibilities.
 
 Matches the integer ``1``. This passes the ``===`` test (identical). It does
 facilitate a less strict ``==`` check (equals) where the string ``'1'`` would
-also match the
+also matchRow the
 argument.
 
 .. code-block:: php
@@ -84,7 +84,7 @@ There is no Hamcrest version of this functionality.
 
 The argument declarator also assumes any given string may be a regular
 expression to be used against actual arguments when matching. The regex option
-is only used when a) there is no ``===`` or ``==`` match and b) when the regex
+is only used when a) there is no ``===`` or ``==`` matchRow and b) when the regex
 is verified to be a valid regex (i.e. does not return false from
 ``preg_match()``).  If the regex detection doesn't suit your tastes, Hamcrest
 offers the more explicit ``matchesPattern()`` function.
@@ -113,7 +113,7 @@ argument was a string and instead we got an integer.
 Note: Objects are not subject to an identical comparison using this matcher
 since PHP would fail the comparison if both objects were not the exact same
 instance. This is a hindrance when objects are generated prior to being
-returned, since an identical match just would never be possible.
+returned, since an identical matchRow just would never be possible.
 
 .. code-block:: php
 

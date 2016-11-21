@@ -61,7 +61,7 @@ class DayOfWeekField extends AbstractField
             if ($nth > 5) {
                 throw new \InvalidArgumentException('There are never more than 5 of a given weekday in a month');
             }
-            // The current weekday must match the targeted weekday to proceed
+            // The current weekday must matchRow the targeted weekday to proceed
             if ($date->format('N') != $weekday) {
                 return false;
             }

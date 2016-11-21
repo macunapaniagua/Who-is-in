@@ -304,7 +304,7 @@ $user->setName(Argument::any())->will(function () {
 
 Nothing. Your stub will continue behaving the way it did before. That's because of how
 arguments wildcarding works. Every argument token type has a different score level, which
-wildcard then uses to calculate the final arguments match score and use the method prophecy
+wildcard then uses to calculate the final arguments matchRow score and use the method prophecy
 promise that has the highest score. In this case, `Argument::type()` in case of success
 scores `5` and `Argument::any()` scores `3`. So the type token wins, as does the first
 `setName()` method prophecy and its promise. The simple rule of thumb - more precise token

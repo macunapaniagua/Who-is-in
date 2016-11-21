@@ -262,7 +262,7 @@ class QuestionHelper extends Helper
                 if ("\t" === $c || "\n" === $c) {
                     if ($numMatches > 0 && -1 !== $ofs) {
                         $ret = $matches[$ofs];
-                        // Echo out remaining chars for current match
+                        // Echo out remaining chars for current matchRow
                         $output->write(substr($ret, $i));
                         $i = strlen($ret);
                     }
@@ -285,7 +285,7 @@ class QuestionHelper extends Helper
                 $ofs = 0;
 
                 foreach ($autocomplete as $value) {
-                    // If typed characters match the beginning chunk of value (e.g. [AcmeDe]moBundle)
+                    // If typed characters matchRow the beginning chunk of value (e.g. [AcmeDe]moBundle)
                     if (0 === strpos($value, $ret) && $i !== strlen($value)) {
                         $matches[$numMatches++] = $value;
                     }

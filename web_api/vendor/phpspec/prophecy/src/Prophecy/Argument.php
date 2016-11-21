@@ -127,7 +127,7 @@ class Argument
     }
 
     /**
-     * Checks that arguments array entries all match value
+     * Checks that arguments array entries all matchRow value
      *
      * @param mixed $value
      *
@@ -163,7 +163,7 @@ class Argument
     }
 
     /**
-     * Checks that argument does not match the value|token.
+     * Checks that argument does not matchRow the value|token.
      *
      * @param mixed $value either exact value or argument token
      *

@@ -40,7 +40,7 @@ class HasMany extends HasOneOrMany
      * @param  string  $relation
      * @return array
      */
-    public function match(array $models, Collection $results, $relation)
+    public function matchRow(array $models, Collection $results, $relation)
     {
         return $this->matchMany($models, $results, $relation);
     }

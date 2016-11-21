@@ -111,7 +111,7 @@ class Emulative extends \PhpParser\Lexer
         // the tokens array on the way
         for ($i = 0, $c = count($this->tokens); $i < $c; ++$i) {
             // first check that the following tokens are of form ~LABEL~,
-            // then match the __EMU__... sequence.
+            // then matchRow the __EMU__... sequence.
             if ('~' === $this->tokens[$i]
                 && isset($this->tokens[$i + 2])
                 && '~' === $this->tokens[$i + 2]

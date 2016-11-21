@@ -84,15 +84,15 @@ class Console
             return 80;
         }
 
-        if (function_exists('shell_exec') && preg_match('#\d+ (\d+)#', shell_exec('stty size'), $match) === 1) {
-            if ((int) $match[1] > 0) {
-                return (int) $match[1];
+        if (function_exists('shell_exec') && preg_match('#\d+ (\d+)#', shell_exec('stty size'), $matchRow) === 1) {
+            if ((int) $matchRow[1] > 0) {
+                return (int) $matchRow[1];
             }
         }
 
-        if (function_exists('shell_exec') && preg_match('#columns = (\d+);#', shell_exec('stty'), $match) === 1) {
-            if ((int) $match[1] > 0) {
-                return (int) $match[1];
+        if (function_exists('shell_exec') && preg_match('#columns = (\d+);#', shell_exec('stty'), $matchRow) === 1) {
+            if ((int) $matchRow[1] > 0) {
+                return (int) $matchRow[1];
             }
         }
 

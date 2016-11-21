@@ -68,7 +68,7 @@ interface PasswordBroker
     public function validator(Closure $callback);
 
     /**
-     * Determine if the passwords match for the request.
+     * Determine if the passwords matchRow for the request.
      *
      * @param  array  $credentials
      * @return bool

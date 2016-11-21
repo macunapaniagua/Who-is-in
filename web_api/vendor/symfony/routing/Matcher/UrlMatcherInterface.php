@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 interface UrlMatcherInterface extends RequestContextAwareInterface
 {
     /**
-     * Tries to match a URL path with a set of routes.
+     * Tries to matchRow a URL path with a set of routes.
      *
      * If the matcher can not find information, it must throw one of the exceptions documented
      * below.
@@ -35,5 +35,5 @@ interface UrlMatcherInterface extends RequestContextAwareInterface
      * @throws ResourceNotFoundException If the resource could not be found
      * @throws MethodNotAllowedException If the resource was found but the request method is not allowed
      */
-    public function match($pathinfo);
+    public function matchRow($pathinfo);
 }

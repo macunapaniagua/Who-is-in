@@ -328,8 +328,8 @@ class ArgvInput extends Input
     public function __toString()
     {
         $tokens = array_map(function ($token) {
-            if (preg_match('{^(-[^=]+=)(.+)}', $token, $match)) {
-                return $match[1].$this->escapeToken($match[2]);
+            if (preg_match('{^(-[^=]+=)(.+)}', $token, $matchRow)) {
+                return $matchRow[1].$this->escapeToken($matchRow[2]);
             }
 
             if ($token && $token[0] !== '-') {

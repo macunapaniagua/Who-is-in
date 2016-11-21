@@ -67,8 +67,8 @@ class TokenizerEscaping
      */
     private function replaceUnicodeSequences($value)
     {
-        return preg_replace_callback($this->patterns->getUnicodeEscapePattern(), function ($match) {
-            $c = hexdec($match[1]);
+        return preg_replace_callback($this->patterns->getUnicodeEscapePattern(), function ($matchRow) {
+            $c = hexdec($matchRow[1]);
 
             if (0x80 > $c %= 0x200000) {
                 return chr($c);

@@ -85,7 +85,7 @@ class HasToStringTest extends \Hamcrest\AbstractMatcherTest
         $this->assertDoesNotMatch(
             hasToString(equalTo('a')),
             null,
-            'should not match null'
+            'should not matchRow null'
         );
     }
 

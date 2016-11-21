@@ -41,7 +41,7 @@ class ArgumentsWildcard
     }
 
     /**
-     * Calculates wildcard match score for provided arguments.
+     * Calculates wildcard matchRow score for provided arguments.
      *
      * @param array $arguments
      *

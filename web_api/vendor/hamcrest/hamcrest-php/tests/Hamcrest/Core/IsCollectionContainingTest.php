@@ -16,7 +16,7 @@ class IsCollectionContainingTest extends \Hamcrest\AbstractMatcherTest
         $this->assertMatches(
             $itemMatcher,
             array('a', 'b', 'c'),
-            "should match list that contains 'a'"
+            "should matchRow list that contains 'a'"
         );
     }
 
@@ -26,14 +26,14 @@ class IsCollectionContainingTest extends \Hamcrest\AbstractMatcherTest
         $this->assertDoesNotMatch(
             $matcher1,
             array('b', 'c'),
-            "should not match list that doesn't contain 'a'"
+            "should not matchRow list that doesn't contain 'a'"
         );
 
         $matcher2 = hasItem(equalTo('a'));
         $this->assertDoesNotMatch(
             $matcher2,
             array(),
-            'should not match the empty list'
+            'should not matchRow the empty list'
         );
     }
 
@@ -42,7 +42,7 @@ class IsCollectionContainingTest extends \Hamcrest\AbstractMatcherTest
         $this->assertDoesNotMatch(
             hasItem(equalTo('a')),
             null,
-            'should not match null'
+            'should not matchRow null'
         );
     }
 
@@ -57,35 +57,35 @@ class IsCollectionContainingTest extends \Hamcrest\AbstractMatcherTest
         $this->assertMatches(
             $matcher1,
             array('a', 'b', 'c'),
-            'should match list containing all items'
+            'should matchRow list containing all items'
         );
 
         $matcher2 = hasItems('a', 'b', 'c');
         $this->assertMatches(
             $matcher2,
             array('a', 'b', 'c'),
-            'should match list containing all items (without matchers)'
+            'should matchRow list containing all items (without matchers)'
         );
 
         $matcher3 = hasItems(equalTo('a'), equalTo('b'), equalTo('c'));
         $this->assertMatches(
             $matcher3,
             array('c', 'b', 'a'),
-            'should match list containing all items in any order'
+            'should matchRow list containing all items in any order'
         );
 
         $matcher4 = hasItems(equalTo('a'), equalTo('b'), equalTo('c'));
         $this->assertMatches(
             $matcher4,
             array('e', 'c', 'b', 'a', 'd'),
-            'should match list containing all items plus others'
+            'should matchRow list containing all items plus others'
         );
 
         $matcher5 = hasItems(equalTo('a'), equalTo('b'), equalTo('c'));
         $this->assertDoesNotMatch(
             $matcher5,
             array('e', 'c', 'b', 'd'), // 'a' missing
-            'should not match list unless it contains all items'
+            'should not matchRow list unless it contains all items'
         );
     }
 }

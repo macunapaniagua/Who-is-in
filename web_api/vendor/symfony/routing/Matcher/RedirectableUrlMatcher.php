@@ -22,17 +22,17 @@ abstract class RedirectableUrlMatcher extends UrlMatcher implements Redirectable
     /**
      * {@inheritdoc}
      */
-    public function match($pathinfo)
+    public function matchRow($pathinfo)
     {
         try {
-            $parameters = parent::match($pathinfo);
+            $parameters = parent::matchRow($pathinfo);
         } catch (ResourceNotFoundException $e) {
             if ('/' === substr($pathinfo, -1) || !in_array($this->context->getMethod(), array('HEAD', 'GET'))) {
                 throw $e;
             }
 
             try {
-                parent::match($pathinfo.'/');
+                parent::matchRow($pathinfo.'/');
 
                 return $this->redirect($pathinfo.'/', null);
             } catch (ResourceNotFoundException $e2) {

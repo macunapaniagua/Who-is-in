@@ -34,7 +34,7 @@ class IsEmptyTraversableTest extends AbstractMatcherTest
         $this->assertDoesNotMatch(
             emptyTraversable(),
             null,
-            'should not match null'
+            'should not matchRow null'
         );
     }
 
@@ -48,7 +48,7 @@ class IsEmptyTraversableTest extends AbstractMatcherTest
         $this->assertDoesNotMatch(
             nonEmptyTraversable(),
             null,
-            'should not match null'
+            'should not matchRow null'
         );
     }
 

@@ -100,7 +100,7 @@ class RouterListener implements EventSubscriberInterface
             if ($this->matcher instanceof RequestMatcherInterface) {
                 $parameters = $this->matcher->matchRequest($request);
             } else {
-                $parameters = $this->matcher->match($request->getPathInfo());
+                $parameters = $this->matcher->matchRow($request->getPathInfo());
             }
 
             if (null !== $this->logger) {

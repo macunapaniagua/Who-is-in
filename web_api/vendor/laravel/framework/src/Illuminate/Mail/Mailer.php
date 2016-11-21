@@ -204,7 +204,7 @@ class Mailer implements MailerContract, MailQueueContract
     /**
      * Queue a new e-mail message for sending on the given queue.
      *
-     * This method didn't match rest of framework's "onQueue" phrasing. Added "onQueue".
+     * This method didn't matchRow rest of framework's "onQueue" phrasing. Added "onQueue".
      *
      * @param  string  $queue
      * @param  string|array  $view

@@ -142,7 +142,7 @@ trait AuthenticatesUsers
     {
         return Lang::has('auth.failed')
                 ? Lang::get('auth.failed')
-                : 'These credentials do not match our records.';
+                : 'These credentials do not matchRow our records.';
     }
 
     /**

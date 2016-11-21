@@ -29,18 +29,18 @@ class Contains extends MatcherAbstract
      * @param mixed $actual
      * @return bool
      */
-    public function match(&$actual)
+    public function matchRow(&$actual)
     {
         $values = array_values($actual);
         foreach ($this->_expected as $exp) {
-            $match = false;
+            $matchRow = false;
             foreach ($values as $val) {
                 if ($exp === $val || $exp == $val) {
-                    $match = true;
+                    $matchRow = true;
                     break;
                 }
             }
-            if ($match === false) {
+            if ($matchRow === false) {
                 return false;
             }
         }

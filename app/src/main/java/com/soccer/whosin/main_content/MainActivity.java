@@ -17,13 +17,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.soccer.whosin.R;
 import com.soccer.whosin.fragments.PlaceholderFragment;
 import com.soccer.whosin.fragments.fields.FieldsFragment;
 import com.soccer.whosin.fragments.join_code.JoinCodeFragment;
+import com.soccer.whosin.fragments.matches.MatchesFragment;
 import com.soccer.whosin.fragments.members.MembersFragment;
 import com.soccer.whosin.groups.join_group.GroupEntryActivity;
 import com.soccer.whosin.login.LoginActivity;
@@ -127,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_fields:
                 fragment = FieldsFragment.newInstance();
+                break;
+            case R.id.nav_mejengas:
+                fragment = MatchesFragment.newInstance();
                 break;
             case R.id.nav_join_code:
                 fragment = JoinCodeFragment.newInstance();

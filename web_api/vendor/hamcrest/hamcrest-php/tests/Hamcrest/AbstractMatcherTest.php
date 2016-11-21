@@ -34,7 +34,7 @@ abstract class AbstractMatcherTest extends \PHPUnit_Framework_TestCase
         $description = new \Hamcrest\StringDescription();
         $this->assertFalse(
             $matcher->matches($arg),
-            'Precondtion: Matcher should not match item'
+            'Precondtion: Matcher should not matchRow item'
         );
         $matcher->describeMismatch($arg, $description);
         $this->assertEquals(

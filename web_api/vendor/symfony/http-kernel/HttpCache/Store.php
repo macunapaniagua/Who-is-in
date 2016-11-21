@@ -146,20 +146,20 @@ class Store implements StoreInterface
         }
 
         // find a cached entry that matches the request.
-        $match = null;
+        $matchRow = null;
         foreach ($entries as $entry) {
             if ($this->requestsMatch(isset($entry[1]['vary'][0]) ? implode(', ', $entry[1]['vary']) : '', $request->headers->all(), $entry[0])) {
-                $match = $entry;
+                $matchRow = $entry;
 
                 break;
             }
         }
 
-        if (null === $match) {
+        if (null === $matchRow) {
             return;
         }
 
-        list($req, $headers) = $match;
+        list($req, $headers) = $matchRow;
         if (file_exists($body = $this->getPath($headers['x-content-digest'][0]))) {
             return $this->restoreResponse($headers, $body);
         }
@@ -172,7 +172,7 @@ class Store implements StoreInterface
     /**
      * Writes a cache entry to the store for the given Request and Response.
      *
-     * Existing entries are read and any that match the response are removed. This
+     * Existing entries are read and any that matchRow the response are removed. This
      * method calls write with the new list of cache entries.
      *
      * @param Request  $request  A Request instance
@@ -240,7 +240,7 @@ class Store implements StoreInterface
     }
 
     /**
-     * Invalidates all cache entries that match the request.
+     * Invalidates all cache entries that matchRow the request.
      *
      * @param Request $request A Request instance
      *
@@ -276,7 +276,7 @@ class Store implements StoreInterface
      * @param array  $env1 A Request HTTP header array
      * @param array  $env2 A Request HTTP header array
      *
-     * @return bool true if the two environments match, false otherwise
+     * @return bool true if the two environments matchRow, false otherwise
      */
     private function requestsMatch($vary, $env1, $env2)
     {

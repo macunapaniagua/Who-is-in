@@ -67,7 +67,7 @@ release = '0.9'
 # Else, today_fmt is used as the format for a strftime call.
 #today_fmt = '%B %d, %Y'
 
-# List of patterns, relative to source directory, that match files and
+# List of patterns, relative to source directory, that matchRow files and
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build']
 

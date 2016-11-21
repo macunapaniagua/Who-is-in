@@ -18,7 +18,7 @@
 interface PHPUnit_Framework_MockObject_MockObject /*extends PHPUnit_Framework_MockObject_Verifiable*/
 {
     /**
-     * Registers a new expectation in the mock object and returns the match
+     * Registers a new expectation in the mock object and returns the matchRow
      * object which can be infused with further details.
      *
      * @param  PHPUnit_Framework_MockObject_Matcher_Invocation       $matcher

@@ -67,7 +67,7 @@ if (!function_exists('hasValue')) {    /**
 }
 
 if (!function_exists('arrayContainingInAnyOrder')) {    /**
-     * An array with elements that match the given matchers.
+     * An array with elements that matchRow the given matchers.
      */
     function arrayContainingInAnyOrder(/* args... */)
     {
@@ -77,7 +77,7 @@ if (!function_exists('arrayContainingInAnyOrder')) {    /**
 }
 
 if (!function_exists('containsInAnyOrder')) {    /**
-     * An array with elements that match the given matchers.
+     * An array with elements that matchRow the given matchers.
      */
     function containsInAnyOrder(/* args... */)
     {
@@ -87,7 +87,7 @@ if (!function_exists('containsInAnyOrder')) {    /**
 }
 
 if (!function_exists('arrayContaining')) {    /**
-     * An array with elements that match the given matchers in the same order.
+     * An array with elements that matchRow the given matchers in the same order.
      */
     function arrayContaining(/* args... */)
     {
@@ -97,7 +97,7 @@ if (!function_exists('arrayContaining')) {    /**
 }
 
 if (!function_exists('contains')) {    /**
-     * An array with elements that match the given matchers in the same order.
+     * An array with elements that matchRow the given matchers in the same order.
      */
     function contains(/* args... */)
     {
@@ -340,7 +340,7 @@ if (!function_exists('hasItem')) {    /**
 }
 
 if (!function_exists('hasItems')) {    /**
-     * Test if the value is an array containing elements that match all of these
+     * Test if the value is an array containing elements that matchRow all of these
      * matchers.
      *
      * Example:
@@ -399,7 +399,7 @@ if (!function_exists('any')) {    /**
 }
 
 if (!function_exists('not')) {    /**
-     * Matches if value does not match $value.
+     * Matches if value does not matchRow $value.
      */
     function not($value)
     {

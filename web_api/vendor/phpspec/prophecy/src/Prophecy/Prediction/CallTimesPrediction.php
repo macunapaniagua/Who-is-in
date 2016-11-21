@@ -64,7 +64,7 @@ class CallTimesPrediction implements PredictionInterface
 
         if (count($calls)) {
             $message = sprintf(
-                "Expected exactly %d calls that match:\n".
+                "Expected exactly %d calls that matchRow:\n".
                 "  %s->%s(%s)\n".
                 "but %d were made:\n%s",
 
@@ -77,7 +77,7 @@ class CallTimesPrediction implements PredictionInterface
             );
         } elseif (count($methodCalls)) {
             $message = sprintf(
-                "Expected exactly %d calls that match:\n".
+                "Expected exactly %d calls that matchRow:\n".
                 "  %s->%s(%s)\n".
                 "but none were made.\n".
                 "Recorded `%s(...)` calls:\n%s",
@@ -91,7 +91,7 @@ class CallTimesPrediction implements PredictionInterface
             );
         } else {
             $message = sprintf(
-                "Expected exactly %d calls that match:\n".
+                "Expected exactly %d calls that matchRow:\n".
                 "  %s->%s(%s)\n".
                 "but none were made.",
 

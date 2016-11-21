@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 /**
- * TraceableUrlMatcher helps debug path info matching by tracing the match.
+ * TraceableUrlMatcher helps debug path info matching by tracing the matchRow.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
@@ -34,7 +34,7 @@ class TraceableUrlMatcher extends UrlMatcher
         $this->traces = array();
 
         try {
-            $this->match($pathinfo);
+            $this->matchRow($pathinfo);
         } catch (ExceptionInterface $e) {
         }
 
@@ -56,11 +56,11 @@ class TraceableUrlMatcher extends UrlMatcher
             $compiledRoute = $route->compile();
 
             if (!preg_match($compiledRoute->getRegex(), $pathinfo, $matches)) {
-                // does it match without any requirements?
+                // does it matchRow without any requirements?
                 $r = new Route($route->getPath(), $route->getDefaults(), array(), $route->getOptions());
                 $cr = $r->compile();
                 if (!preg_match($cr->getRegex(), $pathinfo)) {
-                    $this->addTrace(sprintf('Path "%s" does not match', $route->getPath()), self::ROUTE_DOES_NOT_MATCH, $name, $route);
+                    $this->addTrace(sprintf('Path "%s" does not matchRow', $route->getPath()), self::ROUTE_DOES_NOT_MATCH, $name, $route);
 
                     continue;
                 }
@@ -70,7 +70,7 @@ class TraceableUrlMatcher extends UrlMatcher
                     $cr = $r->compile();
 
                     if (in_array($n, $cr->getVariables()) && !preg_match($cr->getRegex(), $pathinfo)) {
-                        $this->addTrace(sprintf('Requirement for "%s" does not match (%s)', $n, $regex), self::ROUTE_ALMOST_MATCHES, $name, $route);
+                        $this->addTrace(sprintf('Requirement for "%s" does not matchRow (%s)', $n, $regex), self::ROUTE_ALMOST_MATCHES, $name, $route);
 
                         continue 2;
                     }
@@ -82,7 +82,7 @@ class TraceableUrlMatcher extends UrlMatcher
             // check host requirement
             $hostMatches = array();
             if ($compiledRoute->getHostRegex() && !preg_match($compiledRoute->getHostRegex(), $this->context->getHost(), $hostMatches)) {
-                $this->addTrace(sprintf('Host "%s" does not match the requirement ("%s")', $this->context->getHost(), $route->getHost()), self::ROUTE_ALMOST_MATCHES, $name, $route);
+                $this->addTrace(sprintf('Host "%s" does not matchRow the requirement ("%s")', $this->context->getHost(), $route->getHost()), self::ROUTE_ALMOST_MATCHES, $name, $route);
 
                 continue;
             }
@@ -97,7 +97,7 @@ class TraceableUrlMatcher extends UrlMatcher
                 if (!in_array($method, $requiredMethods)) {
                     $this->allow = array_merge($this->allow, $requiredMethods);
 
-                    $this->addTrace(sprintf('Method "%s" does not match any of the required methods (%s)', $this->context->getMethod(), implode(', ', $requiredMethods)), self::ROUTE_ALMOST_MATCHES, $name, $route);
+                    $this->addTrace(sprintf('Method "%s" does not matchRow any of the required methods (%s)', $this->context->getMethod(), implode(', ', $requiredMethods)), self::ROUTE_ALMOST_MATCHES, $name, $route);
 
                     continue;
                 }
@@ -117,7 +117,7 @@ class TraceableUrlMatcher extends UrlMatcher
                 $scheme = $this->context->getScheme();
 
                 if (!$route->hasScheme($scheme)) {
-                    $this->addTrace(sprintf('Scheme "%s" does not match any of the required schemes (%s); the user will be redirected to first required scheme', $scheme, implode(', ', $requiredSchemes)), self::ROUTE_ALMOST_MATCHES, $name, $route);
+                    $this->addTrace(sprintf('Scheme "%s" does not matchRow any of the required schemes (%s); the user will be redirected to first required scheme', $scheme, implode(', ', $requiredSchemes)), self::ROUTE_ALMOST_MATCHES, $name, $route);
 
                     return true;
                 }

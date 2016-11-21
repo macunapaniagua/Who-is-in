@@ -107,10 +107,10 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
             $returnValue = null;
         }
 
-        foreach ($this->matchers as $match) {
+        foreach ($this->matchers as $matchRow) {
             try {
-                if ($match->matches($invocation)) {
-                    $value = $match->invoked($invocation);
+                if ($matchRow->matches($invocation)) {
+                    $value = $matchRow->invoked($invocation);
 
                     if (!$hasReturnValue) {
                         $returnValue    = $value;

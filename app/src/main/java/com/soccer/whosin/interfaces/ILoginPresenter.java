@@ -8,7 +8,6 @@ import com.soccer.whosin.models.Member;
  **/
 
 public interface ILoginPresenter {
-
     void onMembersRequestSuccessful(Member pMember);
     void onMembersRequestFailed(ErrorMessage pErrorMessage);
 }

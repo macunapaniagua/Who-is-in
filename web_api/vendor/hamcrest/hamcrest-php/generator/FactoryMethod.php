@@ -95,10 +95,10 @@ class FactoryMethod
 
     public function extractFactoryNamesFromLine($line)
     {
-        if (preg_match('/^\s*@factory(\s+(.+))?$/', $line, $match)) {
+        if (preg_match('/^\s*@factory(\s+(.+))?$/', $line, $matchRow)) {
             $this->createCalls(
                 $this->extractFactoryNamesFromAnnotation(
-                    isset($match[2]) ? trim($match[2]) : null
+                    isset($matchRow[2]) ? trim($matchRow[2]) : null
                 )
             );
             return true;
@@ -112,8 +112,8 @@ class FactoryMethod
         if (empty($value)) {
             return array($primaryName);
         }
-        preg_match_all('/(\.{3}|-|[a-zA-Z_][a-zA-Z_0-9]*)/', $value, $match);
-        $names = $match[0];
+        preg_match_all('/(\.{3}|-|[a-zA-Z_][a-zA-Z_0-9]*)/', $value, $matchRow);
+        $names = $matchRow[0];
         if (in_array('...', $names)) {
             $this->isVarArgs = true;
         }

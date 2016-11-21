@@ -594,7 +594,7 @@ class Route
             return static::$validators;
         }
 
-        // To match the route, we will use a chain of responsibility pattern with the
+        // To matchRow the route, we will use a chain of responsibility pattern with the
         // validator implementations. We will spin through each one making sure it
         // passes and then we will know if the route as a whole matches request.
         return static::$validators = [

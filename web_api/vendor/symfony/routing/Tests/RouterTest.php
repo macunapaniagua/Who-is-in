@@ -138,7 +138,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
     public function testMatchRequestWithUrlMatcherInterface()
     {
         $matcher = $this->getMock('Symfony\Component\Routing\Matcher\UrlMatcherInterface');
-        $matcher->expects($this->once())->method('match');
+        $matcher->expects($this->once())->method('matchRow');
 
         $p = new \ReflectionProperty($this->router, 'matcher');
         $p->setAccessible(true);

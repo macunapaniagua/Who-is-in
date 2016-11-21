@@ -415,7 +415,7 @@ trait MakesHttpRequests
         if (! is_null($value)) {
             $this->assertEquals(
                 $headers->get($headerName), $value,
-                "Header [{$headerName}] was found, but value [{$headers->get($headerName)}] does not match [{$value}]."
+                "Header [{$headerName}] was found, but value [{$headers->get($headerName)}] does not matchRow [{$value}]."
             );
         }
 
@@ -468,7 +468,7 @@ trait MakesHttpRequests
 
         $this->assertEquals(
             $actual, $value,
-            "Cookie [{$cookieName}] was found, but value [{$actual}] does not match [{$value}]."
+            "Cookie [{$cookieName}] was found, but value [{$actual}] does not matchRow [{$value}]."
         );
 
         return $this;

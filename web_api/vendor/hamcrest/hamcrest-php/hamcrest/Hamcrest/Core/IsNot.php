@@ -33,7 +33,7 @@ class IsNot extends BaseMatcher
     }
 
     /**
-     * Matches if value does not match $value.
+     * Matches if value does not matchRow $value.
      *
      * @factory
      */

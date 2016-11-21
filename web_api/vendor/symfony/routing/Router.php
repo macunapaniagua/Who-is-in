@@ -237,9 +237,9 @@ class Router implements RouterInterface, RequestMatcherInterface
     /**
      * {@inheritdoc}
      */
-    public function match($pathinfo)
+    public function matchRow($pathinfo)
     {
-        return $this->getMatcher()->match($pathinfo);
+        return $this->getMatcher()->matchRow($pathinfo);
     }
 
     /**
@@ -250,7 +250,7 @@ class Router implements RouterInterface, RequestMatcherInterface
         $matcher = $this->getMatcher();
         if (!$matcher instanceof RequestMatcherInterface) {
             // fallback to the default UrlMatcherInterface
-            return $matcher->match($request->getPathInfo());
+            return $matcher->matchRow($request->getPathInfo());
         }
 
         return $matcher->matchRequest($request);

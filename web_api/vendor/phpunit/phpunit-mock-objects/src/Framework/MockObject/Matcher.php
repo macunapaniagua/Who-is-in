@@ -113,7 +113,7 @@ class PHPUnit_Framework_MockObject_Matcher implements PHPUnit_Framework_MockObje
             if (!$builder) {
                 throw new PHPUnit_Framework_Exception(
                     sprintf(
-                        'No builder found for match builder identification <%s>',
+                        'No builder found for matchRow builder identification <%s>',
                         $this->afterMatchBuilderId
                     )
                 );
@@ -166,7 +166,7 @@ class PHPUnit_Framework_MockObject_Matcher implements PHPUnit_Framework_MockObje
             if (!$builder) {
                 throw new PHPUnit_Framework_Exception(
                     sprintf(
-                        'No builder found for match builder identification <%s>',
+                        'No builder found for matchRow builder identification <%s>',
                         $this->afterMatchBuilderId
                     )
                 );

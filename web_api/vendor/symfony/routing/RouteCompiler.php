@@ -84,14 +84,14 @@ class RouteCompiler implements RouteCompilerInterface
         $pos = 0;
         $defaultSeparator = $isHost ? '.' : '/';
 
-        // Match all variables enclosed in "{}" and iterate over them. But we only want to match the innermost variable
-        // in case of nested "{}", e.g. {foo{bar}}. This in ensured because \w does not match "{" or "}" itself.
+        // Match all variables enclosed in "{}" and iterate over them. But we only want to matchRow the innermost variable
+        // in case of nested "{}", e.g. {foo{bar}}. This in ensured because \w does not matchRow "{" or "}" itself.
         preg_match_all('#\{\w+\}#', $pattern, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
-        foreach ($matches as $match) {
-            $varName = substr($match[0][0], 1, -1);
+        foreach ($matches as $matchRow) {
+            $varName = substr($matchRow[0][0], 1, -1);
             // get all static text preceding the current variable
-            $precedingText = substr($pattern, $pos, $match[0][1] - $pos);
-            $pos = $match[0][1] + strlen($match[0][0]);
+            $precedingText = substr($pattern, $pos, $matchRow[0][1] - $pos);
+            $pos = $matchRow[0][1] + strlen($matchRow[0][0]);
             $precedingChar = strlen($precedingText) > 0 ? substr($precedingText, -1) : '';
             $isSeparator = '' !== $precedingChar && false !== strpos(static::SEPARATORS, $precedingChar);
 
@@ -115,7 +115,7 @@ class RouteCompiler implements RouteCompilerInterface
                 // are disallowed for the variable. This default requirement makes sure that optional variables can be matched at all
                 // and that the generating-matching-combination of URLs unambiguous, i.e. the params used for generating the URL are
                 // the same that will be matched. Example: new Route('/{page}.{_format}', array('_format' => 'html'))
-                // If {page} would also match the separating dot, {_format} would never match as {page} will eagerly consume everything.
+                // If {page} would also matchRow the separating dot, {_format} would never matchRow as {page} will eagerly consume everything.
                 // Also even if {_format} was not optional the requirement prevents that {page} matches something that was originally
                 // part of {_format} when generating the URL, e.g. _format = 'mobile.html'.
                 $nextSeparator = self::findNextSeparator($followingPattern);
@@ -189,7 +189,7 @@ class RouteCompiler implements RouteCompilerInterface
     }
 
     /**
-     * Computes the regexp used to match a specific token. It can be static text or a subpattern.
+     * Computes the regexp used to matchRow a specific token. It can be static text or a subpattern.
      *
      * @param array $tokens        The route tokens
      * @param int   $index         The index of the current token

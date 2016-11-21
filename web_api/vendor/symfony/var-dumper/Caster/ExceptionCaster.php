@@ -141,9 +141,9 @@ class ExceptionCaster
         $prefix = Caster::PREFIX_VIRTUAL;
 
         if (isset($f['file'], $f['line'])) {
-            if (preg_match('/\((\d+)\)(?:\([\da-f]{32}\))? : (?:eval\(\)\'d code|runtime-created function)$/', $f['file'], $match)) {
-                $f['file'] = substr($f['file'], 0, -strlen($match[0]));
-                $f['line'] = (int) $match[1];
+            if (preg_match('/\((\d+)\)(?:\([\da-f]{32}\))? : (?:eval\(\)\'d code|runtime-created function)$/', $f['file'], $matchRow)) {
+                $f['file'] = substr($f['file'], 0, -strlen($matchRow[0]));
+                $f['line'] = (int) $matchRow[1];
             }
             if (file_exists($f['file']) && 0 <= self::$srcContext) {
                 $src[$f['file'].':'.$f['line']] = self::extractSource(explode("\n", file_get_contents($f['file'])), $f['line'], self::$srcContext);

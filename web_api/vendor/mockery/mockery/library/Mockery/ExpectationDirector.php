@@ -161,7 +161,7 @@ class ExpectationDirector
     }
 
     /**
-     * Search current array of expectations for a match
+     * Search current array of expectations for a matchRow
      *
      * @param array $expectations
      * @param array $args

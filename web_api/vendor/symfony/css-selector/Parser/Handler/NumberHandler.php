@@ -46,14 +46,14 @@ class NumberHandler implements HandlerInterface
      */
     public function handle(Reader $reader, TokenStream $stream)
     {
-        $match = $reader->findPattern($this->patterns->getNumberPattern());
+        $matchRow = $reader->findPattern($this->patterns->getNumberPattern());
 
-        if (!$match) {
+        if (!$matchRow) {
             return false;
         }
 
-        $stream->push(new Token(Token::TYPE_NUMBER, $match[0], $reader->getPosition()));
-        $reader->moveForward(strlen($match[0]));
+        $stream->push(new Token(Token::TYPE_NUMBER, $matchRow[0], $reader->getPosition()));
+        $reader->moveForward(strlen($matchRow[0]));
 
         return true;
     }

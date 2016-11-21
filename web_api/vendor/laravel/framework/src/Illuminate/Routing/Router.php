@@ -211,7 +211,7 @@ class Router implements RegistrarContract
      * @param  \Closure|array|string|null  $action
      * @return \Illuminate\Routing\Route
      */
-    public function match($methods, $uri, $action = null)
+    public function matchRow($methods, $uri, $action = null)
     {
         return $this->addRoute(array_map('strtoupper', (array) $methods), $uri, $action);
     }
@@ -818,7 +818,7 @@ class Router implements RegistrarContract
      */
     protected function findRoute($request)
     {
-        $this->current = $route = $this->routes->match($request);
+        $this->current = $route = $this->routes->matchRow($request);
 
         $this->container->instance('Illuminate\Routing\Route', $route);
 

@@ -78,7 +78,7 @@ Issues Fixed: 119, 136, 139, 141, 148, 149, 172
     assertThat($dom, hasXPath('books/book/title', 'Alice in Wonderland'));
     assertThat($dom, hasXPath('count(books/book)', greaterThan(10)));
 
-* Added aliases to match the Java API.
+* Added aliases to matchRow the Java API.
 
     hasEntry() -> hasKeyValuePair()
     hasValue() -> hasItemInArray()

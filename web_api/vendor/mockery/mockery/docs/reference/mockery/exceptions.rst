@@ -50,7 +50,7 @@ offers the following methods:
 \Mockery\Exception\NoMatchingExpectationException
 -------------------------------------------------
 
-The exception class is used when a method call does not match any known
+The exception class is used when a method call does not matchRow any known
 expectation.  All expectations are uniquely identified in a mock object by the
 method name and the list of expected arguments. You can disable this exception
 and opt for returning NULL from all unexpected method calls by using the

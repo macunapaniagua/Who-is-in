@@ -20,7 +20,7 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Tests\Fixtures\Redirec
         $this->context = $context;
     }
 
-    public function match($pathinfo)
+    public function matchRow($pathinfo)
     {
         $allow = array();
         $pathinfo = rawurldecode($pathinfo);

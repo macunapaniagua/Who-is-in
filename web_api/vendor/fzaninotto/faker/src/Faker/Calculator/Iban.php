@@ -27,9 +27,9 @@ class Iban
     /**
      * @return int
      */
-    private static function alphaToNumberCallback($match)
+    private static function alphaToNumberCallback($matchRow)
     {
-        return self::alphaToNumber($match[0]);
+        return self::alphaToNumber($matchRow[0]);
     }
 
     /**

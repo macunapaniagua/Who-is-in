@@ -29,7 +29,7 @@ class Any extends MatcherAbstract
      * @param mixed $actual
      * @return bool
      */
-    public function match(&$actual)
+    public function matchRow(&$actual)
     {
         return true;
     }

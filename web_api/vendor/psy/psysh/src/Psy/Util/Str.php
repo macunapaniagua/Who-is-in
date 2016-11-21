@@ -69,23 +69,23 @@ EOS;
     /**
      * Callback for Str::unvis.
      *
-     * @param array $match The matches passed by preg_replace_callback
+     * @param array $matchRow The matches passed by preg_replace_callback
      *
      * @return string
      */
-    protected static function unvisReplace($match)
+    protected static function unvisReplace($matchRow)
     {
         // \040, \s
-        if (!empty($match[1])) {
+        if (!empty($matchRow[1])) {
             return "\x20";
         }
         // \240
-        if (!empty($match[2])) {
+        if (!empty($matchRow[2])) {
             return "\xa0";
         }
         // \M-(.)
-        if (isset($match[3]) && $match[3] !== '') {
-            $chr = $match[3];
+        if (isset($matchRow[3]) && $matchRow[3] !== '') {
+            $chr = $matchRow[3];
             // unvis S_META1
             $cp = 0200;
             $cp |= ord($chr);
@@ -93,8 +93,8 @@ EOS;
             return chr($cp);
         }
         // \M^(.)
-        if (isset($match[4]) && $match[4] !== '') {
-            $chr = $match[4];
+        if (isset($matchRow[4]) && $matchRow[4] !== '') {
+            $chr = $matchRow[4];
             // unvis S_META | S_CTRL
             $cp = 0200;
             $cp |= ($chr === '?') ? 0177 : ord($chr) & 037;
@@ -102,8 +102,8 @@ EOS;
             return chr($cp);
         }
         // \^(.)
-        if (isset($match[5]) && $match[5] !== '') {
-            $chr = $match[5];
+        if (isset($matchRow[5]) && $matchRow[5] !== '') {
+            $chr = $matchRow[5];
             // unvis S_CTRL
             $cp = 0;
             $cp |= ($chr === '?') ? 0177 : ord($chr) & 037;

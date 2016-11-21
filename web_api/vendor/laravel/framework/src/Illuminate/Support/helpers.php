@@ -610,7 +610,7 @@ if (! function_exists('preg_replace_sub')) {
      */
     function preg_replace_sub($pattern, &$replacements, $subject)
     {
-        return preg_replace_callback($pattern, function ($match) use (&$replacements) {
+        return preg_replace_callback($pattern, function ($matchRow) use (&$replacements) {
             foreach ($replacements as $key => $value) {
                 return array_shift($replacements);
             }

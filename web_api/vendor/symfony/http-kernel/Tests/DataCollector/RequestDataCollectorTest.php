@@ -56,7 +56,7 @@ class RequestDataCollectorTest extends \PHPUnit_Framework_TestCase
      */
     public function testControllerInspection()
     {
-        // make sure we always match the line number
+        // make sure we always matchRow the line number
         $r1 = new \ReflectionMethod($this, 'testControllerInspection');
         $r2 = new \ReflectionMethod($this, 'staticControllerMethod');
         $r3 = new \ReflectionClass($this);

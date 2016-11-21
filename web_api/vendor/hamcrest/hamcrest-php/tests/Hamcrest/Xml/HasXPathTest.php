@@ -52,14 +52,14 @@ HTML;
 
     public function testMatchesWhenXPathIsFound()
     {
-        assertThat('one match', self::$doc, hasXPath('user[id = "bob"]'));
+        assertThat('one matchRow', self::$doc, hasXPath('user[id = "bob"]'));
         assertThat('two matches', self::$doc, hasXPath('user[role = "user"]'));
     }
 
     public function testDoesNotMatchWhenXPathIsNotFound()
     {
         assertThat(
-            'no match',
+            'no matchRow',
             self::$doc,
             not(hasXPath('user[contains(id, "frank")]'))
         );
@@ -68,7 +68,7 @@ HTML;
     public function testMatchesWhenExpressionWithoutMatcherEvaluatesToTrue()
     {
         assertThat(
-            'one match',
+            'one matchRow',
             self::$doc,
             hasXPath('count(user[id = "bob"])')
         );
@@ -86,7 +86,7 @@ HTML;
     public function testMatchesWhenExpressionIsEqual()
     {
         assertThat(
-            'one match',
+            'one matchRow',
             self::$doc,
             hasXPath('count(user[id = "bob"])', 1)
         );
@@ -100,12 +100,12 @@ HTML;
     public function testDoesNotMatchWhenExpressionIsNotEqual()
     {
         assertThat(
-            'no match',
+            'no matchRow',
             self::$doc,
             not(hasXPath('count(user[id = "frank"])', 2))
         );
         assertThat(
-            'one match',
+            'one matchRow',
             self::$doc,
             not(hasXPath('count(user[role = "admin"])', 2))
         );
@@ -114,7 +114,7 @@ HTML;
     public function testMatchesWhenContentMatches()
     {
         assertThat(
-            'one match',
+            'one matchRow',
             self::$doc,
             hasXPath('user/name', containsString('ice'))
         );
@@ -128,7 +128,7 @@ HTML;
     public function testDoesNotMatchWhenContentDoesNotMatch()
     {
         assertThat(
-            'no match',
+            'no matchRow',
             self::$doc,
             not(hasXPath('user/name', containsString('Bobby')))
         );

@@ -132,7 +132,7 @@ class Swift_StreamFilters_ByteArrayReplacementFilter implements Swift_StreamFilt
                 // We have a new byte for a search pattern
                 if (isset($buffer [$p = $i + $j]) && isset($search_pos[$buffer[$p]])) {
                     $search_pos = $search_pos[$buffer[$p]];
-                    // We have a complete pattern, save, in case we don't find a better match later
+                    // We have a complete pattern, save, in case we don't find a better matchRow later
                     if (isset($search_pos[-1]) && $search_pos[-1] < $last_found
                         && $search_pos[-1] > $_minReplaces) {
                         $last_found = $search_pos[-1];

@@ -14,7 +14,7 @@ namespace Symfony\Component\Routing\Generator;
 /**
  * ConfigurableRequirementsInterface must be implemented by URL generators that
  * can be configured whether an exception should be generated when the parameters
- * do not match the requirements. It is also possible to disable the requirements
+ * do not matchRow the requirements. It is also possible to disable the requirements
  * check for URL generation completely.
  *
  * The possible configurations and use-cases:

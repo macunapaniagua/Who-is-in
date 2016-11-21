@@ -141,9 +141,9 @@ class OutputFormatter implements OutputFormatterInterface
         $output = '';
         $tagRegex = '[a-z][a-z0-9_=;-]*+';
         preg_match_all("#<(($tagRegex) | /($tagRegex)?)>#ix", $message, $matches, PREG_OFFSET_CAPTURE);
-        foreach ($matches[0] as $i => $match) {
-            $pos = $match[1];
-            $text = $match[0];
+        foreach ($matches[0] as $i => $matchRow) {
+            $pos = $matchRow[1];
+            $text = $matchRow[0];
 
             if (0 != $pos && '\\' == $message[$pos - 1]) {
                 continue;
@@ -207,16 +207,16 @@ class OutputFormatter implements OutputFormatterInterface
         }
 
         $style = new OutputFormatterStyle();
-        foreach ($matches as $match) {
-            array_shift($match);
+        foreach ($matches as $matchRow) {
+            array_shift($matchRow);
 
-            if ('fg' == $match[0]) {
-                $style->setForeground($match[1]);
-            } elseif ('bg' == $match[0]) {
-                $style->setBackground($match[1]);
+            if ('fg' == $matchRow[0]) {
+                $style->setForeground($matchRow[1]);
+            } elseif ('bg' == $matchRow[0]) {
+                $style->setBackground($matchRow[1]);
             } else {
                 try {
-                    $style->setOption($match[1]);
+                    $style->setOption($matchRow[1]);
                 } catch (\InvalidArgumentException $e) {
                     return false;
                 }

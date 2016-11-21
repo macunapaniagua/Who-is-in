@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class SoccerField {
 
+    @SerializedName("id") private String mId;
     @SerializedName("name") private String mName;
     @SerializedName("latitude") private double mLatitude;
     @SerializedName("longitude") private double mLongitude;

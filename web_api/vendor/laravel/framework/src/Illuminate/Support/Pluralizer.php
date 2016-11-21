@@ -85,7 +85,7 @@ class Pluralizer
     }
 
     /**
-     * Attempt to match the case on two strings.
+     * Attempt to matchRow the case on two strings.
      *
      * @param  string  $value
      * @param  string  $comparison

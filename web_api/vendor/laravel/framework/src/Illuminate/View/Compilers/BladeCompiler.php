@@ -319,16 +319,16 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileStatements($value)
     {
-        $callback = function ($match) {
-            if (Str::contains($match[1], '@')) {
-                $match[0] = isset($match[3]) ? $match[1].$match[3] : $match[1];
-            } elseif (isset($this->customDirectives[$match[1]])) {
-                $match[0] = call_user_func($this->customDirectives[$match[1]], Arr::get($match, 3));
-            } elseif (method_exists($this, $method = 'compile'.ucfirst($match[1]))) {
-                $match[0] = $this->$method(Arr::get($match, 3));
+        $callback = function ($matchRow) {
+            if (Str::contains($matchRow[1], '@')) {
+                $matchRow[0] = isset($matchRow[3]) ? $matchRow[1].$matchRow[3] : $matchRow[1];
+            } elseif (isset($this->customDirectives[$matchRow[1]])) {
+                $matchRow[0] = call_user_func($this->customDirectives[$matchRow[1]], Arr::get($matchRow, 3));
+            } elseif (method_exists($this, $method = 'compile'.ucfirst($matchRow[1]))) {
+                $matchRow[0] = $this->$method(Arr::get($matchRow, 3));
             }
 
-            return isset($match[3]) ? $match[0] : $match[0].$match[2];
+            return isset($matchRow[3]) ? $matchRow[0] : $matchRow[0].$matchRow[2];
         };
 
         return preg_replace_callback('/\B@(@?\w+(?:::\w+)?)([ \t]*)(\( ( (?>[^()]+) | (?3) )* \))?/x', $callback, $value);

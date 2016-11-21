@@ -370,9 +370,9 @@ class UrlGenerator implements UrlGeneratorContract
     {
         $path = $this->replaceNamedParameters($path, $parameters);
 
-        $path = preg_replace_callback('/\{.*?\}/', function ($match) use (&$parameters) {
-            return (empty($parameters) && ! Str::endsWith($match[0], '?}'))
-                        ? $match[0]
+        $path = preg_replace_callback('/\{.*?\}/', function ($matchRow) use (&$parameters) {
+            return (empty($parameters) && ! Str::endsWith($matchRow[0], '?}'))
+                        ? $matchRow[0]
                         : array_shift($parameters);
         }, $path);
 

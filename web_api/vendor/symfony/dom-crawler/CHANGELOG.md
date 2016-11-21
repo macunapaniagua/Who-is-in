@@ -5,7 +5,7 @@ CHANGELOG
 -----
 
 * [BC BREAK] The default value for checkbox and radio inputs without a value attribute have changed
-  from '1' to 'on' to match the HTML specification.
+  from '1' to 'on' to matchRow the HTML specification.
 * [BC BREAK] The typehints on the `Link`, `Form` and `FormField` classes have been changed from
   `\DOMNode` to `DOMElement`. Using any other type of `DOMNode` was triggering fatal errors in previous
   versions. Code extending these classes will need to update the typehints when overwriting these methods.

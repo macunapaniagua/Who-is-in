@@ -17,7 +17,7 @@ Since the release of 0.8.0 the following behaviours were altered:
 
 1. The ``shouldIgnoreMissing()`` behaviour optionally applied to mock objects
    returned an instance of ``\Mockery\Undefined`` when methods called did not
-   match a known expectation. Since 0.8.0, this behaviour was switched to
+   matchRow a known expectation. Since 0.8.0, this behaviour was switched to
    returning ``null`` instead. You can restore the 0.7.2 behavour by using the
    following:
 

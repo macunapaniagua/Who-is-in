@@ -24,7 +24,7 @@ class RedirectableUrlMatcherTest extends \PHPUnit_Framework_TestCase
 
         $matcher = $this->getMockForAbstractClass('Symfony\Component\Routing\Matcher\RedirectableUrlMatcher', array($coll, new RequestContext()));
         $matcher->expects($this->once())->method('redirect');
-        $matcher->match('/foo');
+        $matcher->matchRow('/foo');
     }
 
     /**
@@ -38,7 +38,7 @@ class RedirectableUrlMatcherTest extends \PHPUnit_Framework_TestCase
         $context = new RequestContext();
         $context->setMethod('POST');
         $matcher = $this->getMockForAbstractClass('Symfony\Component\Routing\Matcher\RedirectableUrlMatcher', array($coll, $context));
-        $matcher->match('/foo');
+        $matcher->matchRow('/foo');
     }
 
     public function testSchemeRedirectRedirectsToFirstScheme()
@@ -53,7 +53,7 @@ class RedirectableUrlMatcherTest extends \PHPUnit_Framework_TestCase
             ->with('/foo', 'foo', 'ftp')
             ->will($this->returnValue(array('_route' => 'foo')))
         ;
-        $matcher->match('/foo');
+        $matcher->matchRow('/foo');
     }
 
     public function testNoSchemaRedirectIfOnOfMultipleSchemesMatches()
@@ -66,6 +66,6 @@ class RedirectableUrlMatcherTest extends \PHPUnit_Framework_TestCase
             ->expects($this->never())
             ->method('redirect')
         ;
-        $matcher->match('/foo');
+        $matcher->matchRow('/foo');
     }
 }

@@ -262,7 +262,7 @@ you'll be sending the message to.
     The replacements array becomes a 2-dimensional array whose keys are the
     email addresses and whose values are an associative array of replacements
     for that email address. The curly braces used in this example can be any
-    type of syntax you choose, provided they match the placeholders in your
+    type of syntax you choose, provided they matchRow the placeholders in your
     email template.
 
     .. code-block:: php

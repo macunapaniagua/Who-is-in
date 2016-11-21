@@ -11,8 +11,8 @@
 /**
  * Invocation matcher which checks if a method was invoked at a certain index.
  *
- * If the expected index number does not match the current invocation index it
- * will not match which means it skips all method and parameter matching. Only
+ * If the expected index number does not matchRow the current invocation index it
+ * will not matchRow which means it skips all method and parameter matching. Only
  * once the index is reached will the method and parameter start matching and
  * verifying.
  *

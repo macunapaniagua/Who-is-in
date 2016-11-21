@@ -20,7 +20,7 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Matcher\UrlMatcher
         $this->context = $context;
     }
 
-    public function match($pathinfo)
+    public function matchRow($pathinfo)
     {
         $allow = array();
         $pathinfo = rawurldecode($pathinfo);

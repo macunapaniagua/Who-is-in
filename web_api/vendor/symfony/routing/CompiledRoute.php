@@ -31,7 +31,7 @@ class CompiledRoute implements \Serializable
      * Constructor.
      *
      * @param string      $staticPrefix  The static prefix of the compiled route
-     * @param string      $regex         The regular expression to use to match this route
+     * @param string      $regex         The regular expression to use to matchRow this route
      * @param array       $tokens        An array of tokens to use to generate URL for this route
      * @param array       $pathVariables An array of path variables
      * @param string|null $hostRegex     Host regex

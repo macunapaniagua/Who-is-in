@@ -78,7 +78,7 @@ interface UrlGeneratorInterface extends RequestContextAwareInterface
      * @throws RouteNotFoundException              If the named route doesn't exist
      * @throws MissingMandatoryParametersException When some parameters are missing that are mandatory for the route
      * @throws InvalidParameterException           When a parameter value for a placeholder is not correct because
-     *                                             it does not match the requirement
+     *                                             it does not matchRow the requirement
      */
     public function generate($name, $parameters = array(), $referenceType = self::ABSOLUTE_PATH);
 }

@@ -31,11 +31,11 @@ $comparator = $factory->getComparatorFor($date1, $date2);
 
 try {
     $comparator->assertEquals($date1, $date2);
-    print "Dates match";
+    print "Dates matchRow";
 }
 
 catch (ComparisonFailure $failure) {
-    print "Dates don't match";
+    print "Dates don't matchRow";
 }
 ```
 

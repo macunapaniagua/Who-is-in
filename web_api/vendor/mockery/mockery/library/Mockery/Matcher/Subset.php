@@ -29,7 +29,7 @@ class Subset extends MatcherAbstract
      * @param mixed $actual
      * @return bool
      */
-    public function match(&$actual)
+    public function matchRow(&$actual)
     {
         foreach ($this->_expected as $k=>$v) {
             if (!array_key_exists($k, $actual)) {

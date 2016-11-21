@@ -35,11 +35,11 @@ class DateComparatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getTestData
      */
-    public function testTest($test, $match, $noMatch)
+    public function testTest($test, $matchRow, $noMatch)
     {
         $c = new DateComparator($test);
 
-        foreach ($match as $m) {
+        foreach ($matchRow as $m) {
             $this->assertTrue($c->test($m), '->test() tests a string against the expression');
         }
 

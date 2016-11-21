@@ -11,16 +11,16 @@ class IsNotTest extends \Hamcrest\AbstractMatcherTest
 
     public function testEvaluatesToTheTheLogicalNegationOfAnotherMatcher()
     {
-        $this->assertMatches(not(equalTo('A')), 'B', 'should match');
-        $this->assertDoesNotMatch(not(equalTo('B')), 'B', 'should not match');
+        $this->assertMatches(not(equalTo('A')), 'B', 'should matchRow');
+        $this->assertDoesNotMatch(not(equalTo('B')), 'B', 'should not matchRow');
     }
 
     public function testProvidesConvenientShortcutForNotEqualTo()
     {
-        $this->assertMatches(not('A'), 'B', 'should match');
-        $this->assertMatches(not('B'), 'A', 'should match');
-        $this->assertDoesNotMatch(not('A'), 'A', 'should not match');
-        $this->assertDoesNotMatch(not('B'), 'B', 'should not match');
+        $this->assertMatches(not('A'), 'B', 'should matchRow');
+        $this->assertMatches(not('B'), 'A', 'should matchRow');
+        $this->assertDoesNotMatch(not('A'), 'A', 'should not matchRow');
+        $this->assertDoesNotMatch(not('B'), 'B', 'should not matchRow');
     }
 
     public function testUsesDescriptionOfNegatedMatcherWithPrefix()

@@ -163,7 +163,7 @@ class Expectation implements ExpectationInterface
     }
 
     /**
-     * Verify the current call, i.e. that the given arguments match those
+     * Verify the current call, i.e. that the given arguments matchRow those
      * of this expectation
      *
      * @param array $args
@@ -299,7 +299,7 @@ class Expectation implements ExpectationInterface
     }
 
     /**
-     * Check if passed arguments match an argument expectation
+     * Check if passed arguments matchRow an argument expectation
      *
      * @param array $args
      * @return bool
@@ -354,7 +354,7 @@ class Expectation implements ExpectationInterface
             }
         }
         if ($expected instanceof \Mockery\Matcher\MatcherAbstract) {
-            return $expected->match($actual);
+            return $expected->matchRow($actual);
         }
         if (is_a($expected, '\Hamcrest\Matcher') || is_a($expected, '\Hamcrest_Matcher')) {
             return $expected->matches($actual);
