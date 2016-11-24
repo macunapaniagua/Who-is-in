@@ -24,7 +24,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('user_group_remove', 'Api\GroupsController@remove_member');
     Route::get('all_soccer_games/{group_id}', 'Api\SoccerGamesController@all_soccer_games');
     Route::post('join_soccer_game', 'Api\PlayersController@join_soccer_game');
-    Route::post('leave_soccer_game/{players_id}', 'Api\PlayersController@leave_soccer_game');
+    Route::post('leave_soccer_game', 'Api\PlayersController@leave_soccer_game');
 
   });
 });

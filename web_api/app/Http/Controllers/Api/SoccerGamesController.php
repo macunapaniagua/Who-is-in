@@ -60,13 +60,16 @@ class SoccerGamesController extends Controller
       $user_group = $this->user_group->find($player->users_group_id);
       $soccer_game_players[$count] = ["user_id" => $user_group->user->id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
     }
+    $user_group_player = $this->user_group->where('user_id', $user->id)->where('group_id', $soccer_game->group_id)->get()->first();
+    $user_status = $this->player->where('soccer_game_id', $soccer_game->id)->where('users_group_id', $user_group_player->id)->get()->count();
 
     $soccer_game_info = [
         "soccer_field"  => $soccer_game->soccer_field,
         "date"      => $soccer_game->date,
         "hour" => $soccer_game->hour,
         "players_limit" => $soccer_game->players_limit,
-        "players_list"  => $soccer_game_players
+        "players_list"  => $soccer_game_players,
+        "user_status" => $user_status == 1 ? true : false
     ];
     return response($soccer_game_info, 200);
   }
