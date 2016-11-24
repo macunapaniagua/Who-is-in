@@ -68,7 +68,6 @@ public class MatchesFragment extends Fragment implements OnListItemEventsListene
         this.loadViews();
         this.initializeViews();
         this.setListeners();
-        this.loadMatches();
     }
 
     private void loadViews() {
@@ -83,12 +82,12 @@ public class MatchesFragment extends Fragment implements OnListItemEventsListene
         vMatchesList.setLayoutManager(new LinearLayoutManager(this.getContext()));
         vMatchesList.setItemAnimator(new DefaultItemAnimator());
         vMatchesList.addItemDecoration(new DividerItemDecoration(this.getContext(), LinearLayoutManager.VERTICAL));
-        vMatchesList.setAdapter(new MatchesAdapter(new ArrayList<MatchRow>(), this));
+        vMatchesList.setAdapter(new MatchesAdapter(this.getContext(), new ArrayList<MatchRow>(), this));
     }
 
     private void setListeners() {
 //        if (LocalStorageHelper.getLoggedUser(this.getContext()).isAdmin()) {
-//
+//          icono agregar mejenga
 //        }
     }
 
@@ -113,6 +112,7 @@ public class MatchesFragment extends Fragment implements OnListItemEventsListene
     public void onResume() {
         super.onResume();
         BusProvider.getBus().register(this);
+        this.loadMatches();
     }
 
     @Override
@@ -140,7 +140,7 @@ public class MatchesFragment extends Fragment implements OnListItemEventsListene
     @Subscribe
     @SuppressWarnings("unused")
     public void getMatchesSuccessful(ArrayList<MatchRow> pMatchRows) {
-        vMatchesList.setAdapter(new MatchesAdapter(pMatchRows, this));
+        vMatchesList.setAdapter(new MatchesAdapter(this.getContext(), pMatchRows, this));
         this.activateViews();
         this.hideLoadingIndicator();
     }

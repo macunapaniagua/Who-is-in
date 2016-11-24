@@ -46,12 +46,22 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/show.match.place"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="@dimen/show_match_text_drawable_padding"
+                        android:layout_marginBottom="@dimen/text_drawable_space_between"
+                        android:drawableStart="@drawable/ic_location_on_black_24dp"
+                        android:drawableLeft="@drawable/ic_location_on_black_24dp"/>
+
+                    <TextView
                         android:id="@+id/show.match.date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/datetime"
                         android:gravity="center_vertical"
-                        android:drawablePadding="8dp"
+                        android:drawablePadding="@dimen/show_match_text_drawable_padding"
+                        android:layout_marginBottom="@dimen/text_drawable_space_between"
                         android:drawableStart="@drawable/ic_date_range_black_24dp"
                         android:drawableLeft="@drawable/ic_date_range_black_24dp"/>
 
@@ -59,9 +69,9 @@
                         android:id="@+id/show.match.time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/datetime"
                         android:gravity="center_vertical"
-                        android:drawablePadding="8dp"
+                        android:drawablePadding="@dimen/show_match_text_drawable_padding"
+                        android:layout_marginBottom="@dimen/text_drawable_space_between"
                         android:drawableStart="@drawable/ic_access_time_black_24dp"
                         android:drawableLeft="@drawable/ic_access_time_black_24dp"/>
 
@@ -69,22 +79,45 @@
                         android:id="@+id/show.match.players.limit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/datetime"
                         android:gravity="center_vertical"
-                        android:drawablePadding="8dp"
+                        android:drawablePadding="@dimen/show_match_text_drawable_padding"
+                        android:layout_marginBottom="@dimen/text_drawable_space_between"
                         android:drawableStart="@drawable/ic_supervisor_account_black_24dp"
                         android:drawableLeft="@drawable/ic_supervisor_account_black_24dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/confirmed_participants"/>
-
                     <LinearLayout
-                        android:id="@+id/show.match.players.confirmed"
+                        android:id="@+id/show.match.participants.confirmed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"/>
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/text_drawable_space_between"
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:text="@string/confirmed_participants"/>
+
+                        <LinearLayout
+                            android:id="@+id/show.match.players.confirmed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/text_drawable_space_between"
+                            android:orientation="horizontal"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/show.match.participate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryColor"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="@dimen/text_drawable_space_between"
+                        android:textColor="@android:color/white"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:layout_gravity="center_horizontal"
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
@@ -94,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="match_parent"

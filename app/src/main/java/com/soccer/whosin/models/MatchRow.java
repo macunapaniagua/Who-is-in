@@ -11,7 +11,8 @@ public class MatchRow {
     @SerializedName("id") private String mId;
     @SerializedName("user_status") private boolean isConfirmed;
     @SerializedName("soccer_field") private String mSoccerField;
-    @SerializedName("datetime") private String mDateTime;
+    @SerializedName("date") private String mDate;
+    @SerializedName("hour") private String mTime;
     @SerializedName("confirmations") private String mConfirmations;
 
     public String getId() {
@@ -26,8 +27,12 @@ public class MatchRow {
         return mSoccerField;
     }
 
-    public String getDateTime() {
-        return mDateTime;
+    public String getDate() {
+        return mDate;
+    }
+
+    public String getTime() {
+        return mTime;
     }
 
     public String getConfirmations() {

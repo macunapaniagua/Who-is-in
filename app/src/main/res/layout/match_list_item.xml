@@ -37,7 +37,16 @@
             android:ellipsize="end" />
 
         <TextView
-            android:id="@+id/match.datetime"
+            android:id="@+id/match.date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/darker_gray"
+            android:lines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/match.time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Base.TextAppearance.AppCompat.Small"

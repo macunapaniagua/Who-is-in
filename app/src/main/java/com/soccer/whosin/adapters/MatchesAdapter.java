@@ -1,5 +1,6 @@
 package com.soccer.whosin.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +20,13 @@ import java.util.List;
 
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchViewHolder> {
 
+    private Context mContext;
     private List<MatchRow> mMatchRows;
     private final OnListItemEventsListener mItemEventsListener;
 
-    public MatchesAdapter(List<MatchRow> pMatchRows, OnListItemEventsListener pItemClickListener) {
-        mMatchRows = pMatchRows;
+    public MatchesAdapter(Context pContext, List<MatchRow> pMatchRows, OnListItemEventsListener pItemClickListener) {
+        mContext            = pContext;
+        mMatchRows          = pMatchRows;
         mItemEventsListener = pItemClickListener;
     }
 
@@ -44,8 +47,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchVie
         int status = matchRow.isConfirmed() ? R.drawable.ic_approve_member
                                          : R.drawable.ic_remove_member;
         holder.vStatus.setImageResource(status);
-        holder.vSoccerField.setText(matchRow.getSoccerField());
-        holder.vDateTime.setText(matchRow.getDateTime());
+        holder.vSoccerField.setText(mContext.getString(R.string.place, matchRow.getSoccerField()));
+        holder.vDate.setText(mContext.getString(R.string.date, matchRow.getDate()));
+        holder.vTime.setText(mContext.getString(R.string.time, matchRow.getTime()));
         holder.vConfirmations.setText(matchRow.getConfirmations());
         holder.vRow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +69,14 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchVie
     public class MatchViewHolder extends RecyclerView.ViewHolder {
         public final View vRow;
         public final ImageView vStatus;
-        public final TextView vSoccerField, vDateTime, vConfirmations;
+        public final TextView vSoccerField, vDate, vTime, vConfirmations;
 
         public MatchViewHolder(View view) {
             super(view);
             vRow           = view;
             vStatus        = (ImageView) view.findViewById(R.id.match_confirmation_status);
-            vDateTime      = (TextView) view.findViewById(R.id.match_datetime);
+            vDate          = (TextView) view.findViewById(R.id.match_date);
+            vTime          = (TextView) view.findViewById(R.id.match_time);
             vSoccerField   = (TextView) view.findViewById(R.id.match_soccer_field);
             vConfirmations = (TextView) view.findViewById(R.id.match_confirmations);
         }

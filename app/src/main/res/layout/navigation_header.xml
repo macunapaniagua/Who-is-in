@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/header_height"
-    android:background="@color/primaryColor"
+    android:background="@drawable/bg_navigation_header"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="@dimen/header_left_padding"
@@ -13,7 +13,7 @@
         android:id="@+id/drawer.avatar"
         android:layout_width="@dimen/header_image_size"
         android:layout_height="@dimen/header_image_size"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/com_facebook_profile_picture_blank_square"/>
 

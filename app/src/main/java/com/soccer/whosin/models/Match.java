@@ -14,6 +14,7 @@ public class Match {
     @SerializedName("hour") private String mTime;
     @SerializedName("players_limit") private int mPlayersLimit;
     @SerializedName("players_list") private List<Member> mPlayers;
+    @SerializedName("user_status") private boolean mIsUserParticipating;
 
     public SoccerField getSoccerField() {
         return mSoccerField;
@@ -33,5 +34,9 @@ public class Match {
 
     public int getPlayersLimit() {
         return mPlayersLimit;
+    }
+
+    public boolean isUserParticipating() {
+        return mIsUserParticipating;
     }
 }

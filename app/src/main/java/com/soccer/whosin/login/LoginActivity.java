@@ -40,11 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
-//        if (Profile.getCurrentProfile() != null) {
-//            LocalStorageHelper.storeLoggedUser(this, Profile.getCurrentProfile());
-//            this.goToGroupSection();
-//            return;
-//        }
         if (!LocalStorageHelper.getUserFacebookId(this).equals("")) {
             if (LocalStorageHelper.getGroupMember(this) != null)
                 this.goToMainScreen();

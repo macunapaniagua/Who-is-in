@@ -1,8 +1,10 @@
 package com.soccer.whosin.interfaces;
 
+import com.soccer.whosin.models.GroupGame;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.models.Match;
 import com.soccer.whosin.models.MatchRow;
+import com.soccer.whosin.models.MatchUserStatus;
 import com.soccer.whosin.models.Member;
 import com.soccer.whosin.models.SoccerField;
 import com.soccer.whosin.utils.Constants;
@@ -55,4 +57,10 @@ public interface WhoIsInService {
 
     @GET("soccer_games/{game_id}")
     Call<Match> getSoccerMatch(@Path("game_id") String pMatchId);
+
+    @POST("leave_soccer_game")
+    Call<MatchUserStatus> cancelMatchAttendance(@Body GroupGame pGroupGame);
+
+    @POST("join_soccer_game")
+    Call<MatchUserStatus> approveMatchAttendance(@Body GroupGame pGroupGame);
 }
