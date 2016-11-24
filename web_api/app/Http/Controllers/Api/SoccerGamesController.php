@@ -39,7 +39,7 @@ class SoccerGamesController extends Controller
           $user_group = $this->user_group->where('user_id', $user->id)->where('group_id', $group->id)->get()->first();
           $user_status = $this->player->where('soccer_game_id', $soccer_game->id)->where('users_group_id', $user_group->id)->get()->count();
           $players_count = $this->player->where('soccer_game_id', $soccer_game->id)->get()->count();
-          $soccer_game_info[$count] = ["id" => $soccer_game->id, "soccer_field_id" => $soccer_game->soccer_field_id, "datetime" => $soccer_game->date.' '.$soccer_game->hour, "soccer_field" => $soccer_game->soccer_field->name, "confirmations" => $players_count.'/'.$soccer_game->players_limit, "user_status" => $user_status == 1 ? true : false];
+          $soccer_game_info[$count] = ["id" => $soccer_game->id, "soccer_field_id" => $soccer_game->soccer_field_id, "date" => $soccer_game->date, "hour" => $soccer_game->hour, "soccer_field" => $soccer_game->soccer_field->name, "confirmations" => $players_count.'/'.$soccer_game->players_limit, "user_status" => $user_status == 1 ? true : false];
           $count++;
         }
         return response($soccer_game_info, 200);
@@ -60,13 +60,16 @@ class SoccerGamesController extends Controller
       $user_group = $this->user_group->find($player->users_group_id);
       $soccer_game_players[$count] = ["user_id" => $user_group->user->id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
     }
+    $user_group_player = $this->user_group->where('user_id', $user->id)->where('group_id', $soccer_game->group_id)->get()->first();
+    $user_status = $this->player->where('soccer_game_id', $soccer_game->id)->where('users_group_id', $user_group_player->id)->get()->count();
 
     $soccer_game_info = [
         "soccer_field"  => $soccer_game->soccer_field,
         "date"      => $soccer_game->date,
         "hour" => $soccer_game->hour,
         "players_limit" => $soccer_game->players_limit,
-        "players_list"  => $soccer_game_players
+        "players_list"  => $soccer_game_players,
+        "user_status" => $user_status == 1 ? true : false
     ];
     return response($soccer_game_info, 200);
   }
@@ -83,7 +86,7 @@ class SoccerGamesController extends Controller
     $new_soccer_game->players_limit = $request->players_limit;
     $new_soccer_game->save();
 
-    $title = "¡Un evento nuevo ha sido creado!";
+    $title = "¡Un evento nuevo ha sido creado en el grupo \"".$new_soccer_game->group->name."\"!";
     $body = "Te han invitado a una mejenga en \"".$new_soccer_game->soccer_field->name."\" el día $new_soccer_game->date a las $new_soccer_game->hour";
     PushNotification::sendNotification($title, $body, $new_soccer_game->group_id);
 

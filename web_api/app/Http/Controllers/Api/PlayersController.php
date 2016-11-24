@@ -53,15 +53,33 @@ class PlayersController extends Controller
     $new_soccer_game_player->soccer_game_id = $request->soccer_game_id;
     $new_soccer_game_player->save();
 
-    return response($new_soccer_game_player, 201);
+    $players_soccer_game = $this->player->where('soccer_game_id', $request->soccer_game_id)->get();
+    $players_list = [];
+    for ($i=0; $i < count($players_soccer_game); $i++) {
+      $user_group = $this->user_group->find($players_soccer_game[$i]->users_group_id);
+      $players_list[$i] = ["player_id" => $players_soccer_game[$i]->id, "user_id" => $user_group->user_id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
+    }
+
+    return response(['players_list' => $players_list, 'user_status' => true], 200);
   }
 
-  public function leave_soccer_game($player_id, Request $request)
+  public function leave_soccer_game(Request $request)
   {
     try {
-      $delete_player_soccer_game = $this->player->findOrFail($player_id);
+      $user = UserAuth::getUserAuth($request);
+      $user_group = $this->user_group->where('user_id', $user->id)->where('group_id', $request->group_id)->get()->first();
+      $player = $this->player->where('users_group_id', $user_group->id)->where('soccer_game_id', $request->soccer_game_id)->get()->first();
+      $delete_player_soccer_game = $this->player->findOrFail($player->id);
       $delete_player_soccer_game->delete();
-      return response("Usuario ha dejado el juego", 200);
+
+      $players_soccer_game = $this->player->where('soccer_game_id', $request->soccer_game_id)->get();
+      $players_list = [];
+      for ($i=0; $i < count($players_soccer_game); $i++) {
+        $user_group = $this->user_group->find($players_soccer_game[$i]->users_group_id);
+        $players_list[$i] = ["player_id" => $players_soccer_game[$i]->id, "user_id" => $user_group->user_id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
+      }
+
+      return response(['players_list' => $players_list, 'user_status' => false], 200);
     }catch(\Exception $e){
     }
   }
