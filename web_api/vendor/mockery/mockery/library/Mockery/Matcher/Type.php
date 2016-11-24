@@ -29,7 +29,7 @@ class Type extends MatcherAbstract
      * @param mixed $actual
      * @return bool
      */
-    public function match(&$actual)
+    public function matchRow(&$actual)
     {
         $function = 'is_' . strtolower($this->_expected);
         if (function_exists($function)) {

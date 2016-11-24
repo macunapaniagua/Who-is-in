@@ -98,7 +98,7 @@ class TypeComparatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertEqualsFails($expected, $actual)
     {
-        $this->setExpectedException('SebastianBergmann\\Comparator\\ComparisonFailure', 'does not match expected type');
+        $this->setExpectedException('SebastianBergmann\\Comparator\\ComparisonFailure', 'does not matchRow expected type');
         $this->comparator->assertEquals($expected, $actual);
     }
 }

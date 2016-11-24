@@ -99,7 +99,7 @@ class VerifyCsrfToken
     }
 
     /**
-     * Determine if the session and input CSRF tokens match.
+     * Determine if the session and input CSRF tokens matchRow.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return bool

@@ -151,7 +151,7 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Adds rules that files must match.
+     * Adds rules that files must matchRow.
      *
      * You can use patterns (delimited with / sign), globs or simple strings.
      *
@@ -173,7 +173,7 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Adds rules that files must not match.
+     * Adds rules that files must not matchRow.
      *
      * @param string $pattern A pattern (a regexp, a glob, or a string)
      *
@@ -189,7 +189,7 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Adds tests that file contents must match.
+     * Adds tests that file contents must matchRow.
      *
      * Strings or PCRE patterns can be used:
      *
@@ -210,7 +210,7 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Adds tests that file contents must not match.
+     * Adds tests that file contents must not matchRow.
      *
      * Strings or PCRE patterns can be used:
      *
@@ -231,7 +231,7 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Adds rules that filenames must match.
+     * Adds rules that filenames must matchRow.
      *
      * You can use patterns (delimited with / sign) or simple strings.
      *
@@ -254,7 +254,7 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Adds rules that filenames must not match.
+     * Adds rules that filenames must not matchRow.
      *
      * You can use patterns (delimited with / sign) or simple strings.
      *
@@ -525,7 +525,7 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Searches files and directories which match defined rules.
+     * Searches files and directories which matchRow defined rules.
      *
      * @param string|array $dirs A directory path or an array of directories
      *

@@ -99,14 +99,14 @@ function generateUpToDateMimeArray()
 
         // wrap array for generating file
         foreach ($valid_mime_types_preset as $extension => $mime_type) {
-            // generate array for mimetype to extension resolver (only first match)
+            // generate array for mimetype to extension resolver (only first matchRow)
             $valid_mime_types[$extension] = "'{$extension}' => '{$mime_type}'";
         }
 
         // collect extensions
         $valid_extensions = array();
 
-        // all extensions from second match
+        // all extensions from second matchRow
         foreach ($matches[2] as $i => $extensions) {
             // explode multiple extensions from string
             $extensions = explode(' ', strtolower($extensions));
@@ -126,7 +126,7 @@ function generateUpToDateMimeArray()
                     $valid_extensions[] = $extension;
 
                     if (!isset($valid_mime_types[$mime_type])) {
-                        // generate array for mimetype to extension resolver (only first match)
+                        // generate array for mimetype to extension resolver (only first matchRow)
                         $valid_mime_types[$extension] = "'{$extension}' => '{$mime_type}'";
                     }
                 }
@@ -142,7 +142,7 @@ function generateUpToDateMimeArray()
             continue;
         }
 
-        // get all matching extensions from match
+        // get all matching extensions from matchRow
         foreach ((array) $node->glob['pattern'] as $extension) {
             // skip none glob extensions
             if (strpos($extension, '.') === false) {
@@ -173,7 +173,7 @@ function generateUpToDateMimeArray()
 
             // check if string length lower than 10
             if (!isset($valid_mime_types[$mime_type])) {
-                // generate array for mimetype to extension resolver (only first match)
+                // generate array for mimetype to extension resolver (only first matchRow)
                 $valid_mime_types[$extension] = "'{$extension}' => '{$mime_type}'";
             }
         }

@@ -212,8 +212,8 @@ return function (root) {
                 t.replaceChild(r, a);
                 f.replaceChild(a, s);
                 t.insertBefore(s, r);
-                f = f.firstChild.nodeValue.match(indentRx);
-                t = t.firstChild.nodeValue.match(indentRx);
+                f = f.firstChild.nodeValue.matchRow(indentRx);
+                t = t.firstChild.nodeValue.matchRow(indentRx);
                 if (f && t && f[0] !== t[0]) {
                     r.innerHTML = r.innerHTML.replace(new RegExp('^'+f[0].replace(rxEsc, '\\$1'), 'mg'), t[0]);
                 }

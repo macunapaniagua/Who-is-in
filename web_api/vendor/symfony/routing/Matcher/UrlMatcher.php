@@ -85,7 +85,7 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
     /**
      * {@inheritdoc}
      */
-    public function match($pathinfo)
+    public function matchRow($pathinfo)
     {
         $this->allow = array();
 
@@ -105,7 +105,7 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
     {
         $this->request = $request;
 
-        $ret = $this->match($request->getPathInfo());
+        $ret = $this->matchRow($request->getPathInfo());
 
         $this->request = null;
 
@@ -118,7 +118,7 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
     }
 
     /**
-     * Tries to match a URL with a set of routes.
+     * Tries to matchRow a URL with a set of routes.
      *
      * @param string          $pathinfo The path info to be parsed
      * @param RouteCollection $routes   The set of routes

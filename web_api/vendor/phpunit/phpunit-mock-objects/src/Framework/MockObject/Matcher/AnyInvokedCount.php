@@ -10,7 +10,7 @@
 
 /**
  * Invocation matcher which checks if a method has been invoked zero or more
- * times. This matcher will always match.
+ * times. This matcher will always matchRow.
  *
  * @since Class available since Release 1.0.0
  */

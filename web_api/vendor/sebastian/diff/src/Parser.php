@@ -64,12 +64,12 @@ class Parser
         $chunks = array();
 
         foreach ($lines as $line) {
-            if (preg_match('/^@@\s+-(?P<start>\d+)(?:,\s*(?P<startrange>\d+))?\s+\+(?P<end>\d+)(?:,\s*(?P<endrange>\d+))?\s+@@/', $line, $match)) {
+            if (preg_match('/^@@\s+-(?P<start>\d+)(?:,\s*(?P<startrange>\d+))?\s+\+(?P<end>\d+)(?:,\s*(?P<endrange>\d+))?\s+@@/', $line, $matchRow)) {
                 $chunk = new Chunk(
-                    $match['start'],
-                    isset($match['startrange']) ? max(1, $match['startrange']) : 1,
-                    $match['end'],
-                    isset($match['endrange']) ? max(1, $match['endrange']) : 1
+                    $matchRow['start'],
+                    isset($matchRow['startrange']) ? max(1, $matchRow['startrange']) : 1,
+                    $matchRow['end'],
+                    isset($matchRow['endrange']) ? max(1, $matchRow['endrange']) : 1
                 );
 
                 $chunks[]  = $chunk;
@@ -77,16 +77,16 @@ class Parser
                 continue;
             }
 
-            if (preg_match('/^(?P<type>[+ -])?(?P<line>.*)/', $line, $match)) {
+            if (preg_match('/^(?P<type>[+ -])?(?P<line>.*)/', $line, $matchRow)) {
                 $type = Line::UNCHANGED;
 
-                if ($match['type'] == '+') {
+                if ($matchRow['type'] == '+') {
                     $type = Line::ADDED;
-                } elseif ($match['type'] == '-') {
+                } elseif ($matchRow['type'] == '-') {
                     $type = Line::REMOVED;
                 }
 
-                $diffLines[] = new Line($type, $match['line']);
+                $diffLines[] = new Line($type, $matchRow['line']);
 
                 if (isset($chunk)) {
                     $chunk->setLines($diffLines);

@@ -657,7 +657,7 @@ class Configuration
      * level warrants, an ErrorException will be thrown.
      *
      * Set `errorLoggingLevel` to 0 to prevent logging non-thrown errors. Set it
-     * to any valid error_reporting value to log only errors which match that
+     * to any valid error_reporting value to log only errors which matchRow that
      * level.
      *
      *     http://php.net/manual/en/function.error-reporting.php

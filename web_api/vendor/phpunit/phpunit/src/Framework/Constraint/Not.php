@@ -60,7 +60,7 @@ class PHPUnit_Framework_Constraint_Not extends PHPUnit_Framework_Constraint
             'does not have ',
             'is not ',
             'are not ',
-            'does not match ',
+            'does not matchRow ',
             'starts not with ',
             'ends not with ',
             'don\'t reference ',

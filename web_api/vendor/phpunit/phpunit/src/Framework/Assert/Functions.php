@@ -1141,7 +1141,7 @@ function assertNotNull($actual, $message = '')
 }
 
 /**
- * Asserts that a string does not match a given regular expression.
+ * Asserts that a string does not matchRow a given regular expression.
  *
  * @param string $pattern
  * @param string $string
@@ -1193,8 +1193,8 @@ function assertNotSameSize($expected, $actual, $message = '')
 /**
  * This assertion is the exact opposite of assertTag().
  *
- * Rather than asserting that $matcher results in a match, it asserts that
- * $matcher does not match.
+ * Rather than asserting that $matcher results in a matchRow, it asserts that
+ * $matcher does not matchRow.
  *
  * @param array  $matcher
  * @param string $actual
@@ -1311,7 +1311,7 @@ function assertSameSize($expected, $actual, $message = '')
  * Assert the presence, absence, or count of elements in a document matching
  * the CSS $selector, regardless of the contents of those elements.
  *
- * The first argument, $selector, is the CSS selector used to match
+ * The first argument, $selector, is the CSS selector used to matchRow
  * the elements in the $actual document.
  *
  * The second argument, $count, can be either boolean or numeric.
@@ -1489,7 +1489,7 @@ function assertStringNotEqualsFile($expectedFile, $actualString, $message = '', 
 }
 
 /**
- * Asserts that a string does not match a given format string.
+ * Asserts that a string does not matchRow a given format string.
  *
  * @param string $format
  * @param string $string
@@ -1506,7 +1506,7 @@ function assertStringNotMatchesFormat($format, $string, $message = '')
 }
 
 /**
- * Asserts that a string does not match a given format string.
+ * Asserts that a string does not matchRow a given format string.
  *
  * @param string $formatFile
  * @param string $string
@@ -1560,15 +1560,15 @@ function assertStringStartsWith($prefix, $string, $message = '')
  * Evaluate an HTML or XML string and assert its structure and/or contents.
  *
  * The first argument ($matcher) is an associative array that specifies the
- * match criteria for the assertion:
+ * matchRow criteria for the assertion:
  *
- *  - `id`   : the node with the given id attribute must match the
+ *  - `id`   : the node with the given id attribute must matchRow the
  * corresponding value.
- *  - `tag`  : the node type must match the corresponding value.
- *  - `attributes`   : a hash. The node's attributes must match the
+ *  - `tag`  : the node type must matchRow the corresponding value.
+ *  - `attributes`   : a hash. The node's attributes must matchRow the
  * corresponding values in the hash.
- *  - `content`  : The text content must match the given value.
- *  - `parent`   : a hash. The node's parent must match the
+ *  - `content`  : The text content must matchRow the given value.
+ *  - `parent`   : a hash. The node's parent must matchRow the
  * corresponding hash.
  *  - `child`: a hash. At least one of the node's immediate children
  * must meet the criteria described by the hash.
@@ -1579,12 +1579,12 @@ function assertStringStartsWith($prefix, $string, $message = '')
  *  - `children` : a hash, for counting children of a node.
  * Accepts the keys:
  *- `count`: a number which must equal the number of children
- *   that match
+ *   that matchRow
  *- `less_than`: the number of matching children must be greater
  *   than this number
  *- `greater_than` : the number of matching children must be less than
  *   this number
- *- `only` : another hash consisting of the keys to use to match
+ *- `only` : another hash consisting of the keys to use to matchRow
  *   on the children, and only matching children will be
  *   counted
  *

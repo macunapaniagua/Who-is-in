@@ -62,7 +62,7 @@ class MessageSelector
             }
         }
 
-        // try to match an explicit rule, then fallback to the standard ones
+        // try to matchRow an explicit rule, then fallback to the standard ones
         foreach ($explicitRules as $interval => $m) {
             if (Interval::test($number, $interval)) {
                 return $m;

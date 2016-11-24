@@ -69,8 +69,8 @@ class Caster
     /**
      * Filters out the specified properties.
      *
-     * By default, a single match in the $filter bit field filters properties out, following an "or" logic.
-     * When EXCLUDE_STRICT is set, an "and" logic is applied: all bits must match for a property to be removed.
+     * By default, a single matchRow in the $filter bit field filters properties out, following an "or" logic.
+     * When EXCLUDE_STRICT is set, an "and" logic is applied: all bits must matchRow for a property to be removed.
      *
      * @param array    $a                The array containing the properties to filter
      * @param int      $filter           A bit field of Caster::EXCLUDE_* constants specifying which properties to filter out

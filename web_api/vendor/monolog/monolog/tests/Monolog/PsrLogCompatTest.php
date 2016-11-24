@@ -35,8 +35,8 @@ class PsrLogCompatTest extends LoggerInterfaceTest
     public function getLogs()
     {
         $convert = function ($record) {
-            $lower = function ($match) {
-                return strtolower($match[0]);
+            $lower = function ($matchRow) {
+                return strtolower($matchRow[0]);
             };
 
             return preg_replace_callback('{^[A-Z]+}', $lower, $record['formatted']);

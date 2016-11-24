@@ -669,7 +669,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     }
 
     /**
-     * Determine if the given content types match.
+     * Determine if the given content types matchRow.
      *
      * @param  string  $actual
      * @param  string  $type

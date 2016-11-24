@@ -204,14 +204,14 @@ class BelongsTo extends Relation
      * @param  string  $relation
      * @return array
      */
-    public function match(array $models, Collection $results, $relation)
+    public function matchRow(array $models, Collection $results, $relation)
     {
         $foreign = $this->foreignKey;
 
         $other = $this->otherKey;
 
         // First we will get to build a dictionary of the child models by their primary
-        // key of the relationship, then we can easily match the children back onto
+        // key of the relationship, then we can easily matchRow the children back onto
         // the parents using that dictionary and the primary key of the children.
         $dictionary = [];
 
@@ -220,7 +220,7 @@ class BelongsTo extends Relation
         }
 
         // Once we have the dictionary constructed, we can loop through all the parents
-        // and match back onto their children using these keys of the dictionary and
+        // and matchRow back onto their children using these keys of the dictionary and
         // the primary key of the children to map them onto the correct instances.
         foreach ($models as $model) {
             if (isset($dictionary[$model->$foreign])) {

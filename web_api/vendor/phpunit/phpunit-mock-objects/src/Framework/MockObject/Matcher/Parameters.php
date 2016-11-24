@@ -114,7 +114,7 @@ class PHPUnit_Framework_MockObject_Matcher_Parameters extends PHPUnit_Framework_
             $parameter->evaluate(
                 $this->invocation->parameters[$i],
                 sprintf(
-                    'Parameter %s for invocation %s does not match expected ' .
+                    'Parameter %s for invocation %s does not matchRow expected ' .
                     'value.',
                     $i,
                     $this->invocation->toString()

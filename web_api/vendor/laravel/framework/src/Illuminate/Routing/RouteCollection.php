@@ -136,7 +136,7 @@ class RouteCollection implements Countable, IteratorAggregate
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function match(Request $request)
+    public function matchRow(Request $request)
     {
         $routes = $this->get($request->getMethod());
 
@@ -162,7 +162,7 @@ class RouteCollection implements Countable, IteratorAggregate
     }
 
     /**
-     * Determine if any routes match on another HTTP verb.
+     * Determine if any routes matchRow on another HTTP verb.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array

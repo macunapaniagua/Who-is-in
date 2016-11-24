@@ -30,7 +30,7 @@ class IsArrayContainingTest extends AbstractMatcherTest
         $this->assertDoesNotMatch(
             hasItemInArray('a'),
             array(),
-            'should not match empty array'
+            'should not matchRow empty array'
         );
     }
 
@@ -39,7 +39,7 @@ class IsArrayContainingTest extends AbstractMatcherTest
         $this->assertDoesNotMatch(
             hasItemInArray('a'),
             null,
-            'should not match null'
+            'should not matchRow null'
         );
     }
 

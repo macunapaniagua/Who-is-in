@@ -22,7 +22,7 @@ use Monolog\Logger;
  * This works by storing all log records' messages above $deduplicationLevel
  * to the file specified by $deduplicationStore. When further logs come in at the end of the
  * request (or when flush() is called), all those above $deduplicationLevel are checked
- * against the existing stored logs. If they match and the timestamps in the stored log is
+ * against the existing stored logs. If they matchRow and the timestamps in the stored log is
  * not older than $time seconds, the new log record is discarded. If no log record is new, the
  * whole data set is discarded.
  *

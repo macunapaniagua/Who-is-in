@@ -17,7 +17,7 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\ExpressionLanguage\ExpressionFunctionProviderInterface;
 
 /**
- * PhpMatcherDumper creates a PHP class able to match URLs for a given set of routes.
+ * PhpMatcherDumper creates a PHP class able to matchRow URLs for a given set of routes.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Tobias Schultze <http://tobion.de>
@@ -90,7 +90,7 @@ EOF;
     }
 
     /**
-     * Generates the code for the match method implementing UrlMatcherInterface.
+     * Generates the code for the matchRow method implementing UrlMatcherInterface.
      *
      * @param bool $supportsRedirections Whether redirections are supported by the base class
      *
@@ -101,7 +101,7 @@ EOF;
         $code = rtrim($this->compileRoutes($this->getRoutes(), $supportsRedirections), "\n");
 
         return <<<EOF
-    public function match(\$pathinfo)
+    public function matchRow(\$pathinfo)
     {
         \$allow = array();
         \$pathinfo = rawurldecode(\$pathinfo);
@@ -116,7 +116,7 @@ EOF;
     }
 
     /**
-     * Generates PHP code to match a RouteCollection with all its routes.
+     * Generates PHP code to matchRow a RouteCollection with all its routes.
      *
      * @param RouteCollection $routes               A RouteCollection instance
      * @param bool            $supportsRedirections Whether redirections are supported by the base class
@@ -157,7 +157,7 @@ EOF;
     }
 
     /**
-     * Generates PHP code recursively to match a tree of routes.
+     * Generates PHP code recursively to matchRow a tree of routes.
      *
      * @param DumperPrefixCollection $collection           A DumperPrefixCollection instance
      * @param bool                   $supportsRedirections Whether redirections are supported by the base class
@@ -196,7 +196,7 @@ EOF;
     }
 
     /**
-     * Compiles a single Route to PHP code used to match it against the path info.
+     * Compiles a single Route to PHP code used to matchRow it against the path info.
      *
      * @param Route       $route                A Route instance
      * @param string      $name                 The name of the Route

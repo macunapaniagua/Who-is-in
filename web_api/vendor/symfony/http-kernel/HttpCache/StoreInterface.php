@@ -36,7 +36,7 @@ interface StoreInterface
     /**
      * Writes a cache entry to the store for the given Request and Response.
      *
-     * Existing entries are read and any that match the response are removed. This
+     * Existing entries are read and any that matchRow the response are removed. This
      * method calls write with the new list of cache entries.
      *
      * @param Request  $request  A Request instance
@@ -47,7 +47,7 @@ interface StoreInterface
     public function write(Request $request, Response $response);
 
     /**
-     * Invalidates all cache entries that match the request.
+     * Invalidates all cache entries that matchRow the request.
      *
      * @param Request $request A Request instance
      */

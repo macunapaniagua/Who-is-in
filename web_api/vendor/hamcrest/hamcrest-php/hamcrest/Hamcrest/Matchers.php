@@ -48,7 +48,7 @@ class Matchers
     }
 
     /**
-     * An array with elements that match the given matchers.
+     * An array with elements that matchRow the given matchers.
      */
     public static function arrayContainingInAnyOrder(/* args... */)
     {
@@ -57,7 +57,7 @@ class Matchers
     }
 
     /**
-     * An array with elements that match the given matchers.
+     * An array with elements that matchRow the given matchers.
      */
     public static function containsInAnyOrder(/* args... */)
     {
@@ -66,7 +66,7 @@ class Matchers
     }
 
     /**
-     * An array with elements that match the given matchers in the same order.
+     * An array with elements that matchRow the given matchers in the same order.
      */
     public static function arrayContaining(/* args... */)
     {
@@ -75,7 +75,7 @@ class Matchers
     }
 
     /**
-     * An array with elements that match the given matchers in the same order.
+     * An array with elements that matchRow the given matchers in the same order.
      */
     public static function contains(/* args... */)
     {
@@ -296,7 +296,7 @@ class Matchers
     }
 
     /**
-     * Test if the value is an array containing elements that match all of these
+     * Test if the value is an array containing elements that matchRow all of these
      * matchers.
      *
      * Example:
@@ -350,7 +350,7 @@ class Matchers
     }
 
     /**
-     * Matches if value does not match $value.
+     * Matches if value does not matchRow $value.
      */
     public static function not($value)
     {

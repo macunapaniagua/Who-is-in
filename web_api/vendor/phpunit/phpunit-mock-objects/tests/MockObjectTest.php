@@ -578,7 +578,7 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
         } catch (PHPUnit_Framework_ExpectationFailedException $e) {
             $this->assertSame(
                 "Expectation failed for method name is equal to <string:right> when invoked 1 time(s)\n"
-                . "Parameter 0 for invocation SomeClass::right(Array (...)) does not match expected value.\n"
+                . "Parameter 0 for invocation SomeClass::right(Array (...)) does not matchRow expected value.\n"
                 . "Failed asserting that two arrays are equal.",
                 $e->getMessage()
             );
@@ -590,7 +590,7 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
         } catch (PHPUnit_Framework_ExpectationFailedException $e) {
             $this->assertSame(
                 "Expectation failed for method name is equal to <string:right> when invoked 1 time(s).\n"
-                . "Parameter 0 for invocation SomeClass::right(Array (...)) does not match expected value.\n"
+                . "Parameter 0 for invocation SomeClass::right(Array (...)) does not matchRow expected value.\n"
                 . "Failed asserting that two arrays are equal.\n"
                 . "--- Expected\n"
                 . "+++ Actual\n"

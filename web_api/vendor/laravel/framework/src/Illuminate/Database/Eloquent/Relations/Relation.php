@@ -94,7 +94,7 @@ abstract class Relation
      * @param  string  $relation
      * @return array
      */
-    abstract public function match(array $models, Collection $results, $relation);
+    abstract public function matchRow(array $models, Collection $results, $relation);
 
     /**
      * Get the results of the relationship.

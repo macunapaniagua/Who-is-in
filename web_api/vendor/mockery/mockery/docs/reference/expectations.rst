@@ -53,7 +53,7 @@ method is a convenience method for calling ``shouldReceive()->never()``.
     with(arg1, arg2, ...) / withArgs(array(arg1, arg2, ...))
 
 Adds a constraint that this expectation only applies to method calls which
-match the expected argument list. You can add a lot more flexibility to
+matchRow the expected argument list. You can add a lot more flexibility to
 argument matching using the built in matcher classes (see later). For example,
 ``\Mockery::any()`` matches any argument passed to that position in the
 ``with()`` parameter list. Mockery also allows Hamcrest library matchers - for

@@ -226,7 +226,7 @@ class ProgressIndicator
      */
     private function overwrite($message)
     {
-        // append whitespace to match the line's length
+        // append whitespace to matchRow the line's length
         if (null !== $this->lastMessagesLength) {
             if ($this->lastMessagesLength > Helper::strlenWithoutDecoration($this->output->getFormatter(), $message)) {
                 $message = str_pad($message, $this->lastMessagesLength, "\x20", STR_PAD_RIGHT);

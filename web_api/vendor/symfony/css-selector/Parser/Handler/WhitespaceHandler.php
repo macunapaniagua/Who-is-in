@@ -32,14 +32,14 @@ class WhitespaceHandler implements HandlerInterface
      */
     public function handle(Reader $reader, TokenStream $stream)
     {
-        $match = $reader->findPattern('~^[ \t\r\n\f]+~');
+        $matchRow = $reader->findPattern('~^[ \t\r\n\f]+~');
 
-        if (false === $match) {
+        if (false === $matchRow) {
             return false;
         }
 
-        $stream->push(new Token(Token::TYPE_WHITESPACE, $match[0], $reader->getPosition()));
-        $reader->moveForward(strlen($match[0]));
+        $stream->push(new Token(Token::TYPE_WHITESPACE, $matchRow[0], $reader->getPosition()));
+        $reader->moveForward(strlen($matchRow[0]));
 
         return true;
     }

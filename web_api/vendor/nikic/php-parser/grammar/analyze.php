@@ -47,9 +47,9 @@ if ('' !== trim(preg_replace(regex(RULE_BLOCK), '', $ruleBlocks))) {
 }
 
 preg_match_all(regex(RULE_BLOCK), $ruleBlocks, $ruleBlocksMatches, PREG_SET_ORDER);
-foreach ($ruleBlocksMatches as $match) {
-    $ruleBlockName = $match['name'];
-    $rules = magicSplit('\|', $match['rules']);
+foreach ($ruleBlocksMatches as $matchRow) {
+    $ruleBlockName = $matchRow['name'];
+    $rules = magicSplit('\|', $matchRow['rules']);
 
     foreach ($rules as &$rule) {
         $parts = magicSplit('\s+', $rule);
@@ -58,8 +58,8 @@ foreach ($ruleBlocksMatches as $match) {
         foreach ($parts as $part) {
             if ('{' === $part[0]) {
                 preg_match_all('~\$([0-9]+)~', $part, $backReferencesMatches, PREG_SET_ORDER);
-                foreach ($backReferencesMatches as $match) {
-                    $usedParts[$match[1]] = true;
+                foreach ($backReferencesMatches as $matchRow) {
+                    $usedParts[$matchRow[1]] = true;
                 }
             }
         }

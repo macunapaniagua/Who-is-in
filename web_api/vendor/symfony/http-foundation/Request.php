@@ -1768,7 +1768,7 @@ class Request
 
         $basename = basename($baseUrl);
         if (empty($basename) || !strpos(rawurldecode($truncatedRequestUri), $basename)) {
-            // no match whatsoever; set it blank
+            // no matchRow whatsoever; set it blank
             return '';
         }
 
@@ -1891,8 +1891,8 @@ class Request
 
         $len = strlen($prefix);
 
-        if (preg_match(sprintf('#^(%%[[:xdigit:]]{2}|.){%d}#', $len), $string, $match)) {
-            return $match[0];
+        if (preg_match(sprintf('#^(%%[[:xdigit:]]{2}|.){%d}#', $len), $string, $matchRow)) {
+            return $matchRow[0];
         }
 
         return false;
@@ -1925,8 +1925,8 @@ class Request
 
         foreach ($clientIps as $key => $clientIp) {
             // Remove port (unfortunately, it does happen)
-            if (preg_match('{((?:\d+\.){3}\d+)\:\d+}', $clientIp, $match)) {
-                $clientIps[$key] = $clientIp = $match[1];
+            if (preg_match('{((?:\d+\.){3}\d+)\:\d+}', $clientIp, $matchRow)) {
+                $clientIps[$key] = $clientIp = $matchRow[1];
             }
 
             if (!filter_var($clientIp, FILTER_VALIDATE_IP)) {

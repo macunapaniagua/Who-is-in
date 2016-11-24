@@ -34,7 +34,7 @@ class IsTraversableWithSizeTest extends \Hamcrest\AbstractMatcherTest
         $this->assertDoesNotMatch(
             traversableWithSize(3),
             null,
-            'should not match null'
+            'should not matchRow null'
         );
     }
 

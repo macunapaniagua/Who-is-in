@@ -523,7 +523,7 @@ class Assert
     {
         if (!preg_match($pattern, $value)) {
             throw new InvalidArgumentException(sprintf(
-                $message ?: 'The value %s does not match the expected pattern.',
+                $message ?: 'The value %s does not matchRow the expected pattern.',
                 self::valueToString($value)
             ));
         }

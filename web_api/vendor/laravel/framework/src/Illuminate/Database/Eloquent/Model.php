@@ -789,7 +789,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
         // If no foreign key was supplied, we can use a backtrace to guess the proper
         // foreign key name by using the name of the relationship function, which
-        // when combined with an "_id" should conventionally match the columns.
+        // when combined with an "_id" should conventionally matchRow the columns.
         if (is_null($foreignKey)) {
             $foreignKey = Str::snake($relation).'_id';
         }
@@ -3406,12 +3406,12 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         // spin through them after we export models to their array form, which we
         // need to be fast. This'll let us know the attributes that can mutate.
         if (preg_match_all('/(?<=^|;)get([^;]+?)Attribute(;|$)/', implode(';', get_class_methods($class)), $matches)) {
-            foreach ($matches[1] as $match) {
+            foreach ($matches[1] as $matchRow) {
                 if (static::$snakeAttributes) {
-                    $match = Str::snake($match);
+                    $matchRow = Str::snake($matchRow);
                 }
 
-                $mutatedAttributes[] = lcfirst($match);
+                $mutatedAttributes[] = lcfirst($matchRow);
             }
         }
 

@@ -90,8 +90,8 @@ class ScalarComparatorTest extends \PHPUnit_Framework_TestCase
           array("string", "other string", $stringException),
           // https://github.com/sebastianbergmann/phpunit/issues/1023
           array('9E6666666','9E7777777', $stringException),
-          array(new ClassWithToString, "does not match", $otherException),
-          array("does not match", new ClassWithToString, $otherException),
+          array(new ClassWithToString, "does not matchRow", $otherException),
+          array("does not matchRow", new ClassWithToString, $otherException),
           array(0, 'Foobar', $otherException),
           array('Foobar', 0, $otherException),
           array("10", 25, $otherException),

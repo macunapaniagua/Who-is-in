@@ -40,13 +40,13 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getTestData
      */
-    public function testTest($operator, $target, $match, $noMatch)
+    public function testTest($operator, $target, $matchRow, $noMatch)
     {
         $c = new Comparator();
         $c->setOperator($operator);
         $c->setTarget($target);
 
-        foreach ($match as $m) {
+        foreach ($matchRow as $m) {
             $this->assertTrue($c->test($m), '->test() tests a string against the expression');
         }
 

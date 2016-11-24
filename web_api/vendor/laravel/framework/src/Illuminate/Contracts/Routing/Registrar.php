@@ -68,7 +68,7 @@ interface Registrar
      * @param  \Closure|array|string  $action
      * @return void
      */
-    public function match($methods, $uri, $action);
+    public function matchRow($methods, $uri, $action);
 
     /**
      * Route a resource to a controller.

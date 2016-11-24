@@ -693,12 +693,12 @@ Failed asserting that two strings are equal.
 EOF
             ),
             array(1, array(0), <<<EOF
-Array (...) does not match expected type "integer".
+Array (...) does not matchRow expected type "integer".
 
 EOF
             ),
             array(array(0), 1, <<<EOF
-1 does not match expected type "array".
+1 does not matchRow expected type "array".
 
 EOF
             ),
@@ -744,12 +744,12 @@ Failed asserting that two arrays are equal.
 EOF
             ),
             array($a, array(0), <<<EOF
-Array (...) does not match expected type "object".
+Array (...) does not matchRow expected type "object".
 
 EOF
             ),
             array(array(0), $a, <<<EOF
-stdClass Object (...) does not match expected type "array".
+stdClass Object (...) does not matchRow expected type "array".
 
 EOF
             ),
@@ -2346,7 +2346,7 @@ EOF
 
         $this->assertTrue($constraint->evaluate('barbazbar', '', true));
         $this->assertFalse($constraint->evaluate('barfoobar', '', true));
-        $this->assertEquals('does not match PCRE pattern "/foo/"', $constraint->toString());
+        $this->assertEquals('does not matchRow PCRE pattern "/foo/"', $constraint->toString());
         $this->assertEquals(1, count($constraint));
 
         try {
@@ -2354,7 +2354,7 @@ EOF
         } catch (PHPUnit_Framework_ExpectationFailedException $e) {
             $this->assertEquals(
               <<<EOF
-Failed asserting that 'barfoobar' does not match PCRE pattern "/foo/".
+Failed asserting that 'barfoobar' does not matchRow PCRE pattern "/foo/".
 
 EOF
               ,
@@ -2385,7 +2385,7 @@ EOF
         } catch (PHPUnit_Framework_ExpectationFailedException $e) {
             $this->assertEquals(<<<EOF
 custom message
-Failed asserting that 'barfoobar' does not match PCRE pattern "/foo/".
+Failed asserting that 'barfoobar' does not matchRow PCRE pattern "/foo/".
 
 EOF
               ,
@@ -3344,7 +3344,7 @@ EOF
         } catch (PHPUnit_Framework_ExpectationFailedException $e) {
             $this->assertEquals(
               <<<EOF
-Failed asserting that actual size 2 does not match expected size 2.
+Failed asserting that actual size 2 does not matchRow expected size 2.
 
 EOF
               ,
@@ -3433,7 +3433,7 @@ EOF
         } catch (PHPUnit_Framework_ExpectationFailedException $e) {
             $this->assertEquals(
               <<<EOF
-Failed asserting that actual size 2 does not match expected size 2.
+Failed asserting that actual size 2 does not matchRow expected size 2.
 
 EOF
               ,

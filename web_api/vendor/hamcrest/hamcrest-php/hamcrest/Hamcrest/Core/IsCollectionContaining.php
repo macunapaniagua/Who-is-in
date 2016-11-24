@@ -10,7 +10,7 @@ use Hamcrest\TypeSafeMatcher;
 use Hamcrest\Util;
 
 /**
- * Tests if an array contains values that match one or more Matchers.
+ * Tests if an array contains values that matchRow one or more Matchers.
  */
 class IsCollectionContaining extends TypeSafeMatcher
 {
@@ -69,7 +69,7 @@ class IsCollectionContaining extends TypeSafeMatcher
     }
 
     /**
-     * Test if the value is an array containing elements that match all of these
+     * Test if the value is an array containing elements that matchRow all of these
      * matchers.
      *
      * Example:

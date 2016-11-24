@@ -158,12 +158,12 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
         $format = '%c' . $formatted;
         preg_match_all('/\[\[(.*?)\]\]\{([^}]*)\}/s', $format, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
 
-        foreach (array_reverse($matches) as $match) {
-            $args[] = self::quote(self::handleCustomStyles($match[2][0], $match[1][0]));
+        foreach (array_reverse($matches) as $matchRow) {
+            $args[] = self::quote(self::handleCustomStyles($matchRow[2][0], $matchRow[1][0]));
             $args[] = '"font-weight: normal"';
 
-            $pos = $match[0][1];
-            $format = substr($format, 0, $pos) . '%c' . $match[1][0] . '%c' . substr($format, $pos + strlen($match[0][0]));
+            $pos = $matchRow[0][1];
+            $format = substr($format, 0, $pos) . '%c' . $matchRow[1][0] . '%c' . substr($format, $pos + strlen($matchRow[0][0]));
         }
 
         array_unshift($args, self::quote($format));

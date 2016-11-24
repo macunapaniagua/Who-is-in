@@ -24,13 +24,13 @@ class Not extends MatcherAbstract
 {
 
     /**
-     * Check if the actual value does not match the expected (in this
+     * Check if the actual value does not matchRow the expected (in this
      * case it's specifically NOT expected).
      *
      * @param mixed $actual
      * @return bool
      */
-    public function match(&$actual)
+    public function matchRow(&$actual)
     {
         return $actual !== $this->_expected;
     }

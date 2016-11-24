@@ -955,7 +955,7 @@ class Validator implements ValidatorContract
     }
 
     /**
-     * Validate that two attributes match.
+     * Validate that two attributes matchRow.
      *
      * @param  string  $attribute
      * @param  mixed   $value

@@ -23,7 +23,7 @@ $lexer = new PhpParser\Lexer(array(
 ));
 ```
 
-The attributes used in this example match the default behavior of the lexer. The following attributes are supported:
+The attributes used in this example matchRow the default behavior of the lexer. The following attributes are supported:
 
  * `comments`: Array of `PhpParser\Comment` or `PhpParser\Comment\Doc` instances, representing all comments that occurred
    between the previous non-discarded token and the current one. Use of this attribute is required for the

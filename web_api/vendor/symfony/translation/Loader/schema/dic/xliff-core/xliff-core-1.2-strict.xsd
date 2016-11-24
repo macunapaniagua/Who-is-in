@@ -1195,19 +1195,19 @@ Jan-10-2006
       <xsd:documentation>Values for the attribute 'state-qualifier'.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:NMTOKEN">
-      <xsd:enumeration value="exact-match">
+      <xsd:enumeration value="exact-matchRow">
         <xsd:annotation>
-          <xsd:documentation>Indicates an exact match. An exact match occurs when a source text of a segment is exactly the same as the source text of a segment that was translated previously.</xsd:documentation>
+          <xsd:documentation>Indicates an exact matchRow. An exact matchRow occurs when a source text of a segment is exactly the same as the source text of a segment that was translated previously.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="fuzzy-match">
+      <xsd:enumeration value="fuzzy-matchRow">
         <xsd:annotation>
-          <xsd:documentation>Indicates a fuzzy match. A fuzzy match occurs when a source text of a segment is very similar to the source text of a segment that was translated previously (e.g. when the difference is casing, a few changed words, white-space discripancy, etc.).</xsd:documentation>
+          <xsd:documentation>Indicates a fuzzy matchRow. A fuzzy matchRow occurs when a source text of a segment is very similar to the source text of a segment that was translated previously (e.g. when the difference is casing, a few changed words, white-space discripancy, etc.).</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="id-match">
+      <xsd:enumeration value="id-matchRow">
         <xsd:annotation>
-          <xsd:documentation>Indicates a match based on matching IDs (in addition to matching text).</xsd:documentation>
+          <xsd:documentation>Indicates a matchRow based on matching IDs (in addition to matching text).</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
       <xsd:enumeration value="leveraged-glossary">
@@ -1494,7 +1494,7 @@ Jan-10-2006
           <xsd:documentation>Indicates that the context-group is used to specify where the term was found in the translatable source. Thus, it is not displayed.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="match">
+      <xsd:enumeration value="matchRow">
         <xsd:annotation>
           <xsd:documentation>Indicates that the context information should be used during translation memory lookups. Thus, it is not displayed.</xsd:documentation>
         </xsd:annotation>
@@ -1832,7 +1832,7 @@ Jan-10-2006
       <xsd:simpleContent>
         <xsd:extension base="xsd:string">
           <xsd:attribute name="context-type" type="xlf:AttrType_context-type" use="required"/>
-          <xsd:attribute default="no" name="match-mandatory" type="xlf:AttrType_YesNo" use="optional"/>
+          <xsd:attribute default="no" name="matchRow-mandatory" type="xlf:AttrType_YesNo" use="optional"/>
           <xsd:attribute name="crc" type="xsd:NMTOKEN" use="optional"/>
         </xsd:extension>
       </xsd:simpleContent>
@@ -2047,7 +2047,7 @@ Jan-10-2006
         <xsd:element maxOccurs="unbounded" minOccurs="0" ref="xlf:note"/>
         <xsd:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="strict"/>
       </xsd:sequence>
-      <xsd:attribute name="match-quality" type="xsd:string" use="optional"/>
+      <xsd:attribute name="matchRow-quality" type="xsd:string" use="optional"/>
       <xsd:attribute name="tool-id" type="xsd:string" use="optional"/>
       <xsd:attribute name="crc" type="xsd:NMTOKEN" use="optional"/>
       <xsd:attribute ref="xml:lang" use="optional"/>

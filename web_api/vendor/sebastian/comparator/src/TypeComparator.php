@@ -53,7 +53,7 @@ class TypeComparator extends Comparator
                 '',
                 false,
                 sprintf(
-                    '%s does not match expected type "%s".',
+                    '%s does not matchRow expected type "%s".',
                     $this->exporter->shortenedExport($actual),
                     gettype($expected)
                 )

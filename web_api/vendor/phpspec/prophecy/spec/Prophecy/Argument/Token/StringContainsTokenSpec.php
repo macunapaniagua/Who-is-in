@@ -39,7 +39,7 @@ class StringContainsTokenSpec extends ObjectBehavior
 
     function it_does_not_score_if_the_argument_does_not_contain_the_value()
     {
-        $this->scoreArgument('Argument will not match')->shouldReturn(false);
+        $this->scoreArgument('Argument will not matchRow')->shouldReturn(false);
     }
 
     function its_string_representation_shows_substring()

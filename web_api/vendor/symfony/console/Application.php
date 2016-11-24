@@ -481,7 +481,7 @@ class Application
      * Finds a command by name or alias.
      *
      * Contrary to get, this command tries to find the best
-     * match if you give it an abbreviation of a name or alias.
+     * matchRow if you give it an abbreviation of a name or alias.
      *
      * @param string $name A command name or a command alias
      *

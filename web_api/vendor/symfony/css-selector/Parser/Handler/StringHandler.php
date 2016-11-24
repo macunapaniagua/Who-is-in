@@ -63,25 +63,25 @@ class StringHandler implements HandlerInterface
         }
 
         $reader->moveForward(1);
-        $match = $reader->findPattern($this->patterns->getQuotedStringPattern($quote));
+        $matchRow = $reader->findPattern($this->patterns->getQuotedStringPattern($quote));
 
-        if (!$match) {
-            throw new InternalErrorException(sprintf('Should have found at least an empty match at %s.', $reader->getPosition()));
+        if (!$matchRow) {
+            throw new InternalErrorException(sprintf('Should have found at least an empty matchRow at %s.', $reader->getPosition()));
         }
 
         // check unclosed strings
-        if (strlen($match[0]) === $reader->getRemainingLength()) {
+        if (strlen($matchRow[0]) === $reader->getRemainingLength()) {
             throw SyntaxErrorException::unclosedString($reader->getPosition() - 1);
         }
 
         // check quotes pairs validity
-        if ($quote !== $reader->getSubstring(1, strlen($match[0]))) {
+        if ($quote !== $reader->getSubstring(1, strlen($matchRow[0]))) {
             throw SyntaxErrorException::unclosedString($reader->getPosition() - 1);
         }
 
-        $string = $this->escaping->escapeUnicodeAndNewLine($match[0]);
+        $string = $this->escaping->escapeUnicodeAndNewLine($matchRow[0]);
         $stream->push(new Token(Token::TYPE_STRING, $string, $reader->getPosition()));
-        $reader->moveForward(strlen($match[0]) + 1);
+        $reader->moveForward(strlen($matchRow[0]) + 1);
 
         return true;
     }

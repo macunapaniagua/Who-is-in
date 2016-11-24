@@ -30,7 +30,7 @@ class LogicalNotToken implements TokenInterface
     }
 
     /**
-     * Scores 4 when preset token does not match the argument.
+     * Scores 4 when preset token does not matchRow the argument.
      *
      * @param $argument
      *

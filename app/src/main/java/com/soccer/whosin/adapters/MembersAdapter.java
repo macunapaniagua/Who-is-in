@@ -53,7 +53,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberVi
 
     @Override
     public MemberViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_member, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_list_item, parent, false);
         return new MemberViewHolder(view);
     }
 

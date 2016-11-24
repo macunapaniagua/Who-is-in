@@ -90,7 +90,7 @@ return array(
     // While PsySH respects the current `error_reporting` level, and doesn't throw
     // exceptions for all errors, it does log all errors regardless of level. Set
     // `errorLoggingLevel` to 0 to prevent logging non-thrown errors. Set it to any
-    // valid `error_reporting` value to log only errors which match that level.
+    // valid `error_reporting` value to log only errors which matchRow that level.
     'errorLoggingLevel' => E_ALL & ~E_NOTICE,
 
     // "Default includes" will be included once at the beginning of every PsySH

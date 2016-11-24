@@ -52,7 +52,7 @@ interface Swift_Mime_MimeEntity extends Swift_Mime_CharsetObserver, Swift_Mime_E
      * no explicit semantic meaning and can be considered an identifier for
      * programming logic purposes.
      *
-     * If a Content-ID header is present, this value SHOULD match the value of
+     * If a Content-ID header is present, this value SHOULD matchRow the value of
      * the header.
      *
      * @return string

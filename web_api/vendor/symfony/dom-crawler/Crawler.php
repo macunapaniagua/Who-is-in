@@ -614,7 +614,7 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * The XPath expression is evaluated in the context of the crawler, which
      * is considered as a fake parent of the elements inside it.
-     * This means that a child selector "div" or "./div" will match only
+     * This means that a child selector "div" or "./div" will matchRow only
      * the div elements of the current crawler, not their children.
      *
      * @param string $xpath An XPath expression
@@ -625,7 +625,7 @@ class Crawler implements \Countable, \IteratorAggregate
     {
         $xpath = $this->relativize($xpath);
 
-        // If we dropped all expressions in the XPath while preparing it, there would be no match
+        // If we dropped all expressions in the XPath while preparing it, there would be no matchRow
         if ('' === $xpath) {
             return $this->createSubCrawler(null);
         }
@@ -856,7 +856,7 @@ class Crawler implements \Countable, \IteratorAggregate
     /**
      * Make the XPath relative to the current context.
      *
-     * The returned XPath will match elements matching the XPath inside the current crawler
+     * The returned XPath will matchRow elements matching the XPath inside the current crawler
      * when running in the context of a node of the crawler.
      *
      * @param string $xpath
@@ -868,7 +868,7 @@ class Crawler implements \Countable, \IteratorAggregate
         $expressions = array();
 
         $unionPattern = '/\|(?![^\[]*\])/';
-        // An expression which will never match to replace expressions which cannot match in the crawler
+        // An expression which will never matchRow to replace expressions which cannot matchRow in the crawler
         // We cannot simply drop
         $nonMatchingExpression = 'a[name() = "b"]';
 

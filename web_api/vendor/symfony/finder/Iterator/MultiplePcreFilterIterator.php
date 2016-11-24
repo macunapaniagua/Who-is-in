@@ -25,8 +25,8 @@ abstract class MultiplePcreFilterIterator extends FilterIterator
      * Constructor.
      *
      * @param \Iterator $iterator        The Iterator to filter
-     * @param array     $matchPatterns   An array of patterns that need to match
-     * @param array     $noMatchPatterns An array of patterns that need to not match
+     * @param array     $matchPatterns   An array of patterns that need to matchRow
+     * @param array     $noMatchPatterns An array of patterns that need to not matchRow
      */
     public function __construct(\Iterator $iterator, array $matchPatterns, array $noMatchPatterns)
     {
@@ -54,14 +54,14 @@ abstract class MultiplePcreFilterIterator extends FilterIterator
      */
     protected function isAccepted($string)
     {
-        // should at least not match one rule to exclude
+        // should at least not matchRow one rule to exclude
         foreach ($this->noMatchRegexps as $regex) {
             if (preg_match($regex, $string)) {
                 return false;
             }
         }
 
-        // should at least match one rule
+        // should at least matchRow one rule
         if ($this->matchRegexps) {
             foreach ($this->matchRegexps as $regex) {
                 if (preg_match($regex, $string)) {
@@ -72,7 +72,7 @@ abstract class MultiplePcreFilterIterator extends FilterIterator
             return false;
         }
 
-        // If there is no match rules, the file is accepted
+        // If there is no matchRow rules, the file is accepted
         return true;
     }
 

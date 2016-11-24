@@ -992,7 +992,7 @@ class Response
     }
 
     /**
-     * Determines if the Response validators (ETag, Last-Modified) match
+     * Determines if the Response validators (ETag, Last-Modified) matchRow
      * a conditional value specified in the Request.
      *
      * If the Response is not modified, it sets the status code to 304 and
@@ -1000,7 +1000,7 @@ class Response
      *
      * @param Request $request A Request instance
      *
-     * @return bool true if the Response validators match the Request, false otherwise
+     * @return bool true if the Response validators matchRow the Request, false otherwise
      */
     public function isNotModified(Request $request)
     {
@@ -1172,8 +1172,8 @@ class Response
      */
     protected function ensureIEOverSSLCompatibility(Request $request)
     {
-        if (false !== stripos($this->headers->get('Content-Disposition'), 'attachment') && preg_match('/MSIE (.*?);/i', $request->server->get('HTTP_USER_AGENT'), $match) == 1 && true === $request->isSecure()) {
-            if ((int) preg_replace('/(MSIE )(.*?);/', '$2', $match[0]) < 9) {
+        if (false !== stripos($this->headers->get('Content-Disposition'), 'attachment') && preg_match('/MSIE (.*?);/i', $request->server->get('HTTP_USER_AGENT'), $matchRow) == 1 && true === $request->isSecure()) {
+            if ((int) preg_replace('/(MSIE )(.*?);/', '$2', $matchRow[0]) < 9) {
                 $this->headers->remove('Cache-Control');
             }
         }

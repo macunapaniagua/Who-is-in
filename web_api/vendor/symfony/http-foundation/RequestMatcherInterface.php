@@ -12,7 +12,7 @@
 namespace Symfony\Component\HttpFoundation;
 
 /**
- * RequestMatcherInterface is an interface for strategies to match a Request.
+ * RequestMatcherInterface is an interface for strategies to matchRow a Request.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
@@ -21,7 +21,7 @@ interface RequestMatcherInterface
     /**
      * Decides whether the rule(s) implemented by the strategy matches the supplied request.
      *
-     * @param Request $request The request to check for a match
+     * @param Request $request The request to check for a matchRow
      *
      * @return bool true if the request matches, false otherwise
      */

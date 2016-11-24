@@ -93,12 +93,12 @@ class DescriptionFactory
                             # Notice that this also matches "{}", as a way to later introduce it as an escape sequence.
                             \{(?1)?\}
                             |
-                            # Make sure we match hanging "{".
+                            # Make sure we matchRow hanging "{".
                             \{
                         )
                         # Match content after the nested inline tag.
                         [^{}]*
-                    )* # If there are more inline tags, match them as well. We use "*" since there may not be any
+                    )* # If there are more inline tags, matchRow them as well. We use "*" since there may not be any
                        # nested inline tags.
                 )
             \}/Sux',

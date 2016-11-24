@@ -26,7 +26,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('foo', new Route('/foo'));
 
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $this->assertInternalType('array', $matcher->match('/foo'));
+        $this->assertInternalType('array', $matcher->matchRow('/foo'));
     }
 
     public function testMethodNotAllowed()
@@ -37,7 +37,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $matcher = new UrlMatcher($coll, new RequestContext());
 
         try {
-            $matcher->match('/foo');
+            $matcher->matchRow('/foo');
             $this->fail();
         } catch (MethodNotAllowedException $e) {
             $this->assertEquals(array('POST'), $e->getAllowedMethods());
@@ -50,7 +50,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('foo', new Route('/foo', array(), array(), array(), '', array(), array('get')));
 
         $matcher = new UrlMatcher($coll, new RequestContext('', 'head'));
-        $this->assertInternalType('array', $matcher->match('/foo'));
+        $this->assertInternalType('array', $matcher->matchRow('/foo'));
     }
 
     public function testMethodNotAllowedAggregatesAllowedMethods()
@@ -62,7 +62,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $matcher = new UrlMatcher($coll, new RequestContext());
 
         try {
-            $matcher->match('/foo');
+            $matcher->matchRow('/foo');
             $this->fail();
         } catch (MethodNotAllowedException $e) {
             $this->assertEquals(array('POST', 'PUT', 'DELETE'), $e->getAllowedMethods());
@@ -76,58 +76,58 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $collection->add('foo', new Route('/foo/{bar}'));
         $matcher = new UrlMatcher($collection, new RequestContext());
         try {
-            $matcher->match('/no-match');
+            $matcher->matchRow('/no-matchRow');
             $this->fail();
         } catch (ResourceNotFoundException $e) {
         }
-        $this->assertEquals(array('_route' => 'foo', 'bar' => 'baz'), $matcher->match('/foo/baz'));
+        $this->assertEquals(array('_route' => 'foo', 'bar' => 'baz'), $matcher->matchRow('/foo/baz'));
 
         // test that defaults are merged
         $collection = new RouteCollection();
         $collection->add('foo', new Route('/foo/{bar}', array('def' => 'test')));
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_route' => 'foo', 'bar' => 'baz', 'def' => 'test'), $matcher->match('/foo/baz'));
+        $this->assertEquals(array('_route' => 'foo', 'bar' => 'baz', 'def' => 'test'), $matcher->matchRow('/foo/baz'));
 
         // test that route "method" is ignored if no method is given in the context
         $collection = new RouteCollection();
         $collection->add('foo', new Route('/foo', array(), array(), array(), '', array(), array('get', 'head')));
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertInternalType('array', $matcher->match('/foo'));
+        $this->assertInternalType('array', $matcher->matchRow('/foo'));
 
-        // route does not match with POST method context
+        // route does not matchRow with POST method context
         $matcher = new UrlMatcher($collection, new RequestContext('', 'post'));
         try {
-            $matcher->match('/foo');
+            $matcher->matchRow('/foo');
             $this->fail();
         } catch (MethodNotAllowedException $e) {
         }
 
-        // route does match with GET or HEAD method context
+        // route does matchRow with GET or HEAD method context
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertInternalType('array', $matcher->match('/foo'));
+        $this->assertInternalType('array', $matcher->matchRow('/foo'));
         $matcher = new UrlMatcher($collection, new RequestContext('', 'head'));
-        $this->assertInternalType('array', $matcher->match('/foo'));
+        $this->assertInternalType('array', $matcher->matchRow('/foo'));
 
         // route with an optional variable as the first segment
         $collection = new RouteCollection();
         $collection->add('bar', new Route('/{bar}/foo', array('bar' => 'bar'), array('bar' => 'foo|bar')));
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_route' => 'bar', 'bar' => 'bar'), $matcher->match('/bar/foo'));
-        $this->assertEquals(array('_route' => 'bar', 'bar' => 'foo'), $matcher->match('/foo/foo'));
+        $this->assertEquals(array('_route' => 'bar', 'bar' => 'bar'), $matcher->matchRow('/bar/foo'));
+        $this->assertEquals(array('_route' => 'bar', 'bar' => 'foo'), $matcher->matchRow('/foo/foo'));
 
         $collection = new RouteCollection();
         $collection->add('bar', new Route('/{bar}', array('bar' => 'bar'), array('bar' => 'foo|bar')));
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_route' => 'bar', 'bar' => 'foo'), $matcher->match('/foo'));
-        $this->assertEquals(array('_route' => 'bar', 'bar' => 'bar'), $matcher->match('/'));
+        $this->assertEquals(array('_route' => 'bar', 'bar' => 'foo'), $matcher->matchRow('/foo'));
+        $this->assertEquals(array('_route' => 'bar', 'bar' => 'bar'), $matcher->matchRow('/'));
 
         // route with only optional variables
         $collection = new RouteCollection();
         $collection->add('bar', new Route('/{foo}/{bar}', array('foo' => 'foo', 'bar' => 'bar'), array()));
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_route' => 'bar', 'foo' => 'foo', 'bar' => 'bar'), $matcher->match('/'));
-        $this->assertEquals(array('_route' => 'bar', 'foo' => 'a', 'bar' => 'bar'), $matcher->match('/a'));
-        $this->assertEquals(array('_route' => 'bar', 'foo' => 'a', 'bar' => 'b'), $matcher->match('/a/b'));
+        $this->assertEquals(array('_route' => 'bar', 'foo' => 'foo', 'bar' => 'bar'), $matcher->matchRow('/'));
+        $this->assertEquals(array('_route' => 'bar', 'foo' => 'a', 'bar' => 'bar'), $matcher->matchRow('/a'));
+        $this->assertEquals(array('_route' => 'bar', 'foo' => 'a', 'bar' => 'b'), $matcher->matchRow('/a/b'));
     }
 
     public function testMatchWithPrefixes()
@@ -138,7 +138,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $collection->addPrefix('/a');
 
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_route' => 'foo', 'foo' => 'foo'), $matcher->match('/a/b/foo'));
+        $this->assertEquals(array('_route' => 'foo', 'foo' => 'foo'), $matcher->matchRow('/a/b/foo'));
     }
 
     public function testMatchWithDynamicPrefix()
@@ -149,7 +149,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $collection->addPrefix('/{_locale}');
 
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_locale' => 'fr', '_route' => 'foo', 'foo' => 'foo'), $matcher->match('/fr/b/foo'));
+        $this->assertEquals(array('_locale' => 'fr', '_route' => 'foo', 'foo' => 'foo'), $matcher->matchRow('/fr/b/foo'));
     }
 
     public function testMatchSpecialRouteName()
@@ -158,7 +158,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $collection->add('$péß^a|', new Route('/bar'));
 
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_route' => '$péß^a|'), $matcher->match('/bar'));
+        $this->assertEquals(array('_route' => '$péß^a|'), $matcher->matchRow('/bar'));
     }
 
     public function testMatchNonAlpha()
@@ -168,8 +168,8 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $collection->add('foo', new Route('/{foo}/bar', array(), array('foo' => '['.preg_quote($chars).']+')));
 
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_route' => 'foo', 'foo' => $chars), $matcher->match('/'.rawurlencode($chars).'/bar'));
-        $this->assertEquals(array('_route' => 'foo', 'foo' => $chars), $matcher->match('/'.strtr($chars, array('%' => '%25')).'/bar'));
+        $this->assertEquals(array('_route' => 'foo', 'foo' => $chars), $matcher->matchRow('/'.rawurlencode($chars).'/bar'));
+        $this->assertEquals(array('_route' => 'foo', 'foo' => $chars), $matcher->matchRow('/'.strtr($chars, array('%' => '%25')).'/bar'));
     }
 
     public function testMatchWithDotMetacharacterInRequirements()
@@ -178,7 +178,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $collection->add('foo', new Route('/{foo}/bar', array(), array('foo' => '.+')));
 
         $matcher = new UrlMatcher($collection, new RequestContext());
-        $this->assertEquals(array('_route' => 'foo', 'foo' => "\n"), $matcher->match('/'.urlencode("\n").'/bar'), 'linefeed character is matched');
+        $this->assertEquals(array('_route' => 'foo', 'foo' => "\n"), $matcher->matchRow('/'.urlencode("\n").'/bar'), 'linefeed character is matched');
     }
 
     public function testMatchOverriddenRoute()
@@ -193,9 +193,9 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
 
         $matcher = new UrlMatcher($collection, new RequestContext());
 
-        $this->assertEquals(array('_route' => 'foo'), $matcher->match('/foo1'));
+        $this->assertEquals(array('_route' => 'foo'), $matcher->matchRow('/foo1'));
         $this->setExpectedException('Symfony\Component\Routing\Exception\ResourceNotFoundException');
-        $this->assertEquals(array(), $matcher->match('/foo'));
+        $this->assertEquals(array(), $matcher->matchRow('/foo'));
     }
 
     public function testMatchRegression()
@@ -205,13 +205,13 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('bar', new Route('/foo/bar/{foo}'));
 
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $this->assertEquals(array('foo' => 'bar', '_route' => 'bar'), $matcher->match('/foo/bar/bar'));
+        $this->assertEquals(array('foo' => 'bar', '_route' => 'bar'), $matcher->matchRow('/foo/bar/bar'));
 
         $collection = new RouteCollection();
         $collection->add('foo', new Route('/{bar}'));
         $matcher = new UrlMatcher($collection, new RequestContext());
         try {
-            $matcher->match('/');
+            $matcher->matchRow('/');
             $this->fail();
         } catch (ResourceNotFoundException $e) {
         }
@@ -223,7 +223,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('test', new Route('/{page}.{_format}', array('page' => 'index', '_format' => 'html')));
 
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $this->assertEquals(array('page' => 'my-page', '_format' => 'xml', '_route' => 'test'), $matcher->match('/my-page.xml'));
+        $this->assertEquals(array('page' => 'my-page', '_format' => 'xml', '_route' => 'test'), $matcher->matchRow('/my-page.xml'));
     }
 
     public function testMatchingIsEager()
@@ -232,7 +232,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('test', new Route('/{foo}-{bar}-', array(), array('foo' => '.+', 'bar' => '.+')));
 
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $this->assertEquals(array('foo' => 'text1-text2-text3', 'bar' => 'text4', '_route' => 'test'), $matcher->match('/text1-text2-text3-text4-'));
+        $this->assertEquals(array('foo' => 'text1-text2-text3', 'bar' => 'text4', '_route' => 'test'), $matcher->matchRow('/text1-text2-text3-text4-'));
     }
 
     public function testAdjacentVariables()
@@ -241,18 +241,18 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('test', new Route('/{w}{x}{y}{z}.{_format}', array('z' => 'default-z', '_format' => 'html'), array('y' => 'y|Y')));
 
         $matcher = new UrlMatcher($coll, new RequestContext());
-        // 'w' eagerly matches as much as possible and the other variables match the remaining chars.
+        // 'w' eagerly matches as much as possible and the other variables matchRow the remaining chars.
         // This also shows that the variables w-z must all exclude the separating char (the dot '.' in this case) by default requirement.
-        // Otherwise they would also consume '.xml' and _format would never match as it's an optional variable.
-        $this->assertEquals(array('w' => 'wwwww', 'x' => 'x', 'y' => 'Y', 'z' => 'Z', '_format' => 'xml', '_route' => 'test'), $matcher->match('/wwwwwxYZ.xml'));
+        // Otherwise they would also consume '.xml' and _format would never matchRow as it's an optional variable.
+        $this->assertEquals(array('w' => 'wwwww', 'x' => 'x', 'y' => 'Y', 'z' => 'Z', '_format' => 'xml', '_route' => 'test'), $matcher->matchRow('/wwwwwxYZ.xml'));
         // As 'y' has custom requirement and can only be of value 'y|Y', it will leave  'ZZZ' to variable z.
         // So with carefully chosen requirements adjacent variables, can be useful.
-        $this->assertEquals(array('w' => 'wwwww', 'x' => 'x', 'y' => 'y', 'z' => 'ZZZ', '_format' => 'html', '_route' => 'test'), $matcher->match('/wwwwwxyZZZ'));
+        $this->assertEquals(array('w' => 'wwwww', 'x' => 'x', 'y' => 'y', 'z' => 'ZZZ', '_format' => 'html', '_route' => 'test'), $matcher->matchRow('/wwwwwxyZZZ'));
         // z and _format are optional.
-        $this->assertEquals(array('w' => 'wwwww', 'x' => 'x', 'y' => 'y', 'z' => 'default-z', '_format' => 'html', '_route' => 'test'), $matcher->match('/wwwwwxy'));
+        $this->assertEquals(array('w' => 'wwwww', 'x' => 'x', 'y' => 'y', 'z' => 'default-z', '_format' => 'html', '_route' => 'test'), $matcher->matchRow('/wwwwwxy'));
 
         $this->setExpectedException('Symfony\Component\Routing\Exception\ResourceNotFoundException');
-        $matcher->match('/wxy.html');
+        $matcher->matchRow('/wxy.html');
     }
 
     public function testOptionalVariableWithNoRealSeparator()
@@ -261,13 +261,13 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('test', new Route('/get{what}', array('what' => 'All')));
         $matcher = new UrlMatcher($coll, new RequestContext());
 
-        $this->assertEquals(array('what' => 'All', '_route' => 'test'), $matcher->match('/get'));
-        $this->assertEquals(array('what' => 'Sites', '_route' => 'test'), $matcher->match('/getSites'));
+        $this->assertEquals(array('what' => 'All', '_route' => 'test'), $matcher->matchRow('/get'));
+        $this->assertEquals(array('what' => 'Sites', '_route' => 'test'), $matcher->matchRow('/getSites'));
 
-        // Usually the character in front of an optional parameter can be left out, e.g. with pattern '/get/{what}' just '/get' would match.
-        // But here the 't' in 'get' is not a separating character, so it makes no sense to match without it.
+        // Usually the character in front of an optional parameter can be left out, e.g. with pattern '/get/{what}' just '/get' would matchRow.
+        // But here the 't' in 'get' is not a separating character, so it makes no sense to matchRow without it.
         $this->setExpectedException('Symfony\Component\Routing\Exception\ResourceNotFoundException');
-        $matcher->match('/ge');
+        $matcher->matchRow('/ge');
     }
 
     public function testRequiredVariableWithNoRealSeparator()
@@ -276,7 +276,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('test', new Route('/get{what}Suffix'));
         $matcher = new UrlMatcher($coll, new RequestContext());
 
-        $this->assertEquals(array('what' => 'Sites', '_route' => 'test'), $matcher->match('/getSitesSuffix'));
+        $this->assertEquals(array('what' => 'Sites', '_route' => 'test'), $matcher->matchRow('/getSitesSuffix'));
     }
 
     public function testDefaultRequirementOfVariable()
@@ -285,7 +285,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('test', new Route('/{page}.{_format}'));
         $matcher = new UrlMatcher($coll, new RequestContext());
 
-        $this->assertEquals(array('page' => 'index', '_format' => 'mobile.html', '_route' => 'test'), $matcher->match('/index.mobile.html'));
+        $this->assertEquals(array('page' => 'index', '_format' => 'mobile.html', '_route' => 'test'), $matcher->matchRow('/index.mobile.html'));
     }
 
     /**
@@ -297,7 +297,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('test', new Route('/{page}.{_format}'));
         $matcher = new UrlMatcher($coll, new RequestContext());
 
-        $matcher->match('/index.sl/ash');
+        $matcher->matchRow('/index.sl/ash');
     }
 
     /**
@@ -309,7 +309,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('test', new Route('/{page}.{_format}', array(), array('_format' => 'html|xml')));
         $matcher = new UrlMatcher($coll, new RequestContext());
 
-        $matcher->match('/do.t.html');
+        $matcher->matchRow('/do.t.html');
     }
 
     /**
@@ -320,7 +320,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll = new RouteCollection();
         $coll->add('foo', new Route('/foo', array(), array(), array(), '', array('https')));
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $matcher->match('/foo');
+        $matcher->matchRow('/foo');
     }
 
     /**
@@ -333,7 +333,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $route->setCondition('context.getMethod() == "POST"');
         $coll->add('foo', $route);
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $matcher->match('/foo');
+        $matcher->matchRow('/foo');
     }
 
     public function testDecodeOnce()
@@ -342,7 +342,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('foo', new Route('/foo/{foo}'));
 
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $this->assertEquals(array('foo' => 'bar%23', '_route' => 'foo'), $matcher->match('/foo/bar%2523'));
+        $this->assertEquals(array('foo' => 'bar%23', '_route' => 'foo'), $matcher->matchRow('/foo/bar%2523'));
     }
 
     public function testCannotRelyOnPrefix()
@@ -358,7 +358,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->addCollection($subColl);
 
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $this->assertEquals(array('_route' => 'bar'), $matcher->match('/new'));
+        $this->assertEquals(array('_route' => 'bar'), $matcher->matchRow('/new'));
     }
 
     public function testWithHost()
@@ -367,7 +367,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('foo', new Route('/foo/{foo}', array(), array(), array(), '{locale}.example.com'));
 
         $matcher = new UrlMatcher($coll, new RequestContext('', 'GET', 'en.example.com'));
-        $this->assertEquals(array('foo' => 'bar', '_route' => 'foo', 'locale' => 'en'), $matcher->match('/foo/bar'));
+        $this->assertEquals(array('foo' => 'bar', '_route' => 'foo', 'locale' => 'en'), $matcher->matchRow('/foo/bar'));
     }
 
     public function testWithHostOnRouteCollection()
@@ -378,10 +378,10 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->setHost('{locale}.example.com');
 
         $matcher = new UrlMatcher($coll, new RequestContext('', 'GET', 'en.example.com'));
-        $this->assertEquals(array('foo' => 'bar', '_route' => 'foo', 'locale' => 'en'), $matcher->match('/foo/bar'));
+        $this->assertEquals(array('foo' => 'bar', '_route' => 'foo', 'locale' => 'en'), $matcher->matchRow('/foo/bar'));
 
         $matcher = new UrlMatcher($coll, new RequestContext('', 'GET', 'en.example.com'));
-        $this->assertEquals(array('foo' => 'bar', '_route' => 'bar', 'locale' => 'en'), $matcher->match('/bar/bar'));
+        $this->assertEquals(array('foo' => 'bar', '_route' => 'bar', 'locale' => 'en'), $matcher->matchRow('/bar/bar'));
     }
 
     /**
@@ -393,7 +393,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('foo', new Route('/foo/{foo}', array(), array(), array(), '{locale}.example.com'));
 
         $matcher = new UrlMatcher($coll, new RequestContext('', 'GET', 'example.com'));
-        $matcher->match('/foo/bar');
+        $matcher->matchRow('/foo/bar');
     }
 
     /**
@@ -405,7 +405,7 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('foo', new Route('/locale', array(), array('locale' => 'EN|FR|DE')));
 
         $matcher = new UrlMatcher($coll, new RequestContext());
-        $matcher->match('/en');
+        $matcher->matchRow('/en');
     }
 
     public function testHostIsCaseInsensitive()
@@ -414,6 +414,6 @@ class UrlMatcherTest extends \PHPUnit_Framework_TestCase
         $coll->add('foo', new Route('/', array(), array('locale' => 'EN|FR|DE'), array(), '{locale}.example.com'));
 
         $matcher = new UrlMatcher($coll, new RequestContext('', 'GET', 'en.example.com'));
-        $this->assertEquals(array('_route' => 'foo', 'locale' => 'en'), $matcher->match('/'));
+        $this->assertEquals(array('_route' => 'foo', 'locale' => 'en'), $matcher->matchRow('/'));
     }
 }

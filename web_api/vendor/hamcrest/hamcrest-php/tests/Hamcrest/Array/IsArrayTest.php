@@ -16,7 +16,7 @@ class IsArrayTest extends AbstractMatcherTest
         $this->assertMatches(
             anArray(array(equalTo('a'), equalTo('b'), equalTo('c'))),
             array('a', 'b', 'c'),
-            'should match array with matching elements'
+            'should matchRow array with matching elements'
         );
     }
 
@@ -25,7 +25,7 @@ class IsArrayTest extends AbstractMatcherTest
         $this->assertDoesNotMatch(
             anArray(array(equalTo('a'), equalTo('b'))),
             array('b', 'c'),
-            'should not match array with different elements'
+            'should not matchRow array with different elements'
         );
     }
 
@@ -34,12 +34,12 @@ class IsArrayTest extends AbstractMatcherTest
         $this->assertDoesNotMatch(
             anArray(array(equalTo('a'), equalTo('b'))),
             array('a', 'b', 'c'),
-            'should not match larger array'
+            'should not matchRow larger array'
         );
         $this->assertDoesNotMatch(
             anArray(array(equalTo('a'), equalTo('b'))),
             array('a'),
-            'should not match smaller array'
+            'should not matchRow smaller array'
         );
     }
 
@@ -48,7 +48,7 @@ class IsArrayTest extends AbstractMatcherTest
         $this->assertDoesNotMatch(
             anArray(array(equalTo('a'))),
             null,
-            'should not match null'
+            'should not matchRow null'
         );
     }
 
@@ -74,7 +74,7 @@ class IsArrayTest extends AbstractMatcherTest
         $this->assertMatches(
             anArray(array('x'=>equalTo('a'), 'y'=>equalTo('b'), 'z'=>equalTo('c'))),
             array('x'=>'a', 'y'=>'b', 'z'=>'c'),
-            'should match associative array with matching elements'
+            'should matchRow associative array with matching elements'
         );
     }
 
@@ -83,7 +83,7 @@ class IsArrayTest extends AbstractMatcherTest
         $this->assertDoesNotMatch(
             anArray(array('x'=>equalTo('a'), 'y'=>equalTo('b'))),
             array('x'=>'b', 'z'=>'c'),
-            'should not match array with different keys'
+            'should not matchRow array with different keys'
         );
     }
 }

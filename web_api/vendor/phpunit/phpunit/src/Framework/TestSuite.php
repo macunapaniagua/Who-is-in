@@ -346,7 +346,7 @@ class PHPUnit_Framework_TestSuite implements PHPUnit_Framework_Test, PHPUnit_Fra
             $this->foundClasses = array_merge($newClasses, $this->foundClasses);
         }
 
-        // The test class's name must match the filename, either in full, or as
+        // The test class's name must matchRow the filename, either in full, or as
         // a PEAR/PSR-0 prefixed shortname ('NameSpace_ShortName'), or as a
         // PSR-1 local shortname ('NameSpace\ShortName'). The comparison must be
         // anchored to prevent false-positive matches (e.g., 'OtherShortName').

@@ -29,7 +29,7 @@ class Closure extends MatcherAbstract
      * @param mixed $actual
      * @return bool
      */
-    public function match(&$actual)
+    public function matchRow(&$actual)
     {
         $closure = $this->_expected;
         $result = $closure($actual);

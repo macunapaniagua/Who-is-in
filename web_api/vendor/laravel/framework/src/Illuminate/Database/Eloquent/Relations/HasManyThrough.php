@@ -165,7 +165,7 @@ class HasManyThrough extends Relation
      * @param  string  $relation
      * @return array
      */
-    public function match(array $models, Collection $results, $relation)
+    public function matchRow(array $models, Collection $results, $relation)
     {
         $dictionary = $this->buildDictionary($results);
 

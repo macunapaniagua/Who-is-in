@@ -10,4 +10,6 @@
     <dimen name="fb_horizontal_padding">20dp</dimen>
     <dimen name="fb_vertical_padding">15dp</dimen>
     <dimen name="list_item_action_padding">6dp</dimen>
+    <dimen name="text_drawable_space_between">10dp</dimen>
+    <dimen name="show_match_text_drawable_padding">16dp</dimen>
 </resources>

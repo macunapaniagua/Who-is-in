@@ -19,7 +19,7 @@ namespace Prophecy\Argument\Token;
 interface TokenInterface
 {
     /**
-     * Calculates token match score for provided argument.
+     * Calculates token matchRow score for provided argument.
      *
      * @param $argument
      *

@@ -164,7 +164,7 @@ class CronExpression
     public function setMaxIterationCount($maxIterationCount)
     {
         $this->maxIterationCount = $maxIterationCount;
-        
+
         return $this;
     }
 
@@ -175,8 +175,8 @@ class CronExpression
      * @param int              $nth              Number of matches to skip before returning a
      *                                           matching next run date.  0, the default, will return the current
      *                                           date and time if the next run date falls on the current date and
-     *                                           time.  Setting this value to 1 will skip the first match and go to
-     *                                           the second match.  Setting this value to 2 will skip the first 2
+     *                                           time.  Setting this value to 1 will skip the first matchRow and go to
+     *                                           the second matchRow.  Setting this value to 2 will skip the first 2
      *                                           matches and so on.
      * @param bool             $allowCurrentDate Set to TRUE to return the current date if
      *                                           it matches the cron expression.
@@ -366,7 +366,7 @@ class CronExpression
                 }
             }
 
-            // Skip this match if needed
+            // Skip this matchRow if needed
             if ((!$allowCurrentDate && $nextRun == $currentDate) || --$nth > -1) {
                 $this->fieldFactory->getField(0)->increment($nextRun, $invert, isset($parts[0]) ? $parts[0] : null);
                 continue;

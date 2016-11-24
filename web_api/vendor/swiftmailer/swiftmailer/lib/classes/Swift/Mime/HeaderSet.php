@@ -67,7 +67,7 @@ interface Swift_Mime_HeaderSet extends Swift_Mime_CharsetObserver
     /**
      * Returns true if at least one header with the given $name exists.
      *
-     * If multiple headers match, the actual one may be specified by $index.
+     * If multiple headers matchRow, the actual one may be specified by $index.
      *
      * @param string $name
      * @param int    $index
@@ -92,7 +92,7 @@ interface Swift_Mime_HeaderSet extends Swift_Mime_CharsetObserver
 
     /**
      * Get the header with the given $name.
-     * If multiple headers match, the actual one may be specified by $index.
+     * If multiple headers matchRow, the actual one may be specified by $index.
      * Returns NULL if none present.
      *
      * @param string $name
@@ -121,7 +121,7 @@ interface Swift_Mime_HeaderSet extends Swift_Mime_CharsetObserver
     /**
      * Remove the header with the given $name if it's set.
      *
-     * If multiple headers match, the actual one may be specified by $index.
+     * If multiple headers matchRow, the actual one may be specified by $index.
      *
      * @param string $name
      * @param int    $index

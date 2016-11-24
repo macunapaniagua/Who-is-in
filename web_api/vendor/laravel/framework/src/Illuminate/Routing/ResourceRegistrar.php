@@ -368,7 +368,7 @@ class ResourceRegistrar
 
         $action = $this->getResourceAction($name, $controller, 'update', $options);
 
-        return $this->router->match(['PUT', 'PATCH'], $uri, $action);
+        return $this->router->matchRow(['PUT', 'PATCH'], $uri, $action);
     }
 
     /**

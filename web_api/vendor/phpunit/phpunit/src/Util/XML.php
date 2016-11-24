@@ -371,14 +371,14 @@ class PHPUnit_Util_XML
 
             $tag = array();
 
-            // match element tag
+            // matchRow element tag
             preg_match("/^([^\.#\[]*)/", $element, $eltMatches);
 
             if (!empty($eltMatches[1])) {
                 $tag['tag'] = $eltMatches[1];
             }
 
-            // match attributes (\[[^\]]*\]*), ids (#[^\.#\[]*),
+            // matchRow attributes (\[[^\]]*\]*), ids (#[^\.#\[]*),
             // and classes (\.[^\.#\[]*))
             preg_match_all(
                 "/(\[[^\]]*\]*|#[^\.#\[]*|\.[^\.#\[]*)/",
@@ -390,28 +390,28 @@ class PHPUnit_Util_XML
                 $classes = array();
                 $attrs   = array();
 
-                foreach ($matches[1] as $match) {
+                foreach ($matches[1] as $matchRow) {
                     // id matched
-                    if (substr($match, 0, 1) == '#') {
-                        $tag['id'] = substr($match, 1);
+                    if (substr($matchRow, 0, 1) == '#') {
+                        $tag['id'] = substr($matchRow, 1);
                     } // class matched
-                    elseif (substr($match, 0, 1) == '.') {
-                        $classes[] = substr($match, 1);
+                    elseif (substr($matchRow, 0, 1) == '.') {
+                        $classes[] = substr($matchRow, 1);
                     } // attribute matched
-                    elseif (substr($match, 0, 1) == '[' &&
-                             substr($match, -1, 1) == ']') {
-                        $attribute = substr($match, 1, strlen($match) - 2);
+                    elseif (substr($matchRow, 0, 1) == '[' &&
+                             substr($matchRow, -1, 1) == ']') {
+                        $attribute = substr($matchRow, 1, strlen($matchRow) - 2);
                         $attribute = str_replace('"', '', $attribute);
 
-                        // match single word
+                        // matchRow single word
                         if (strstr($attribute, '~=')) {
                             list($key, $value) = explode('~=', $attribute);
                             $value             = "regexp:/.*\b$value\b.*/";
-                        } // match substring
+                        } // matchRow substring
                         elseif (strstr($attribute, '*=')) {
                             list($key, $value) = explode('*=', $attribute);
                             $value             = "regexp:/.*$value.*/";
-                        } // exact match
+                        } // exact matchRow
                         else {
                             list($key, $value) = explode('=', $attribute);
                         }
@@ -456,7 +456,7 @@ class PHPUnit_Util_XML
      * return false.
      *
      * To only return nodes containing a certain content, give
-     * the $content to match as a string.  Otherwise, setting
+     * the $content to matchRow as a string.  Otherwise, setting
      * $content to true will return all nodes matching $selector.
      *
      * The $actual document may be a DOMDocument or a string
@@ -578,12 +578,12 @@ class PHPUnit_Util_XML
                 $invalid = false;
 
                 foreach ($options['attributes'] as $name => $value) {
-                    // match by regexp if like "regexp:/foo/i"
+                    // matchRow by regexp if like "regexp:/foo/i"
                     if (preg_match('/^regexp\s*:\s*(.*)/i', $value, $matches)) {
                         if (!preg_match($matches[1], $node->getAttribute($name))) {
                             $invalid = true;
                         }
-                    } // class can match only a part
+                    } // class can matchRow only a part
                     elseif ($name == 'class') {
                         // split to individual classes
                         $findClasses = explode(
@@ -602,7 +602,7 @@ class PHPUnit_Util_XML
                                 $invalid = true;
                             }
                         }
-                    } // match by exact string
+                    } // matchRow by exact string
                     else {
                         if ($node->getAttribute($name) != $value) {
                             $invalid = true;
@@ -629,17 +629,17 @@ class PHPUnit_Util_XML
             foreach ($nodes as $node) {
                 $invalid = false;
 
-                // match by regexp if like "regexp:/foo/i"
+                // matchRow by regexp if like "regexp:/foo/i"
                 if (preg_match('/^regexp\s*:\s*(.*)/i', $options['content'], $matches)) {
                     if (!preg_match($matches[1], self::getNodeText($node))) {
                         $invalid = true;
                     }
-                } // match empty string
+                } // matchRow empty string
                 elseif ($options['content'] === '') {
                     if (self::getNodeText($node) !== '') {
                         $invalid = true;
                     }
-                } // match by exact string
+                } // matchRow by exact string
                 elseif (strstr(self::getNodeText($node), $options['content']) === false) {
                     $invalid = true;
                 }
@@ -825,7 +825,7 @@ class PHPUnit_Util_XML
                         }
                     }
 
-                    // match each child against a specific tag
+                    // matchRow each child against a specific tag
                     if ($childOptions['only']) {
                         $onlyNodes = self::findNodes(
                             $dom,
@@ -833,7 +833,7 @@ class PHPUnit_Util_XML
                             $isHtml
                         );
 
-                        // try to match each child to one of the 'only' nodes
+                        // try to matchRow each child to one of the 'only' nodes
                         foreach ($children as $child) {
                             $matched = false;
 

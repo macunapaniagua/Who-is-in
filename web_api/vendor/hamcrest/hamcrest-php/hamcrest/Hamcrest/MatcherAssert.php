@@ -90,7 +90,7 @@ class MatcherAssert
     /**
      * Performs the actual assertion logic.
      *
-     * If <code>$matcher</code> doesn't match <code>$actual</code>,
+     * If <code>$matcher</code> doesn't matchRow <code>$actual</code>,
      * throws a {@link Hamcrest\AssertionError} with a description
      * of the failure along with the optional <code>$identifier</code>.
      *

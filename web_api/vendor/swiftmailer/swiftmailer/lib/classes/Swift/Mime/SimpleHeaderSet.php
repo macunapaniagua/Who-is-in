@@ -129,7 +129,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     /**
      * Returns true if at least one header with the given $name exists.
      *
-     * If multiple headers match, the actual one may be specified by $index.
+     * If multiple headers matchRow, the actual one may be specified by $index.
      *
      * @param string $name
      * @param int    $index
@@ -172,7 +172,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     /**
      * Get the header with the given $name.
      *
-     * If multiple headers match, the actual one may be specified by $index.
+     * If multiple headers matchRow, the actual one may be specified by $index.
      * Returns NULL if none present.
      *
      * @param string $name
@@ -241,7 +241,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     /**
      * Remove the header with the given $name if it's set.
      *
-     * If multiple headers match, the actual one may be specified by $index.
+     * If multiple headers matchRow, the actual one may be specified by $index.
      *
      * @param string $name
      * @param int    $index

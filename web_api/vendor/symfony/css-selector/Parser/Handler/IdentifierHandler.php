@@ -54,15 +54,15 @@ class IdentifierHandler implements HandlerInterface
      */
     public function handle(Reader $reader, TokenStream $stream)
     {
-        $match = $reader->findPattern($this->patterns->getIdentifierPattern());
+        $matchRow = $reader->findPattern($this->patterns->getIdentifierPattern());
 
-        if (!$match) {
+        if (!$matchRow) {
             return false;
         }
 
-        $value = $this->escaping->escapeUnicode($match[0]);
+        $value = $this->escaping->escapeUnicode($matchRow[0]);
         $stream->push(new Token(Token::TYPE_IDENTIFIER, $value, $reader->getPosition()));
-        $reader->moveForward(strlen($match[0]));
+        $reader->moveForward(strlen($matchRow[0]));
 
         return true;
     }

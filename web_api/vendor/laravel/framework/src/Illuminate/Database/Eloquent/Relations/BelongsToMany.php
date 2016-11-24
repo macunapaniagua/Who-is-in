@@ -511,11 +511,11 @@ class BelongsToMany extends Relation
      * @param  string  $relation
      * @return array
      */
-    public function match(array $models, Collection $results, $relation)
+    public function matchRow(array $models, Collection $results, $relation)
     {
         $dictionary = $this->buildDictionary($results);
 
-        // Once we have an array dictionary of child objects we can easily match the
+        // Once we have an array dictionary of child objects we can easily matchRow the
         // children back to their parent using the dictionary and the keys on the
         // the parent models. Then we will return the hydrated models back out.
         foreach ($models as $model) {
@@ -540,7 +540,7 @@ class BelongsToMany extends Relation
         $foreign = $this->foreignKey;
 
         // First we will build a dictionary of child models keyed by the foreign key
-        // of the relation so that we will easily and quickly match them to their
+        // of the relation so that we will easily and quickly matchRow them to their
         // parents without having a possibly slow inner loops for every models.
         $dictionary = [];
 

@@ -39,4 +39,13 @@
     <string name="member_confirmation_title">%1$s integrante</string>
     <string name="member_confirmation">¿Está seguro que desea %1$s la solicitud del usuario %2$s?</string>
     <string name="change_group">Cambiar Grupo</string>
+    <string name="new_match">Nuevo Partido</string>
+    <string name="show_match">Mostrar Encuentro</string>
+    <string name="confirmed_participants">Participantes confirmados</string>
+    <string name="confirm_attendance">Confirmar asistencia</string>
+    <string name="cancel_attendance">Cancelar asistencia</string>
+    <string name="players">%1$d Jugadores</string>
+    <string name="place">Lugar: %1$s</string>
+    <string name="date">Fecha: %1$s</string>
+    <string name="time">Hora: %1$s</string>
 </resources>
