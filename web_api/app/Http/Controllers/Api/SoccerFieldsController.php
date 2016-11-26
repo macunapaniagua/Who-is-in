@@ -24,6 +24,11 @@ class SoccerFieldsController extends Controller
   public function show($group_id, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
+    if (!isset($user)) {
+      return response(['error' => trans('api_messages.error_facebook_id')], 403);
+    } else if(!$user) {
+      return response(['error' => trans('api_messages.error_player')], 403);
+    } else {
     $group = $this->group->find($group_id);
     if(AuthorizeUserGroup::authorize_user_group($user, $group) != null){
       if(AuthorizeApprovedUserGroup::authorize_approved_user_group($user, $group)){
@@ -34,10 +39,16 @@ class SoccerFieldsController extends Controller
     }
     return response(trans('api_messages.error_group'), 403);
   }
+}
 
   public function store(Request $request)
   {
     $user = UserAuth::getUserAuth($request);
+    if (!isset($user)) {
+      return response(['error' => trans('api_messages.error_facebook_id')], 403);
+    } else if(!$user) {
+      return response(['error' => trans('api_messages.error_player')], 403);
+    } else {
     $new_soccer_field = new $this->soccer_field;
     $new_soccer_field->name = $request->name;
     $new_soccer_field->latitude = $request->latitude;
@@ -49,6 +60,7 @@ class SoccerFieldsController extends Controller
     $new_soccer_field->save();
 
     return response($new_soccer_field, 201);
+  }
   }
 
   public function update($id, Request $request)
