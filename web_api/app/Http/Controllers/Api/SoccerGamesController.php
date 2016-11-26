@@ -60,6 +60,7 @@ class SoccerGamesController extends Controller
     foreach ($players as $player) {
       $user_group = $this->user_group->find($player->users_group_id);
       $soccer_game_players[$count] = ["user_id" => $user_group->user->id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
+      $count++;
     }
     $user_group_player = $this->user_group->where('user_id', $user->id)->where('group_id', $soccer_game->group_id)->get()->first();
     $user_status = $this->player->where('soccer_game_id', $soccer_game->id)->where('users_group_id', $user_group_player->id)->get()->count();
