@@ -63,14 +63,14 @@ class PlayersController extends Controller
       if ($players_count < $soccer_game->players_limit) {
         $user_group = $this->user_group->where('user_id', $user->id)->where('group_id', $request->group_id)->get()->first();
         $new_soccer_game_player = new $this->player;
-        $new_soccer_game_player->users_group_id = $user_group->id;
+        $new_soccer_game_player->user_group_id = $user_group->id;
         $new_soccer_game_player->soccer_game_id = $request->soccer_game_id;
         $new_soccer_game_player->save();
 
         $players_soccer_game = $this->player->where('soccer_game_id', $request->soccer_game_id)->get();
         $players_list = [];
         for ($i=0; $i < count($players_soccer_game); $i++) {
-          $user_group = $this->user_group->find($players_soccer_game[$i]->users_group_id);
+          $user_group = $this->user_group->find($players_soccer_game[$i]->user_group_id);
           $players_list[$i] = ["player_id" => $players_soccer_game[$i]->id, "user_id" => $user_group->user_id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
         }
         return response(['players_list' => $players_list, 'user_status' => true], 200);
@@ -90,14 +90,14 @@ class PlayersController extends Controller
       } else {
         $user = UserAuth::getUserAuth($request);
         $user_group = $this->user_group->where('user_id', $user->id)->where('group_id', $request->group_id)->get()->first();
-        $player = $this->player->where('users_group_id', $user_group->id)->where('soccer_game_id', $request->soccer_game_id)->get()->first();
+        $player = $this->player->where('user_group_id', $user_group->id)->where('soccer_game_id', $request->soccer_game_id)->get()->first();
         $delete_player_soccer_game = $this->player->findOrFail($player->id);
         $delete_player_soccer_game->delete();
 
         $players_soccer_game = $this->player->where('soccer_game_id', $request->soccer_game_id)->get();
         $players_list = [];
         for ($i=0; $i < count($players_soccer_game); $i++) {
-          $user_group = $this->user_group->find($players_soccer_game[$i]->users_group_id);
+          $user_group = $this->user_group->find($players_soccer_game[$i]->user_group_id);
           $players_list[$i] = ["player_id" => $players_soccer_game[$i]->id, "user_id" => $user_group->user_id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
         }
       }
