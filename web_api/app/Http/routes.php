@@ -12,7 +12,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['middleware' => 'api'], function () {
+Route::group(['middleware' => ['api', 'language']], function () {
   Route::group(['prefix' => 'api'], function() {
     Route::post('authenticate', 'Api\AuthController@authenticate');
     Route::resource('groups', 'Api\GroupsController');

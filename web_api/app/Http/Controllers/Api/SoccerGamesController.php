@@ -59,6 +59,7 @@ class SoccerGamesController extends Controller
   public function show($soccer_game_id, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
+<<<<<<< HEAD
     if (!isset($user)) {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
     } else if(!$user) {
