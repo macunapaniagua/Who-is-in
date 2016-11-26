@@ -44,9 +44,9 @@ class SoccerGamesController extends Controller
         }
         return response($soccer_game_info, 200);
       }
-      return response(['error' => '¡El administrador aún no ha aprobado su solicitud!'], 401);
+      return response(trans('api_messages.error_request'), 401);
     }
-    return response(['error' => '¡Usted ha sido expulsado este grupo!'], 403);
+    return response(trans('api_messages.error_group'), 403);
   }
 
   public function show($soccer_game_id, Request $request)
@@ -112,7 +112,7 @@ class SoccerGamesController extends Controller
       $delete_soccer_game->delete();
       return response("", 200);
     }catch(\Exception $e){
-      return response(["error" => "¡No se puede eliminar la mejenga porque está siendo utilizada!"], 401);
+      return response(trans('api_messages.error_game'), 401);
     }
   }
 }
