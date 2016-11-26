@@ -35,9 +35,9 @@ class SoccerFieldsController extends Controller
           $soccer_fields = $this->soccer_field->where('group_id', $group_id)->get();
           return response($soccer_fields, 200);
         }
-        return response(trans('api_messages.error_request'), 401);
+        return response(['error' => trans('api_messages.error_request')], 401);
       }
-      return response(trans('api_messages.error_group'), 403);
+      return response(['error' => trans('api_messages.error_group')], 403);
     }
   }
 
@@ -84,7 +84,7 @@ class SoccerFieldsController extends Controller
       $delete_soccer_field->delete();
       return response("", 200);
     }catch(\Exception $e){
-      return response(trans('api_messages.error_field'), 401);
+      return response(['error' => trans('api_messages.error_field')], 401);
     }
   }
 }

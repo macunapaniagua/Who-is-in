@@ -50,9 +50,9 @@ class SoccerGamesController extends Controller
           }
           return response($soccer_game_info, 200);
         }
-        return response(trans('api_messages.error_request'), 401);
+        return response(['error' => trans('api_messages.error_request')], 401);
       }
-      return response(trans('api_messages.error_group'), 403);
+      return response(['error' => trans('api_messages.error_group')], 403);
     }
   }
 
@@ -132,7 +132,7 @@ class SoccerGamesController extends Controller
       $delete_soccer_game->delete();
       return response("", 200);
     }catch(\Exception $e){
-      return response(trans('api_messages.error_game'), 401);
+      return response(['error' => trans('api_messages.error_game')], 401);
     }
   }
 }

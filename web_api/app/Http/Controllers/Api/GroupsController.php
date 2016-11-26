@@ -45,9 +45,9 @@ class GroupsController extends Controller
           }
           return response($user_group_list, 200);
         }
-        return response(trans('api_messages.error_request'), 401);
+        return response(['error' => trans('api_messages.error_request')], 401);
       }
-      return response(trans('api_messages.error_group'), 403);
+      return response(['error' => trans('api_messages.error_group')], 403);
     }
   }
 
@@ -83,7 +83,6 @@ class GroupsController extends Controller
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $group_search = $this->group->where('code', $code)->get()->first();
-
       if ($group_search != null) {
         $group_info = ["group_id" => $group_search->id, "code" => $group_search->code, "name" => $group_search->name];
         $user_info = ["user_id" => $user->id, "is_admin" => true, "name" => $user->name, "picture" => $user->picture, "facebook_id" => $user->facebook_id];
@@ -99,7 +98,7 @@ class GroupsController extends Controller
         }
         return response(["group" => $group_info, "user" => $user_info], 201);
       } else {
-        return response(trans('api_messages.error_code'), 404);
+        return response([ 'error' => trans('api_messages.error_code')], 404);
       }
     }
   }

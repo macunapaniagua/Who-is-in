@@ -44,9 +44,9 @@ class PlayersController extends Controller
           }
           return response($players_list, 200);
         }
-        return response(trans('api_messages.error_request'), 401);
+        return response(['error' => trans('api_messages.error_request')], 401);
       }
-      return response(trans('api_messages.error_group'), 403);
+      return response(['error' => trans('api_messages.error_group')], 403);
     }
   }
 
@@ -75,7 +75,7 @@ class PlayersController extends Controller
         }
         return response(['players_list' => $players_list, 'user_status' => true], 200);
       }
-      return response(trans('api_messages.error_quantity'), 401);
+      return response(['error' => trans('api_messages.error_quantity')], 401);
     }
   }
 
