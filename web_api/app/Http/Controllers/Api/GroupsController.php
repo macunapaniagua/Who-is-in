@@ -40,9 +40,9 @@ class GroupsController extends Controller
         }
         return response($user_group_list, 200);
       }
-      return response(['error' => '¡El administrador aún no ha aprobado su solicitud!'], 401);
+      return response(trans('api_messages.error_request'), 401);
     }
-    return response(['error' => '¡Usted ha sido expulsado este grupo!'], 403);
+    return response(trans('api_messages.error_group'), 403);
   }
 
   //crear un nuevo grupo, automaticamente estoy activo y soy administrador
@@ -82,7 +82,7 @@ class GroupsController extends Controller
           }
           return response(["group" => $group_info, "user" => $user_info], 201);
       } else {
-         return response(['error' => '¡El código del grupo no existe!'], 404);
+         return response(trans('api_messages.error_code'), 404);
       }
   }
 
@@ -98,7 +98,6 @@ class GroupsController extends Controller
       $user_info = ["user_id" => $user_updated->id, "is_admin" => $user_updated->is_admin, "name" => $user_updated->name, "picture" => $user_updated->picture, "facebook_id" => $user_updated->facebook_id];
       return response($user_info, 200);
     }
-
   }
 
   public function remove_member(Request $request)
@@ -112,7 +111,5 @@ class GroupsController extends Controller
       $user_info = ["user_id" => $user_deleted->id, "is_admin" => $user_deleted->is_admin, "name" => $user_deleted->name, "picture" => $user_deleted->picture, "facebook_id" => $user_deleted->facebook_id];
       return response($user_info, 200);
     }
-
   }
-
 }
