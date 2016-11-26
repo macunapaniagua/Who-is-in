@@ -46,28 +46,33 @@ class PlayersController extends Controller
 
   public function join_soccer_game(Request $request)
   {
-    $soccer_game = $this->soccer_game->find($request->soccer_game_id);
-    $players_count = $this->player->where('soccer_game_id', $request->soccer_game_id)->get()->count();
-    if ($players_count < $soccer_game->players_limit) {
-      $user = UserAuth::getUserAuth($request);
-      $user_group = $this->user_group->where('user_id', $user->id)->where('group_id', $request->group_id)->get()->first();
-      $new_soccer_game_player = new $this->player;
-      $new_soccer_game_player->users_group_id = $user_group->id;
-      $new_soccer_game_player->soccer_game_id = $request->soccer_game_id;
-      $new_soccer_game_player->save();
+    $user = UserAuth::getUserAuth($request);
+    if (!isset($user)) {
+      return response(['error' => trans('api_messages.error_facebook_id')], 403);
+    } else if(!$user) {
+      return response(['error' => trans('api_messages.error_player')], 403);
+    } else {
+      $soccer_game = $this->soccer_game->find($request->soccer_game_id);
+      $players_count = $this->player->where('soccer_game_id', $request->soccer_game_id)->get()->count();
+      if ($players_count < $soccer_game->players_limit) {
+        $user_group = $this->user_group->where('user_id', $user->id)->where('group_id', $request->group_id)->get()->first();
+        $new_soccer_game_player = new $this->player;
+        $new_soccer_game_player->users_group_id = $user_group->id;
+        $new_soccer_game_player->soccer_game_id = $request->soccer_game_id;
+        $new_soccer_game_player->save();
 
-      $players_soccer_game = $this->player->where('soccer_game_id', $request->soccer_game_id)->get();
-      $players_list = [];
-      for ($i=0; $i < count($players_soccer_game); $i++) {
-        $user_group = $this->user_group->find($players_soccer_game[$i]->users_group_id);
-        $players_list[$i] = ["player_id" => $players_soccer_game[$i]->id, "user_id" => $user_group->user_id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
+        $players_soccer_game = $this->player->where('soccer_game_id', $request->soccer_game_id)->get();
+        $players_list = [];
+        for ($i=0; $i < count($players_soccer_game); $i++) {
+          $user_group = $this->user_group->find($players_soccer_game[$i]->users_group_id);
+          $players_list[$i] = ["player_id" => $players_soccer_game[$i]->id, "user_id" => $user_group->user_id, "name" => $user_group->user->name, "picture" => $user_group->user->picture];
+        }
+
+        return response(['players_list' => $players_list, 'user_status' => true], 200);
       }
 
-      return response(['players_list' => $players_list, 'user_status' => true], 200);
+      return response(['error' => '¡No se puede unir a este evento porque supera el número de participantes!'], 401);
     }
-
-    return response(['error' => '¡No se puede unir a este evento porque supera el número de participantes!'], 401);
-
   }
 
   public function leave_soccer_game(Request $request)
