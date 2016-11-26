@@ -13,6 +13,7 @@ use App\Lib\PushNotification;
 use App\Models\Group;
 use App\Models\Player;
 use App\Models\UserGroup;
+use Carbon\Carbon;
 
 class SoccerGamesController extends Controller
 {
@@ -32,7 +33,7 @@ class SoccerGamesController extends Controller
     $group = $this->group->find($group_id);
     if(AuthorizeUserGroup::authorize_user_group($user, $group) != null){
       if(AuthorizeApprovedUserGroup::authorize_approved_user_group($user, $group)){
-        $soccer_games = $this->soccer_game->where('group_id', $group_id)->get();
+        $soccer_games = $this->soccer_game->where('group_id', $group_id)->where('date', '>', Carbon::now()->toDateString())->orderBy('id', 'desc')->get();
         $soccer_game_info = [];
         $count = 0;
         foreach ($soccer_games as $soccer_game) {
@@ -69,7 +70,8 @@ class SoccerGamesController extends Controller
         "hour" => $soccer_game->hour,
         "players_limit" => $soccer_game->players_limit,
         "players_list"  => $soccer_game_players,
-        "user_status" => $user_status == 1 ? true : false
+        "user_status" => $user_status == 1 ? true : false,
+        "cost_by_player" => ($soccer_game->soccer_field->total / $soccer_game->players_limit)
     ];
     return response($soccer_game_info, 200);
   }
