@@ -18,6 +18,10 @@ public class SoccerField {
     @SerializedName("players_account") private int mPlayerCount;
     @SerializedName("group_id") private String mGroupId;
 
+    public SoccerField(String pName) {
+        this.mName = pName;
+    }
+
     public SoccerField(String mName, LatLng pPosition, String pPhone, String pPrice, String pPlayerCount, String pGroupId) {
         this.mName          = mName;
         this.mLatitude      = pPosition.latitude;
@@ -26,6 +30,10 @@ public class SoccerField {
         this.mPrice         = Integer.valueOf(pPrice);
         this.mPlayerCount   = Integer.valueOf(pPlayerCount);
         this.mGroupId       = pGroupId;
+    }
+
+    public String getId() {
+        return mId;
     }
 
     public String getGroupId() {

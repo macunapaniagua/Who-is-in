@@ -45,7 +45,13 @@
     <string name="confirm_attendance">Confirmar asistencia</string>
     <string name="cancel_attendance">Cancelar asistencia</string>
     <string name="players">%1$d Jugadores</string>
-    <string name="place">Lugar: %1$s</string>
-    <string name="date">Fecha: %1$s</string>
-    <string name="time">Hora: %1$s</string>
+    <string name="place_format">Lugar: %1$s</string>
+    <string name="date_format">Fecha: %1$s</string>
+    <string name="time_format">Hora: %1$s</string>
+    <string name="place">Lugar</string>
+    <string name="date">Fecha</string>
+    <string name="time">Hora</string>
+    <string name="create_match">Crear partido</string>
+    <string name="select_soccer_field">Seleccione una cancha</string>
+    <string name="participants_number">Número de participantes</string>
 </resources>

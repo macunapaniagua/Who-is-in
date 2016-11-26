@@ -14,6 +14,7 @@ import java.util.List;
 public interface IMatchesPresenter {
     void onGetMatchSuccessfully(Match pMatch);
     void onGetMatchesSuccessfully(List<MatchRow> pMatchRows);
+    void onMatchCreatedSuccessfully(Match pMatch);
     void onApproveAttendanceSuccessfully(MatchUserStatus pMatchUserStatus);
     void onCancelAttendanceSuccessfully(MatchUserStatus pMatchUserStatus);
     void onMatchesRequestFailed(ErrorMessage pErrorMessage);

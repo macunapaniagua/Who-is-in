@@ -39,13 +39,19 @@
     <string name="member_confirmation_title">%1$s member</string>
     <string name="member_confirmation">Are you sure you want to %1$s the member request from %2$s?</string>
     <string name="change_group">Change Group</string>
-    <string name="new_match">New matchRow</string>
+    <string name="new_match">New match</string>
     <string name="show_match">Show Soccer Match</string>
     <string name="confirmed_participants">Confirmed participants</string>
     <string name="confirm_attendance">Confirm attendance</string>
     <string name="cancel_attendance">Cancel attendance</string>
     <string name="players">%1$d Players</string>
-    <string name="place">Place: %1$s</string>
-    <string name="date">Date: %1$s</string>
-    <string name="time">Time: %1$s</string>
+    <string name="place_format">Place: %1$s</string>
+    <string name="date_format">Date: %1$s</string>
+    <string name="time_format">Time: %1$s</string>
+    <string name="place">Place</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="create_match">Create soccer match</string>
+    <string name="select_soccer_field">Select soccer field</string>
+    <string name="participants_number">Number of participants</string>
 </resources>

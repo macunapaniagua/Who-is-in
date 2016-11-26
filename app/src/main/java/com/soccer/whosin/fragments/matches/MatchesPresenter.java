@@ -1,12 +1,14 @@
 package com.soccer.whosin.fragments.matches;
 
 import com.soccer.whosin.interfaces.IMatchesPresenter;
+import com.soccer.whosin.models.CreateMatch;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupGame;
 import com.soccer.whosin.models.Match;
 import com.soccer.whosin.models.MatchRow;
 import com.soccer.whosin.models.MatchUserStatus;
 import com.soccer.whosin.utils.BusProvider;
+import com.squareup.otto.Bus;
 
 import java.util.List;
 
@@ -30,6 +32,10 @@ public class MatchesPresenter implements IMatchesPresenter {
         mInteractor.getMatches(pFacebookId, pGroupId);
     }
 
+    public void createMatch(String pFacebookId, CreateMatch pMatch) {
+        mInteractor.createMatch(pFacebookId, pMatch);
+    }
+
     public void approveMatchAttendance(String pFacebookId, GroupGame pGroupGame) {
         mInteractor.approveMatchAttendance(pFacebookId, pGroupGame);
     }
@@ -45,6 +51,11 @@ public class MatchesPresenter implements IMatchesPresenter {
 
     @Override
     public void onGetMatchSuccessfully(Match pMatch) {
+        BusProvider.getBus().post(pMatch);
+    }
+
+    @Override
+    public void onMatchCreatedSuccessfully(Match pMatch) {
         BusProvider.getBus().post(pMatch);
     }
 

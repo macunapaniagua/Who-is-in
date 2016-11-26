@@ -1,5 +1,6 @@
 package com.soccer.whosin.interfaces;
 
+import com.soccer.whosin.models.CreateMatch;
 import com.soccer.whosin.models.GroupGame;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.models.Match;
@@ -63,4 +64,7 @@ public interface WhoIsInService {
 
     @POST("join_soccer_game")
     Call<MatchUserStatus> approveMatchAttendance(@Body GroupGame pGroupGame);
+
+    @POST("soccer_games")
+    Call<Match> createSoccerMatch(@Body CreateMatch pMatch);
 }
