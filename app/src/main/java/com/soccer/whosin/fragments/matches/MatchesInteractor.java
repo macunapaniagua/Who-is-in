@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.soccer.whosin.interfaces.IMatchesInteractor;
 import com.soccer.whosin.interfaces.IMatchesPresenter;
 import com.soccer.whosin.interfaces.WhoIsInService;
+import com.soccer.whosin.models.CreateMatch;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupGame;
 import com.soccer.whosin.models.Match;
@@ -52,6 +53,34 @@ public class MatchesInteractor implements IMatchesInteractor {
 
             @Override
             public void onFailure(Call<List<MatchRow>> call, Throwable t) {
+                ErrorMessage errorMessage = new ErrorMessage(t.getMessage());
+                mPresenter.onMatchesRequestFailed(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void createMatch(String pFacebookId, CreateMatch pMatch) {
+        WhoIsInService service = RetrofitHelper.getAPIWithHeaders(pFacebookId);
+        service.createSoccerMatch(pMatch).enqueue(new Callback<Match>() {
+            @Override
+            public void onResponse(Call<Match> call, Response<Match> response) {
+                if (response.isSuccessful())
+                    mPresenter.onMatchCreatedSuccessfully(response.body());
+                else {
+                    ErrorMessage errorMessage;
+                    try {
+                        String error = response.errorBody().string();
+                        errorMessage = new Gson().fromJson(error, ErrorMessage.class);
+                    } catch (IOException e) {
+                        errorMessage = new ErrorMessage(response.message());
+                    }
+                    mPresenter.onMatchesRequestFailed(errorMessage);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Match> call, Throwable t) {
                 ErrorMessage errorMessage = new ErrorMessage(t.getMessage());
                 mPresenter.onMatchesRequestFailed(errorMessage);
             }

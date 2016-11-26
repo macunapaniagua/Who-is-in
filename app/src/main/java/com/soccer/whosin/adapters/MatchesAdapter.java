@@ -47,9 +47,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchVie
         int status = matchRow.isConfirmed() ? R.drawable.ic_approve_member
                                          : R.drawable.ic_remove_member;
         holder.vStatus.setImageResource(status);
-        holder.vSoccerField.setText(mContext.getString(R.string.place, matchRow.getSoccerField()));
-        holder.vDate.setText(mContext.getString(R.string.date, matchRow.getDate()));
-        holder.vTime.setText(mContext.getString(R.string.time, matchRow.getTime()));
+        holder.vSoccerField.setText(mContext.getString(R.string.place_format, matchRow.getSoccerField()));
+        holder.vDate.setText(mContext.getString(R.string.date_format, matchRow.getDate()));
+        holder.vTime.setText(mContext.getString(R.string.time_format, matchRow.getTime()));
         holder.vConfirmations.setText(matchRow.getConfirmations());
         holder.vRow.setOnClickListener(new View.OnClickListener() {
             @Override

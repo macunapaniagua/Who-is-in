@@ -1,5 +1,6 @@
 package com.soccer.whosin.fragments.matches;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,8 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.soccer.whosin.R;
 import com.soccer.whosin.adapters.MatchesAdapter;
 import com.soccer.whosin.interfaces.OnListItemEventsListener;
+import com.soccer.whosin.matches.NewMatchActivity;
 import com.soccer.whosin.matches.ShowMatchActivity;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupMember;
@@ -44,18 +47,16 @@ public class MatchesFragment extends Fragment implements OnListItemEventsListene
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        if (LocalStorageHelper.getLoggedUser(this.getContext()).isAdmin())
-//            this.setHasOptionsMenu(true);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.matches_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        menu.clear();
-//        inflater.inflate(R.menu.matches_menu, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.setHasOptionsMenu(LocalStorageHelper.getLoggedUser(this.getContext()).isAdmin());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,7 +68,6 @@ public class MatchesFragment extends Fragment implements OnListItemEventsListene
         super.onViewCreated(view, savedInstanceState);
         this.loadViews();
         this.initializeViews();
-        this.setListeners();
     }
 
     private void loadViews() {
@@ -85,16 +85,17 @@ public class MatchesFragment extends Fragment implements OnListItemEventsListene
         vMatchesList.setAdapter(new MatchesAdapter(this.getContext(), new ArrayList<MatchRow>(), this));
     }
 
-    private void setListeners() {
-//        if (LocalStorageHelper.getLoggedUser(this.getContext()).isAdmin()) {
-//          icono agregar mejenga
-//        }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.matches_new)
+            this.goToAddMatch();
+        return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        return super.onOptionsItemSelected(item);
-//    }
+    protected void goToAddMatch() {
+        Intent intent = new Intent(this.getContext(), NewMatchActivity.class);
+        this.startActivity(intent);
+    }
 
     private void loadMatches() {
         this.showLoadingIndicator();
