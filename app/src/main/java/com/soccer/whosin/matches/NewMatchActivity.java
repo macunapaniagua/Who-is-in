@@ -156,7 +156,8 @@ public class NewMatchActivity extends AppCompatActivity implements View.OnClickL
         cal.set(Calendar.YEAR, year);
         cal.set(Calendar.MONTH, monthOfYear);
         cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        vDate.setText(DateFormat.getDateFormat(this).format(cal.getTime()));
+       // vDate.setText(DateFormat.getDateFormat(this).format(cal.getTime()));
+        vDate.setText(DateFormat.format("dd-MM-yyyy", cal.getTime()));
     }
 
     protected void loadTimePicker() {
