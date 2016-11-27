@@ -52,8 +52,8 @@
                         android:gravity="center_vertical"
                         android:drawablePadding="@dimen/show_match_text_drawable_padding"
                         android:layout_marginBottom="@dimen/text_drawable_space_between"
-                        android:drawableStart="@drawable/ic_location_on_black_24dp"
-                        android:drawableLeft="@drawable/ic_location_on_black_24dp"/>
+                        android:drawableStart="@drawable/ic_action_room"
+                        android:drawableLeft="@drawable/ic_action_room"/>
 
                     <TextView
                         android:id="@+id/show.match.date"
