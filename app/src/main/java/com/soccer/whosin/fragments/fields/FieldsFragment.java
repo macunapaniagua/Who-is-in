@@ -5,6 +5,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -57,6 +59,8 @@ public class FieldsFragment extends Fragment implements OnMapReadyCallback, Goog
     private RelativeLayout vLoadingIndicator;
     private EditText vFieldName, vFieldPhone, vFieldPrice, vFieldCapacity;
 
+    private LinearLayout vFieldBottomSheed;
+
     private LatLng mLastLocation;
     private GoogleMap mGoogleMap;
     private GoogleApiClient mGoogleApiClient;
@@ -96,8 +100,11 @@ public class FieldsFragment extends Fragment implements OnMapReadyCallback, Goog
     }
 
     private void loadViews() {
-        if (this.getView() != null)
-            vLoadingIndicator = (RelativeLayout) this.getView().findViewById(R.id.fields_loading);
+        View view = this.getView();
+        if (this.getView() != null) {
+            vLoadingIndicator = (RelativeLayout) view.findViewById(R.id.fields_loading);
+            vFieldBottomSheed = (LinearLayout) view.findViewById(R.id.show_soccer_field_sheet);
+        }
         this.createAlertDialog();
     }
 
@@ -141,6 +148,36 @@ public class FieldsFragment extends Fragment implements OnMapReadyCallback, Goog
         if (LocalStorageHelper.getLoggedUser(this.getContext()).isAdmin())
             googleMap.setOnMapLongClickListener(this);
         googleMap.setOnMapLoadedCallback(this);
+
+
+
+
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+                BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(vFieldBottomSheed);
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+
+
+                return true;
+            }
+        });
+
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(vFieldBottomSheed);
+                if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN)
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
+
+
+
+
+
         this.mGoogleMap = googleMap;
     }
 
