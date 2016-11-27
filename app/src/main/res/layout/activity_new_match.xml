@@ -66,8 +66,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:drawablePadding="@dimen/text_drawable_space_between"
-                        android:drawableStart="@drawable/ic_attach_money_black_24dp"
-                        android:drawableLeft="@drawable/ic_attach_money_black_24dp"
+                        android:drawableStart="@drawable/ic_editor_attach_money"
+                        android:drawableLeft="@drawable/ic_editor_attach_money"
                         android:textSize="17sp" />
 
                     <TextView
@@ -76,8 +76,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:drawablePadding="@dimen/text_drawable_space_between"
-                        android:drawableStart="@drawable/ic_supervisor_account_black_24dp"
-                        android:drawableLeft="@drawable/ic_supervisor_account_black_24dp"
+                        android:drawableStart="@drawable/ic_social_group"
+                        android:drawableLeft="@drawable/ic_social_group"
                         android:textSize="17sp" />
 
                     <RelativeLayout
@@ -100,7 +100,7 @@
                             android:layout_centerVertical="true"
                             android:padding="5dp"
                             android:contentDescription="@null"
-                            android:src="@drawable/ic_local_phone_black_36dp"/>
+                            android:src="@drawable/ic_communication_call"/>
                     </RelativeLayout>
                 </LinearLayout>
 
