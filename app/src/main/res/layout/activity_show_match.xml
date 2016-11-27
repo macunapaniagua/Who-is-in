@@ -110,7 +110,7 @@
                         android:id="@+id/show.match.participate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/primaryColor"
+                        android:background="@drawable/round_button"
                         android:textAllCaps="false"
                         android:layout_marginBottom="@dimen/text_drawable_space_between"
                         android:textColor="@android:color/white"

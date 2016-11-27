@@ -5,6 +5,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -14,7 +15,9 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -50,17 +53,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FieldsFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener,
-        GoogleMap.OnMapLoadedCallback, View.OnClickListener, PermissionsCallback, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, ResultCallback<LocationSettingsResult> {
+        View.OnClickListener, PermissionsCallback, GoogleApiClient.ConnectionCallbacks, GoogleMap.OnMarkerClickListener,
+        GoogleApiClient.OnConnectionFailedListener, ResultCallback<LocationSettingsResult>, GoogleMap.OnMapClickListener {
 
     private AlertDialog vAlertDialog;
     private RelativeLayout vLoadingIndicator;
+    private TextView vShowName, vShowPhone, vShowPrice, vShowCapacity;
     private EditText vFieldName, vFieldPhone, vFieldPrice, vFieldCapacity;
+
+    private LinearLayout vFieldBottomSheet;
 
     private LatLng mLastLocation;
     private GoogleMap mGoogleMap;
     private GoogleApiClient mGoogleApiClient;
     private Map<String, SoccerField> mSoccerFields;
+    private BottomSheetBehavior mBottomSheetBehavior;
 
     public FieldsFragment() {
         // Required empty public constructor
@@ -96,8 +103,15 @@ public class FieldsFragment extends Fragment implements OnMapReadyCallback, Goog
     }
 
     private void loadViews() {
-        if (this.getView() != null)
-            vLoadingIndicator = (RelativeLayout) this.getView().findViewById(R.id.fields_loading);
+        View view = this.getView();
+        if (this.getView() != null) {
+            vLoadingIndicator = (RelativeLayout) view.findViewById(R.id.fields_loading);
+            vFieldBottomSheet = (LinearLayout) view.findViewById(R.id.show_soccer_field_sheet);
+            vShowName         = (TextView) view.findViewById(R.id.show_soccer_field_name);
+            vShowPhone        = (TextView) view.findViewById(R.id.show_soccer_field_phone);
+            vShowPrice        = (TextView) view.findViewById(R.id.show_soccer_field_price);
+            vShowCapacity     = (TextView) view.findViewById(R.id.show_soccer_field_capacity);
+        }
         this.createAlertDialog();
     }
 
@@ -140,13 +154,32 @@ public class FieldsFragment extends Fragment implements OnMapReadyCallback, Goog
     public void onMapReady(GoogleMap googleMap) {
         if (LocalStorageHelper.getLoggedUser(this.getContext()).isAdmin())
             googleMap.setOnMapLongClickListener(this);
-        googleMap.setOnMapLoadedCallback(this);
+        mBottomSheetBehavior = BottomSheetBehavior.from(vFieldBottomSheet);
+        googleMap.setOnMapClickListener(this);
+        googleMap.setOnMarkerClickListener(this);
         this.mGoogleMap = googleMap;
+        this.loadSoccerFields();
     }
 
     @Override
-    public void onMapLoaded() {
-        this.loadSoccerFields();
+    public void onMapClick(LatLng latLng) {
+        if (mBottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN)
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        SoccerField soccerField = mSoccerFields.get(marker.getId());
+        if (soccerField != null) {
+            vShowName.setText(soccerField.getName());
+            vShowPhone.setText(soccerField.getPhone());
+            vShowPrice.setText(String.valueOf(soccerField.getPrice()));
+            vShowCapacity.setText(this.getContext().getString(R.string.players, soccerField.getPlayerCount()));
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else {
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        }
+        return true;
     }
 
     private void loadSoccerFields() {

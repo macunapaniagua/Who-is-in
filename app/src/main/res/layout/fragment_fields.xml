@@ -6,11 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.soccer.whosin.fragments.fields.FieldsFragment">
 
-    <FrameLayout
-        android:id="@+id/fields.map"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fields.map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+        <include layout="@layout/show_soccer_field_layout"/>
+
+    </android.support.design.widget.CoordinatorLayout>
 
     <RelativeLayout
         android:id="@+id/fields.loading"
@@ -33,5 +41,4 @@
             app:indicatorName="BallTrianglePathIndicator"
             app:indicatorColor="@android:color/white" />
     </RelativeLayout>
-
 </RelativeLayout>
