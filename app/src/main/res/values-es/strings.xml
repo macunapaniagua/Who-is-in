@@ -54,4 +54,5 @@
     <string name="create_match">Crear partido</string>
     <string name="select_soccer_field">Seleccione una cancha</string>
     <string name="participants_number">Número de participantes</string>
+    <string name="match_details">Detalles del partido</string>
 </resources>

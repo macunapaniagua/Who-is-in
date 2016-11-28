@@ -4,7 +4,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -21,7 +19,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.soccer.whosin.ExpandableGridView;
 import com.soccer.whosin.R;
+import com.soccer.whosin.adapters.ParticipantsAdapter;
 import com.soccer.whosin.fragments.matches.MatchesPresenter;
 import com.soccer.whosin.models.ErrorMessage;
 import com.soccer.whosin.models.GroupGame;
@@ -37,14 +37,13 @@ import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ShowMatchActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mGoogleMap;
     private RelativeLayout vLoadingIndicator;
     private TextView vPlace, vDate, vTime, vPlayersLimit;
-    private LinearLayout vPlayersConfirmed, vPlayersConfirmedWrapper;
+    private LinearLayout vPlayersContainer;
+    private ExpandableGridView vPlayersConfirmed;
     private Button vParticipate;
 
     private String mMatchId;
@@ -70,14 +69,14 @@ public class ShowMatchActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void loadViews() {
-        vLoadingIndicator      = (RelativeLayout) this.findViewById(R.id.show_match_loading);
-        vPlace                 = (TextView) this.findViewById(R.id.show_match_place);
-        vDate                  = (TextView) this.findViewById(R.id.show_match_date);
-        vTime                  = (TextView) this.findViewById(R.id.show_match_time);
-        vPlayersLimit          = (TextView) this.findViewById(R.id.show_match_players_limit);
-        vPlayersConfirmedWrapper = (LinearLayout) this.findViewById(R.id.show_match_participants_confirmed);
-        vPlayersConfirmed      = (LinearLayout) this.findViewById(R.id.show_match_players_confirmed);
-        vParticipate           = (Button) this.findViewById(R.id.show_match_participate);
+        vLoadingIndicator = (RelativeLayout) this.findViewById(R.id.show_match_loading);
+        vPlace            = (TextView) this.findViewById(R.id.show_match_place);
+        vDate             = (TextView) this.findViewById(R.id.show_match_date);
+        vTime             = (TextView) this.findViewById(R.id.show_match_time);
+        vPlayersLimit     = (TextView) this.findViewById(R.id.show_match_players_limit);
+        vPlayersContainer = (LinearLayout) this.findViewById(R.id.show_match_participants_confirmed);
+        vPlayersConfirmed = (ExpandableGridView) this.findViewById(R.id.show_match_players_confirmed);
+        vParticipate      = (Button) this.findViewById(R.id.show_match_participate);
     }
 
     private void setListeners() {
@@ -198,22 +197,12 @@ public class ShowMatchActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void loadPlayersConfirmed(List< Member> pPlayersConfirmed) {
-        vPlayersConfirmed.removeAllViews();
         if (pPlayersConfirmed.size() == 0)
-            vPlayersConfirmedWrapper.setVisibility(View.GONE);
+            vPlayersContainer.setVisibility(View.GONE);
         else {
-            for(Member member : pPlayersConfirmed) {
-                View view = LayoutInflater.from(this).inflate(R.layout.match_participant, null);
-                CircleImageView image = (CircleImageView) view.findViewById(R.id.image);
-                Glide.with(this)
-                        .load(member.getAvatar())
-                        .placeholder(R.drawable.com_facebook_profile_picture_blank_square)
-                        .dontAnimate()
-                        .into(image);
-                // Adds the view to the layout
-                vPlayersConfirmed.addView(view);
-            }
-            vPlayersConfirmedWrapper.setVisibility(View.VISIBLE);
+            vPlayersConfirmed.setExpanded(true);
+            vPlayersConfirmed.setAdapter(new ParticipantsAdapter(this, pPlayersConfirmed));
+            vPlayersContainer.setVisibility(View.VISIBLE);
         }
     }
 

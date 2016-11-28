@@ -45,45 +45,73 @@
                     android:paddingTop="@dimen/activity_vertical_margin"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/show.match.place"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="@dimen/show_match_text_drawable_padding"
-                        android:layout_marginBottom="@dimen/text_drawable_space_between"
-                        android:drawableStart="@drawable/ic_action_room"
-                        android:drawableLeft="@drawable/ic_action_room"/>
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/show.match.date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="@dimen/show_match_text_drawable_padding"
-                        android:layout_marginBottom="@dimen/text_drawable_space_between"
-                        android:drawableStart="@drawable/ic_action_event"
-                        android:drawableLeft="@drawable/ic_action_event"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/match_details"
+                            android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/show.match.time"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="@dimen/show_match_text_drawable_padding"
-                        android:layout_marginBottom="@dimen/text_drawable_space_between"
-                        android:drawableStart="@drawable/ic_access_time_black_24dp"
-                        android:drawableLeft="@drawable/ic_access_time_black_24dp"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/light_gray"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="@dimen/text_drawable_space_between"/>
 
-                    <TextView
-                        android:id="@+id/show.match.players.limit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="@dimen/show_match_text_drawable_padding"
-                        android:layout_marginBottom="@dimen/text_drawable_space_between"
-                        android:drawableStart="@drawable/ic_social_group"
-                        android:drawableLeft="@drawable/ic_social_group"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin" >
+
+                            <TextView
+                                android:id="@+id/show.match.place"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:drawablePadding="@dimen/show_match_text_drawable_padding"
+                                android:layout_marginBottom="@dimen/text_drawable_space_between"
+                                android:drawableStart="@drawable/ic_action_room"
+                                android:drawableLeft="@drawable/ic_action_room"/>
+
+                            <TextView
+                                android:id="@+id/show.match.date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:drawablePadding="@dimen/show_match_text_drawable_padding"
+                                android:layout_marginBottom="@dimen/text_drawable_space_between"
+                                android:drawableStart="@drawable/ic_action_event"
+                                android:drawableLeft="@drawable/ic_action_event"/>
+
+                            <TextView
+                                android:id="@+id/show.match.time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:drawablePadding="@dimen/show_match_text_drawable_padding"
+                                android:layout_marginBottom="@dimen/text_drawable_space_between"
+                                android:drawableStart="@drawable/ic_access_time_black_24dp"
+                                android:drawableLeft="@drawable/ic_access_time_black_24dp"/>
+
+                            <TextView
+                                android:id="@+id/show.match.players.limit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:drawablePadding="@dimen/show_match_text_drawable_padding"
+                                android:layout_marginBottom="@dimen/text_drawable_space_between"
+                                android:drawableStart="@drawable/ic_social_group"
+                                android:drawableLeft="@drawable/ic_social_group"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/show.match.participants.confirmed"
@@ -94,16 +122,27 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/text_drawable_space_between"
-                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:textSize="16sp"
                             android:text="@string/confirmed_participants"/>
 
-                        <LinearLayout
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/light_gray"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="@dimen/text_drawable_space_between"/>
+
+                        <com.soccer.whosin.ExpandableGridView
                             android:id="@+id/show.match.players.confirmed"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/text_drawable_space_between"
-                            android:orientation="horizontal"/>
+                            android:columnWidth="50dp"
+                            android:gravity="center"
+                            android:numColumns="auto_fit"
+                            android:stretchMode="columnWidth"
+                            android:verticalSpacing="2dp"
+                            android:horizontalSpacing="2dp"
+                            android:layout_marginBottom="@dimen/text_drawable_space_between"/>
                     </LinearLayout>
 
                     <Button
@@ -112,7 +151,8 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_button"
                         android:textAllCaps="false"
-                        android:layout_marginBottom="@dimen/text_drawable_space_between"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
                         android:textColor="@android:color/white"
                         android:paddingLeft="@dimen/activity_horizontal_margin"
                         android:paddingRight="@dimen/activity_horizontal_margin"
