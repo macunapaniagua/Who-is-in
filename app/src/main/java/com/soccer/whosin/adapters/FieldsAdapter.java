@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.soccer.whosin.R;
 import com.soccer.whosin.models.SoccerField;
 
 import org.w3c.dom.Text;
@@ -45,7 +46,7 @@ public class FieldsAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null)
-            view = LayoutInflater.from(mContext).inflate(android.R.layout.simple_spinner_dropdown_item, null);
+            view = LayoutInflater.from(mContext).inflate(R.layout.match_spiner_item, null);
         if (view instanceof TextView)
             ((TextView) view).setText(mSoccerFields.get(i).getName());
         return view;
