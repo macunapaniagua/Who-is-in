@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.facebook.Profile;
-import com.facebook.login.LoginManager;
 import com.google.gson.Gson;
 import com.soccer.whosin.models.GroupMember;
 import com.soccer.whosin.models.Member;

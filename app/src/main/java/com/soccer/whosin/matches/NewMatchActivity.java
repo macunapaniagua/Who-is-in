@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,7 +28,6 @@ import com.philliphsu.bottomsheetpickers.date.BottomSheetDatePickerDialog;
 import com.philliphsu.bottomsheetpickers.date.DatePickerDialog;
 import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog;
 import com.philliphsu.bottomsheetpickers.time.grid.GridTimePickerDialog;
-import com.philliphsu.bottomsheetpickers.time.numberpad.NumberPadTimePickerDialog;
 import com.soccer.whosin.R;
 import com.soccer.whosin.adapters.FieldsAdapter;
 import com.soccer.whosin.fragments.fields.FieldsPresenter;
@@ -48,7 +46,6 @@ import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class NewMatchActivity extends AppCompatActivity implements View.OnClickListener,
         BottomSheetTimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener,

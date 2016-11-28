@@ -44,8 +44,8 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchVie
     @Override
     public void onBindViewHolder(final MatchViewHolder holder, int position) {
         final MatchRow matchRow = mMatchRows.get(position);
-        int status = matchRow.isConfirmed() ? R.drawable.ic_approve_member
-                                         : R.drawable.ic_remove_member;
+        int status = matchRow.isConfirmed() ? R.drawable.ic_toggle_star
+                                         : R.drawable.ic_toggle_star_outline;
         holder.vStatus.setImageResource(status);
         holder.vSoccerField.setText(mContext.getString(R.string.place_format, matchRow.getSoccerField()));
         holder.vDate.setText(mContext.getString(R.string.date_format, matchRow.getDate()));

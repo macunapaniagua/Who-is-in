@@ -55,4 +55,5 @@
     <string name="select_soccer_field">Select soccer field</string>
     <string name="participants_number">Number of participants</string>
     <string name="match_details">Match details</string>
+    <string name="soccer_field_details">Soccer field details</string>
 </resources>

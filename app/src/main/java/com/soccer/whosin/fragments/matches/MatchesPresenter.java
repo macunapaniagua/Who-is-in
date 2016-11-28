@@ -8,7 +8,6 @@ import com.soccer.whosin.models.Match;
 import com.soccer.whosin.models.MatchRow;
 import com.soccer.whosin.models.MatchUserStatus;
 import com.soccer.whosin.utils.BusProvider;
-import com.squareup.otto.Bus;
 
 import java.util.List;
 

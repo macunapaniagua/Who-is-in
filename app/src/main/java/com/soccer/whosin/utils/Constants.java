@@ -6,7 +6,7 @@ package com.soccer.whosin.utils;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://192.168.1.106:8000/api/";
+    public static final String BASE_URL = "http://35.161.242.253/api/";
 
     // SharedPreferences values
     public static final String STORAGE_NAME = "Who is in?";

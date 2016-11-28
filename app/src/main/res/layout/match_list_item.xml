@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
     <ImageView
-        android:id="@+id/match.confirmation.status"
+        android:id="@+id/match.icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:contentDescription="@null"/>
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@null"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/match.confirmation.status"
-        android:layout_toEndOf="@+id/match.confirmation.status"
-        android:layout_toStartOf="@+id/match.confirmations"
-        android:layout_toLeftOf="@+id/match.confirmations"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/match.icon"
+        android:layout_toEndOf="@+id/match.icon"
+        android:layout_toLeftOf="@+id/match.icons.wrapper"
+        android:layout_toStartOf="@+id/match.icons.wrapper">
 
         <TextView
             android:id="@+id/match.soccer.field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/cardview_dark_background"
+            android:textColor="@color/primaryColor"
             style="@style/TextAppearance.AppCompat.Medium"
             android:lines="1"
             android:ellipsize="end" />
@@ -55,11 +54,26 @@
             android:ellipsize="end" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/match.confirmations"
+    <RelativeLayout
+        android:id="@+id/match.icons.wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/match.confirmation.status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/match.confirmations"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/match.confirmation.status"/>
+    </RelativeLayout>
 </RelativeLayout>
