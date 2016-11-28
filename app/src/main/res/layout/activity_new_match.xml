@@ -37,7 +37,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/text_drawable_space_between">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -58,84 +59,76 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:baselineAligned="false"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:paddingTop="@dimen/activity_vertical_margin"
                     android:visibility="gone">
-                    
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/soccer_field_details"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_gray"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="@dimen/text_drawable_space_between"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin">
 
                         <TextView
+                            android:id="@+id/new.match.field.price"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/soccer_field_details"
-                            android:textSize="16sp" />
+                            android:gravity="center_vertical"
+                            android:drawablePadding="@dimen/text_drawable_space_between"
+                            android:drawableStart="@drawable/ic_editor_attach_money"
+                            android:drawableLeft="@drawable/ic_editor_attach_money"
+                            android:layout_marginBottom="@dimen/text_drawable_space_between"
+                            android:textSize="17sp" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/light_gray"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginBottom="@dimen/text_drawable_space_between"/>
-
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/new.match.field.capacity"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:layout_marginStart="@dimen/activity_horizontal_margin">
+                            android:gravity="center_vertical"
+                            android:drawablePadding="@dimen/text_drawable_space_between"
+                            android:drawableStart="@drawable/ic_social_group"
+                            android:drawableLeft="@drawable/ic_social_group"
+                            android:layout_marginBottom="@dimen/text_drawable_space_between"
+                            android:textSize="17sp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/text_drawable_space_between">
 
                             <TextView
-                                android:id="@+id/new.match.field.price"
+                                android:id="@+id/new.match.field.phone.number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
+                                android:layout_centerVertical="true"
+                                android:drawableStart="@drawable/ic_communication_quick_contacts_dialer"
+                                android:drawableLeft="@drawable/ic_communication_quick_contacts_dialer"
                                 android:drawablePadding="@dimen/text_drawable_space_between"
-                                android:drawableStart="@drawable/ic_editor_attach_money"
-                                android:drawableLeft="@drawable/ic_editor_attach_money"
-                                android:layout_marginBottom="@dimen/text_drawable_space_between"
                                 android:textSize="17sp" />
 
-                            <TextView
-                                android:id="@+id/new.match.field.capacity"
-                                android:layout_width="match_parent"
+                            <ImageView
+                                android:id="@+id/new.match.field.phone.call"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:drawablePadding="@dimen/text_drawable_space_between"
-                                android:drawableStart="@drawable/ic_social_group"
-                                android:drawableLeft="@drawable/ic_social_group"
-                                android:layout_marginBottom="@dimen/text_drawable_space_between"
-                                android:textSize="17sp" />
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/new.match.field.phone.number"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:textSize="17sp" />
-
-                                <ImageView
-                                    android:id="@+id/new.match.field.phone.call"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:padding="5dp"
-                                    android:contentDescription="@null"
-                                    android:src="@drawable/ic_communication_call"/>
-
-                            </RelativeLayout>
-                        </LinearLayout>
-
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:padding="5dp"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_communication_call"/>
+                        </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -143,7 +136,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:baselineAligned="false"
+                    android:layout_marginBottom="@dimen/text_drawable_space_between">
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_weight="1"
@@ -174,7 +168,8 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/text_drawable_space_between">
 
                     <EditText
                         android:id="@+id/new.match.players.limit"
@@ -190,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_button"
                     android:textAllCaps="false"
-                    android:layout_margin="@dimen/text_drawable_space_between"
+                    android:layout_margin="@dimen/activity_vertical_margin"
                     android:textColor="@android:color/white"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"

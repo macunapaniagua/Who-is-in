@@ -48,6 +48,7 @@ public class MatchesFragment extends Fragment implements OnListItemEventsListene
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.matches_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
