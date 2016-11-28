@@ -38,7 +38,7 @@ class SoccerGamesController extends Controller
       $group = $this->group->find($group_id);
       if(AuthorizeUserGroup::authorize_user_group($user, $group) != null){
         if(AuthorizeApprovedUserGroup::authorize_approved_user_group($user, $group)){
-          $soccer_games = $this->soccer_game->where('group_id', $group_id)->where('date', '>', Carbon::now()->subDays(1)->format('d-m-Y'))->orderBy('date', 'asc')->get();
+          $soccer_games = $this->soccer_game->where('group_id', $group_id)->where('date', '>=', Carbon::now()->subDays(1)->format('d-m-Y'))->orderBy('date', 'asc')->get();
           $soccer_game_info = [];
           $count = 0;
           foreach ($soccer_games as $soccer_game) {
