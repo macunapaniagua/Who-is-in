@@ -8,10 +8,10 @@ class UserAuth
       if (isset($facebook_id)) {
         $user_auth = User::where('facebook_id', $facebook_id)->get()->first();
         if (!isset($user_auth)) {
-          return false;
+          return "2";
         }
         return User::find($user_auth->id);
       }
-      return true;
+      return "1";
   }
 }

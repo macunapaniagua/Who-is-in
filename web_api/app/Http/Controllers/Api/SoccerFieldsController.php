@@ -24,9 +24,9 @@ class SoccerFieldsController extends Controller
   public function show($group_id, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $group = $this->group->find($group_id);
@@ -44,9 +44,9 @@ class SoccerFieldsController extends Controller
   public function store(Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $new_soccer_field = new $this->soccer_field;

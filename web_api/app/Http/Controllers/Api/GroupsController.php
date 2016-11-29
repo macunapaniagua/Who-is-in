@@ -29,9 +29,9 @@ class GroupsController extends Controller
   public function users_group($group_id, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $group = $this->group->find($group_id);
@@ -55,9 +55,9 @@ class GroupsController extends Controller
   public function store(GroupsRequest $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $new_group = new $this->group;
@@ -77,9 +77,9 @@ class GroupsController extends Controller
   public function show($code, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $group_search = $this->group->where('code', $code)->get()->first();
@@ -106,9 +106,9 @@ class GroupsController extends Controller
   public function change_member_status(Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $user_group = $this->user_group->where('user_id', $request->user_id)->where('group_id', $request->group_id)->get()->first();
@@ -126,9 +126,9 @@ class GroupsController extends Controller
   public function remove_member(Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $user_group = $this->user_group->where('user_id', $request->user_id)->where('group_id', $request->group_id)->get()->first();

@@ -30,9 +30,9 @@ class SoccerGamesController extends Controller
   public function all_soccer_games($group_id, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $group = $this->group->find($group_id);
@@ -59,9 +59,9 @@ class SoccerGamesController extends Controller
   public function show($soccer_game_id, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $soccer_game = $this->soccer_game->find($soccer_game_id);
@@ -93,9 +93,9 @@ class SoccerGamesController extends Controller
   public function store(Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $new_soccer_game = new $this->soccer_game;

@@ -28,9 +28,9 @@ class PlayersController extends Controller
   public function players_soccer_game($soccer_game_id, Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $group = $this->group->find($group_id);
@@ -53,9 +53,9 @@ class PlayersController extends Controller
   public function join_soccer_game(Request $request)
   {
     $user = UserAuth::getUserAuth($request);
-    if (!isset($user)) {
+    if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if(!$user) {
+    } else if($user == "2") {
       return response(['error' => trans('api_messages.error_player')], 403);
     } else {
       $soccer_game = $this->soccer_game->find($request->soccer_game_id);
@@ -83,9 +83,9 @@ class PlayersController extends Controller
   {
     try {
       $user = UserAuth::getUserAuth($request);
-      if (!isset($user)) {
+      if ($user == "1") {
         return response(['error' => trans('api_messages.error_facebook_id')], 403);
-      } else if(!$user) {
+      } else if($user == "2") {
         return response(['error' => trans('api_messages.error_player')], 403);
       } else {
         $user = UserAuth::getUserAuth($request);
