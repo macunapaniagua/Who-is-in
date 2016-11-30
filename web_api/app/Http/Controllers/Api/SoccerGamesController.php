@@ -92,47 +92,50 @@ class SoccerGamesController extends Controller
 
   public function store(Request $request)
   {
-    $user = UserAuth::getUserAuth($request);
-    if ($user == "1") {
-      return response(['error' => trans('api_messages.error_facebook_id')], 403);
-    } else if($user == "2") {
-      return response(['error' => trans('api_messages.error_player')], 403);
-    } else {
-      $new_soccer_game = new $this->soccer_game;
-      $new_soccer_game->group_id = $request->group_id;
-      $new_soccer_game->soccer_field_id = $request->soccer_field_id;
-      $new_soccer_game->hour = $request->hour;
-      $new_soccer_game->date = $request->date;
-      $new_soccer_game->players_limit = $request->players_limit;
-      $new_soccer_game->save();
-      $title = "¡Un evento nuevo ha sido creado en el grupo \"".$new_soccer_game->group->name."\"!";
-      $body = "Te han invitado a una mejenga en \"".$new_soccer_game->soccer_field->name."\" el día $new_soccer_game->date a las $new_soccer_game->hour";
-      PushNotification::sendNotification($title, $body, $new_soccer_game->group_id);
-
-      return response($new_soccer_game, 201);
+    if (date_parse($request->date) >= Carbon::now()) {
+      $user = UserAuth::getUserAuth($request);
+      if ($user == "1") {
+        return response(['error' => trans('api_messages.error_facebook_id')], 403);
+      } else if($user == "2") {
+        return response(['error' => trans('api_messages.error_player')], 403);
+      } else {
+        $new_soccer_game = new $this->soccer_game;
+        $new_soccer_game->group_id = $request->group_id;
+        $new_soccer_game->soccer_field_id = $request->soccer_field_id;
+        $new_soccer_game->hour = $request->hour;
+        $new_soccer_game->date = $request->date;
+        $new_soccer_game->players_limit = $request->players_limit;
+        $new_soccer_game->save();
+        $title = "¡Un evento nuevo ha sido creado en el grupo \"".$new_soccer_game->group->name."\"!";
+        $body = "Te han invitado a una mejenga en \"".$new_soccer_game->soccer_field->name."\" el día $new_soccer_game->date a las $new_soccer_game->hour";
+        PushNotification::sendNotification($title, $body, $new_soccer_game->group_id);
+        return response($new_soccer_game, 201);
+      }
     }
+    return response(['error' => trans('api_messages.error_date')], 400);
   }
+}
 
-  public function update($id, Request $request)
-  {
-    $update_soccer_game = $this->soccer_game->findOrFail($id);
-    $update_soccer_game->group_id = $request->group_id;
-    $update_soccer_game->soccer_field_id = $request->soccer_field_id;
-    $update_soccer_game->hour = $request->hour;
-    $update_soccer_game->date = $request->date;
-    $update_soccer_game->players_limit = $request->players_limit;
-    $update_soccer_game->save();
-    return response($update_soccer_game, 200);
-  }
+public function update($id, Request $request)
+{
+  $update_soccer_game = $this->soccer_game->findOrFail($id);
+  $update_soccer_game->group_id = $request->group_id;
+  $update_soccer_game->soccer_field_id = $request->soccer_field_id;
+  $update_soccer_game->hour = $request->hour;
+  $update_soccer_game->date = $request->date;
+  $update_soccer_game->players_limit = $request->players_limit;
+  $update_soccer_game->save();
+  return response($update_soccer_game, 200);
+}
 
-  public function destroy($id, Request $request)
-  {
-    try {
-      $delete_soccer_game = $this->soccer_game->findOrFail($id);
-      $delete_soccer_game->delete();
-      return response("", 200);
-    }catch(\Exception $e){
-      return response(['error' => trans('api_messages.error_game')], 401);
-    }
+public function destroy($id, Request $request)
+{
+  try {
+    $delete_soccer_game = $this->soccer_game->findOrFail($id);
+    $delete_soccer_game->delete();
+    return response("", 200);
+  }catch(\Exception $e){
+    return response(['error' => trans('api_messages.error_game')], 401);
   }
+}
 }
