@@ -54,7 +54,6 @@ class GroupsController extends Controller
   //crear un nuevo grupo, automaticamente estoy activo y soy administrador
   public function store(Request $request)
   {
-    dd($request->header('Authorization'));
     $user = UserAuth::getUserAuth($request);
     if ($user == "1") {
       return response(['error' => trans('api_messages.error_facebook_id')], 403);
