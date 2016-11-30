@@ -6,7 +6,7 @@ class UserAuth
   public static function getUserAuth($request) {
       $facebook_id = $request->header('Authorization');
       if (isset($facebook_id)) {
-        $user_auth = User::where('Authorization', $facebook_id)->get()->first();
+        $user_auth = User::where('facebook_id', $facebook_id)->get()->first();
         if (!isset($user_auth)) {
           return "2";
         }
