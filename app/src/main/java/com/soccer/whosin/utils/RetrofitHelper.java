@@ -47,7 +47,7 @@ public class RetrofitHelper {
             public okhttp3.Response intercept(Chain chain) throws IOException {
                 Request original = chain.request();
                 Request request = original.newBuilder()
-                        .header(Constants.USER_FB_KEY, pFacebookId)
+                        .header(Constants.USER_AUTH_KEY, pFacebookId)
                         .method(original.method(), original.body())
                         .build();
                 return chain.proceed(request);

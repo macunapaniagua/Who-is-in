@@ -14,6 +14,7 @@ public class Constants {
     public static final String USER_PICTURE = "user_picture";
     public static final String USER_FB_KEY  = "facebook_id";
     public static final String GROUP_MEMBER = "group_member";
+    public static final String USER_AUTH_KEY  = "Authorization";
 
     // RETROFIT PARAMS
     public static final String GROUP_NAME = "name";
