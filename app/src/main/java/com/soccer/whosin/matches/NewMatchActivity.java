@@ -210,6 +210,7 @@ public class NewMatchActivity extends AppCompatActivity implements View.OnClickL
                 String facebookId  = member.getMember().getFacebookId();
                 CreateMatch match  = new CreateMatch(fieldId, groupId, time, date, playersLimit);
                 MatchesPresenter presenter = new MatchesPresenter();
+                this.showLoadingIndicator();
                 presenter.createMatch(facebookId, match);
                 return;
             }
@@ -238,6 +239,7 @@ public class NewMatchActivity extends AppCompatActivity implements View.OnClickL
     @Subscribe
     @SuppressWarnings("unused")
     public void onSoccerMatchCreated(Match pSoccerMatch) {
+        this.hideLoadingIndicator();
         this.setResult(RESULT_OK);
         this.finish();
     }
