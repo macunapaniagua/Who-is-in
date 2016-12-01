@@ -92,7 +92,7 @@ class SoccerGamesController extends Controller
 
   public function store(Request $request)
   {
-    if (date_parse($request->date) >= Carbon::now()) {
+    if ($request->date >= Carbon::now()->format('d-m-Y') && $request->hour >= Carbon::now()->setTimezone('America/Costa_Rica')->format('g:i A')) {
       $user = UserAuth::getUserAuth($request);
       if ($user == "1") {
         return response(['error' => trans('api_messages.error_facebook_id')], 403);
@@ -114,7 +114,7 @@ class SoccerGamesController extends Controller
     }
     return response(['error' => trans('api_messages.error_date')], 400);
   }
-}
+
 
 public function update($id, Request $request)
 {
