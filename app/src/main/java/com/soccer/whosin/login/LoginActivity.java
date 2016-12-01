@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Subscribe
     @SuppressWarnings("unused")
-    protected void onUserCreated(Member pMember) {
+    public void onUserCreated(Member pMember) {
         LocalStorageHelper.storeLoggedUser(this, pMember);
         this.hideLoadingIndicator();
         this.goToGroupSection();
@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Subscribe
     @SuppressWarnings("unused")
-    protected void onUserCreationFail(ErrorMessage pErrorMessage) {
+    public void onUserCreationFail(ErrorMessage pErrorMessage) {
         this.hideLoadingIndicator();
         Toast.makeText(this, pErrorMessage.getMessage(), Toast.LENGTH_LONG).show();
     }
